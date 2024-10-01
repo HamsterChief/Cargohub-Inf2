@@ -1,9 +1,14 @@
 import sqlite3
 import json
 
-conn = sqlite3.connect('Cargohub.db')
+conn = sqlite3.connect('./data/Cargohub.db')
 cursor = conn.cursor()
-with open('data/orders.json', 'r') as file:
+conn.row_factory = sqlite3.Row
+cursor.execute("SELECT * FROM clients")
+print(cursor.fetchone())
+# self.data = [dict(row) for row in rows]
+conn.close()
+with open('data/.json', 'r') as file:
     clients = json.load(file)
 
 

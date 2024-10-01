@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CargoHub",
+    "\\CargoHub\\api",
+    "\\CargoHub\\api\\models",
+    "\\CargoHub\\api\\processors",
+    "\\CargoHub\\api\\providers",
+    "\\CargoHub\\data"
+  ],
+  "SelectedNode": "\\CargoHub\\api\\models\\clients.py",
+  "PreviewInSolutionExplorer": false
+}

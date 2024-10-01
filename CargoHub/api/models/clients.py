@@ -8,7 +8,7 @@ CLIENTS = []
 
 class Clients(Base):
     def __init__(self, root_path, is_debug=False):
-        self.data_path = root_path + "clients.json"
+        self.data_path = root_path + "cargohub.db"
         self.load(is_debug)
 
     def get_clients(self):
@@ -16,7 +16,7 @@ class Clients(Base):
 
     def get_client(self, client_id):
         for x in self.data:
-            if x["id"] == client_id:
+            if x[0] == client_id:
                 return x
         return None
 
@@ -36,16 +36,22 @@ class Clients(Base):
         for x in self.data:
             if x["id"] == client_id:
                 self.data.remove(x)
-             
+
     def load(self, is_debug):
         if is_debug:
             self.data = CLIENTS
         else:
-            f = open(self.data_path, "r")
-            self.data = json.load(f)
-            f.close()
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM clients")
+            self.data = cursor.fetchall()
+            # self.data = [dict(row) for row in rows]
+            conn.close()
 
     def save(self):
+        """
         f = open(self.data_path, "w")
         json.dump(self.data, f)
         f.close()
+        """
+        return
