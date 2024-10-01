@@ -1,4 +1,5 @@
 import json
+import sqlite3
 
 from models.base import Base
 
@@ -35,7 +36,7 @@ class Clients(Base):
         for x in self.data:
             if x["id"] == client_id:
                 self.data.remove(x)
-
+             
     def load(self, is_debug):
         if is_debug:
             self.data = CLIENTS

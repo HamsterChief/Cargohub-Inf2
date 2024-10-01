@@ -1,13 +1,14 @@
 import socketserver
 import http.server
 import json
+import sqlite3
 
 from providers import auth_provider
 from providers import data_provider
 
 from processors import notification_processor
 
-
+~"""
 class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
 
     def handle_get_version_1(self, path, user):
@@ -798,13 +799,16 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             except Exception:
                 self.send_response(500)
                 self.end_headers()
-
+"""
 
 if __name__ == "__main__":
-    PORT = 3000
-    with socketserver.TCPServer(("", PORT), ApiRequestHandler) as httpd:
-        auth_provider.init()
-        data_provider.init()
-        notification_processor.start()
-        print(f"Serving on port {PORT}...")
-        httpd.serve_forever()
+    conn = sqlite3.connect('Cargohub.db')
+    with open('clients.json', 'r') as json_file:
+        data = json.load(json_file)
+    #PORT = 3000
+    #with socketserver.TCPServer(("", PORT), ApiRequestHandler) as httpd:
+        #auth_provider.init()
+        #data_provider.init()
+        #notification_processor.start()
+        #print(f"Serving on port {PORT}...")
+        #httpd.serve_forever()
