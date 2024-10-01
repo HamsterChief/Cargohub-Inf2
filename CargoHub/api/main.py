@@ -1,9 +1,11 @@
 import socketserver
 import http.server
 import json
+import sqlite3
 
 from providers import auth_provider
 from providers import data_provider
+from transfer_data import json_to_database
 
 from processors import notification_processor
 
@@ -799,12 +801,61 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                 self.send_response(500)
                 self.end_headers()
 
+class transfer_data():
+    def __init__(self):
+        self.conn = sqlite3.connect('cargohub_database.sqlite')
+        self.cursor = self.conn.cursor()
+
+    def transfer(self):
+        datasets = {
+            "warehouses": data_provider._warehouses.get_warehouses(),
+            "clients": data_provider._clients.get_clients(),
+            "inventories": data_provider._inventories.get_inventories(),
+            "item_groups": data_provider._item_groups.get_item_groups(),
+            "item_lines": data_provider._item_lines.get_item_lines(),
+            "item_types": data_provider._item_types.get_item_types(),
+            "items": data_provider._items.get_items(),
+            "locations": data_provider._locations.get_locations(),
+            "orders": data_provider._orders.get_orders(),
+            "shipments": data_provider._shipments.get_shipments(),
+            "suppliers": data_provider._suppliers.get_suppliers(),
+            "transfers": data_provider._transfers.get_transfers()
+        }
+
+        for table_name, data in datasets.items():
+            self.create_table_from_data(table_name, data)
+            self.insert_data_into_table(table_name, data)
+
+        self.conn.commit()
+        self.conn.close()
+
+    def create_table_from_data(self, table_name, data):
+        keys = data[0].keys()
+        columns = ", ".join([f"{key} TEXT" for key in keys])
+        create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({columns})"
+        self.cursor.execute(create_table_query)
+
+    def insert_data_into_table(self, table_name, data):
+        keys = data[0].keys()
+        columns = ", ".join(keys)
+        placeholders = ", ".join(["?" for _ in keys])
+
+        insert_query = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+
+        for entry in data:
+            values = tuple(str(entry[key]) for key in keys)
+            self.cursor.execute(insert_query, values)
+
 
 if __name__ == "__main__":
     PORT = 3000
     with socketserver.TCPServer(("", PORT), ApiRequestHandler) as httpd:
         auth_provider.init()
         data_provider.init()
+
+        transfer_data_instance = transfer_data()
+        transfer_data_instance.transfer()
+
         notification_processor.start()
         print(f"Serving on port {PORT}...")
         httpd.serve_forever()
