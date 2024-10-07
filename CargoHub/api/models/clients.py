@@ -45,13 +45,26 @@ class Clients(Base):
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM clients")
             self.data = cursor.fetchall()
-            # self.data = [dict(row) for row in rows]
             conn.close()
 
     def save(self):
-        """
-        f = open(self.data_path, "w")
-        json.dump(self.data, f)
-        f.close()
-        """
+        conn = sqlite3.connect(self.data_path)
+        try:
+            cursor = conn.cursor()
+            #executemany to avoid for loop
+            #first time using might have small issues
+            #but it is far more efficient
+            cursor.executemany("""
+                UPDATE clients
+                SET id = ?, name = ?, address = ?, city = ?, zip_code = ?, province = ?, country = ?,
+                               contact_name = ?, contact_phone = ?, contact_email = ?, created_at = ?, updated_at = ?
+                WHERE id = ?
+            """, self.data)
+        except Exception as e:
+            # Rollback so that data doesn't get corrupted
+            conn.rollback()
+            raise e  # Re raise or handle the error
+        finally:
+            # Final statement
+            conn.close()
         return
