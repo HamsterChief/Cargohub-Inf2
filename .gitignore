@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 /.vs/Cargohub-Inf2/FileContentIndex
 /CargoHub/api/models/__pycache__
+/CargoHub/api/models/__pycache__
