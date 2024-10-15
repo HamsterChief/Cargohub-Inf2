@@ -44,27 +44,31 @@ class Clients(Base):
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM clients")
-            self.data = cursor.fetchall()
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            print(self.data)
             conn.close()
 
+
     def save(self):
-        conn = sqlite3.connect(self.data_path)
         try:
+            conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            #executemany to avoid for loop
-            #first time using might have small issues
-            #but it is far more efficient
-            cursor.executemany("""
-                UPDATE clients
-                SET id = ?, name = ?, address = ?, city = ?, zip_code = ?, province = ?, country = ?,
-                               contact_name = ?, contact_phone = ?, contact_email = ?, created_at = ?, updated_at = ?
-                WHERE id = ?
-            """, self.data)
-        except Exception as e:
-            # Rollback so that data doesn't get corrupted
-            conn.rollback()
-            raise e  # Re raise or handle the error
+            # Convert tuples from self.data into dictionaries using column names
+            for client in self.data:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO clients (id, name, address, city, zip_code, province, country, contact_name, contact_phone, contact_email, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                               (
+                                   client['id'], client['name'], client['address'], client['city'], client['zip_code'], client['province'],
+                                   client['country'], client['contact_name'], client['contact_phone'], client['contact_email'],
+                                   client['created_at'], client['updated_at']
+                               ))
+            conn.commit()
+        except sqlite3.Error as e:
+            # Log the error or handle it as needed
+            print(f"Database error: {e}")
         finally:
-            # Final statement
             conn.close()
-        return
