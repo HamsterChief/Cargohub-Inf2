@@ -43,12 +43,12 @@ class Clients(Base):
         else:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
+            # harvest all data from the db table
             cursor.execute("SELECT * FROM clients")
             # Get column names from cursor description
             columns = [description[0] for description in cursor.description]
             # Fetch all rows and convert them to dictionaries
             self.data = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            print(self.data)
             conn.close()
 
 
@@ -56,7 +56,7 @@ class Clients(Base):
         try:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            # Convert tuples from self.data into dictionaries using column names
+            # excecute many has issues with dictionaries sadly still have to use for loop
             for client in self.data:
                 cursor.execute("""
                     INSERT OR REPLACE INTO clients (id, name, address, city, zip_code, province, country, contact_name, contact_phone, contact_email, created_at, updated_at)
@@ -68,7 +68,7 @@ class Clients(Base):
                                ))
             conn.commit()
         except sqlite3.Error as e:
-            # Log the error or handle it as needed
-            print(f"Database error: {e}")
+            # fail safe if theres an issue with the function
+            print(f"Client Database error: {e}")
         finally:
             conn.close()
