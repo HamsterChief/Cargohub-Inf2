@@ -42,28 +42,30 @@ class ItemLines(Base):
         else:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            # select everything from each row from the table
+            # harvest all data from the db table
             cursor.execute("SELECT * FROM item_lines")
-            self.data = cursor.fetchall()
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = [dict(zip(columns, row)) for row in cursor.fetchall()]
             conn.close()
 
+
     def save(self):
-        conn = sqlite3.connect(self.data_path)
         try:
+            conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            #executemany to avoid for loop
-            #first time using might have small issues
-            #but it is far more efficient
-            cursor.executemany("""
-                UPDATE item_lines
-                SET id = ?, name = ?, description = ?, created_at = ?, updated_at = ?
-                WHERE id = ?
-            """, self.data)
-        except Exception as e:
-            # Rollback so that data doesn't get corrupted
-            conn.rollback()
-            raise e  # Re raise or handle the error
+            # excecute many has issues with dictionaries sadly still have to use for loop
+            for item_line in self.data:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO item_lines (id, name, description, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?)""",
+                               (
+                                   item_line['id'], item_line["name"], item_line["description"], item_line["created_at"], item_line["updated_at"]
+                               ))
+            conn.commit()
+        except sqlite3.Error as e:
+            # fail safe if theres an issue with the function
+            print(f"item line Database error: {e}")
         finally:
-            # Final statement
             conn.close()
-        return

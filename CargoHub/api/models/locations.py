@@ -7,7 +7,7 @@ LOCATIONS = []
 
 class Locations(Base):
     def __init__(self, root_path, is_debug=False):
-        self.data_path = root_path + "locations.json"
+        self.data_path = root_path + "cargohub.db"
         self.load(is_debug)
 
     def get_locations(self):
@@ -47,11 +47,32 @@ class Locations(Base):
         if is_debug:
             self.data = LOCATIONS
         else:
-            f = open(self.data_path, "r")
-            self.data = json.load(f)
-            f.close()
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # harvest all data from the db table
+            cursor.execute("SELECT * FROM locations")
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            conn.close()
+
 
     def save(self):
-        f = open(self.data_path, "w")
-        json.dump(self.data, f)
-        f.close()
+        try:
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # excecute many has issues with dictionaries sadly still have to use for loop
+            for inventory in self.data:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO inventories (id, warehouse_id, code, name, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?)""",
+                               (
+                                   inventory["id"], inventory["warehouse_id"], inventory["code"], inventory["name"], inventory["created_at"], inventory["updated_at"]
+                               ))
+            conn.commit()
+        except sqlite3.Error as e:
+            # fail safe if theres an issue with the function
+            print(f"inventory Database error: {e}")
+        finally:
+            conn.close()

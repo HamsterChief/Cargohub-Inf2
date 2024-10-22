@@ -60,33 +60,35 @@ class Inventories(Base):
 
     def load(self, is_debug):
         if is_debug:
-            self.data = INVENTORIES
+            self.data = CLIENTS
         else:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            # select everything from each row from the table
+            # harvest all data from the db table
             cursor.execute("SELECT * FROM inventories")
-            self.data = cursor.fetchall()
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = [dict(zip(columns, row)) for row in cursor.fetchall()]
             conn.close()
 
+
     def save(self):
-        conn = sqlite3.connect(self.data_path)
         try:
+            conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            #executemany to avoid for loop
-            #first time using might have small issues
-            #but it is far more efficient
-            cursor.executemany("""
-                UPDATE inventories
-                SET id = ?, item_id = ?, description = ?, item_reference = ?, locations = ?, total_on_hand = ?, total_expected = ?,
-                               total_ordered = ?, total_allocated = ?, total_available = ?, created_at = ?, updated_at = ?
-                WHERE id = ?
-            """, self.data)
-        except Exception as e:
-            # Rollback so that data doesn't get corrupted
-            conn.rollback()
-            raise e  # Re raise or handle the error
+            # excecute many has issues with dictionaries sadly still have to use for loop
+            for inventorie in self.data:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO inventories (id, item_id, description, item_reference, locations, total_on_hand, total_expected, total_ordered, total_allocated, total_available, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                               (
+                                   inventorie['id'], inventorie['item_id'], inventorie['description'], inventorie['item_reference'], inventorie['locations'], inventorie['total_on_hand'],
+                                   inventorie['total_expected'], inventorie['total_ordered'], inventorie['total_allocated'], inventorie['total_available'], inventorie['created_at'], inventorie['updated_at']
+                               ))
+            conn.commit()
+        except sqlite3.Error as e:
+            # fail safe if theres an issue with the function
+            print(f"Inventory Database error: {e}")
         finally:
-            # Final statement
             conn.close()
-        return
