@@ -6,8 +6,11 @@
     "\\CargoHub\\api\\models",
     "\\CargoHub\\api\\processors",
     "\\CargoHub\\api\\providers",
-    "\\CargoHub\\data"
+    "\\Tests",
+    "\\Tests\\api",
+    "\\Tests\\api\\models",
+    "\\Tests\\data"
   ],
-  "SelectedNode": "\\CargoHub\\api\\models\\clients.py",
+  "SelectedNode": "\\Tests\\api\\Unit_test.py",
   "PreviewInSolutionExplorer": false
 }
