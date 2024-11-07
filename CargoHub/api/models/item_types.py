@@ -55,6 +55,7 @@ class ItemTypes(Base):
         try:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
+            cursor.execute("DELETE FROM item_types")
             # excecute many has issues with dictionaries sadly still have to use for loop
             for item_type in self.data:
                 cursor.execute("""

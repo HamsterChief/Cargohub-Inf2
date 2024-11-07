@@ -16,7 +16,7 @@ class Clients(Base):
 
     def get_client(self, client_id):
         for x in self.data:
-            if x[0] == client_id:
+            if x["id"] == client_id:
                 return x
         return None
 
@@ -56,19 +56,22 @@ class Clients(Base):
         try:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
-            # excecute many has issues with dictionaries sadly still have to use for loop
+            
+            # Empty the table before inserting new data
+            cursor.execute("DELETE FROM clients")
+
+            # Insert new data
             for client in self.data:
                 cursor.execute("""
                     INSERT OR REPLACE INTO clients (id, name, address, city, zip_code, province, country, contact_name, contact_phone, contact_email, created_at, updated_at)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                               (
-                                   client['id'], client['name'], client['address'], client['city'], client['zip_code'], client['province'],
-                                   client['country'], client['contact_name'], client['contact_phone'], client['contact_email'],
-                                   client['created_at'], client['updated_at']
-                               ))
+                    (
+                        client['id'], client['name'], client['address'], client['city'], client['zip_code'], client['province'],
+                        client['country'], client['contact_name'], client['contact_phone'], client['contact_email'],
+                        client['created_at'], client['updated_at']
+                    ))
             conn.commit()
         except sqlite3.Error as e:
-            # fail safe if theres an issue with the function
             print(f"Client Database error: {e}")
         finally:
             conn.close()

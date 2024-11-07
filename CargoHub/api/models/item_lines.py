@@ -55,6 +55,7 @@ class ItemLines(Base):
         try:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
+            cursor.execute("DELETE FROM item_lines")
             # excecute many has issues with dictionaries sadly still have to use for loop
             for item_line in self.data:
                 cursor.execute("""

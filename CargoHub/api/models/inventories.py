@@ -60,7 +60,7 @@ class Inventories(Base):
 
     def load(self, is_debug):
         if is_debug:
-            self.data = CLIENTS
+            self.data = INVENTORIES
         else:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
@@ -78,6 +78,7 @@ class Inventories(Base):
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
             # excecute many has issues with dictionaries sadly still have to use for loop
+            cursor.execute("DELETE FROM inventories")
             for inventorie in self.data:
                 cursor.execute("""
                     INSERT OR REPLACE INTO inventories (id, item_id, description, item_reference, locations, total_on_hand, total_expected, total_ordered, total_allocated, total_available, created_at, updated_at)

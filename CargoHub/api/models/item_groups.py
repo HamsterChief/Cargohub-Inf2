@@ -56,6 +56,7 @@ class ItemGroups(Base):
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
             # excecute many has issues with dictionaries sadly still have to use for loop
+            cursor.execute("DELETE FROM item_groups")
             for item_group in self.data:
                 cursor.execute("""
                     INSERT OR REPLACE INTO item_groups (id, name, description, created_at, updated_at)

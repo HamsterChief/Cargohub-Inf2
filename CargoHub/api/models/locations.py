@@ -1,4 +1,5 @@
 import json
+import sqlite3
 
 from models.base import Base
 
@@ -62,10 +63,11 @@ class Locations(Base):
         try:
             conn = sqlite3.connect(self.data_path)
             cursor = conn.cursor()
+            cursor.execute("DELETE FROM locations")
             # excecute many has issues with dictionaries sadly still have to use for loop
             for inventory in self.data:
                 cursor.execute("""
-                    INSERT OR REPLACE INTO inventories (id, warehouse_id, code, name, created_at, updated_at)
+                    INSERT OR REPLACE INTO locations (id, warehouse_id, code, name, created_at, updated_at)
                     VALUES (?, ?, ?, ?, ?)""",
                                (
                                    inventory["id"], inventory["warehouse_id"], inventory["code"], inventory["name"], inventory["created_at"], inventory["updated_at"]
