@@ -296,6 +296,6 @@ def test_data_delete_items():
     response = requests.delete(
         f"{BASE_URL}/api/v1/items/1", headers=header)
     assert response.status_code == 200
-# 3. Which tests can we write and run to cover all functionality?
 
-# TODO: work out individually before discussing in your team
+
+# issues with put request item: _groups, _lines and _types 
