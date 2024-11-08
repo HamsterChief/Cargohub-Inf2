@@ -7,7 +7,6 @@ CLIENTS = []
 
 
 # Sample test data
-TEST_DB_PATH = "./Test/data/Cargohub.db"
 TEST_CLIENTS = [
     {
         "id": 1,
@@ -20,8 +19,8 @@ TEST_CLIENTS = [
         "contact_name": "Alice",
         "contact_phone": "123-456-7890",
         "contact_email": "alice@test.com",
-        "created_at": str(datetime.now()),
-        "updated_at": str(datetime.now()),
+        "created_at": str(datetime.utcnow()),
+        "updated_at": str(datetime.utcnow()),
     },
     {
         "id": 2,
@@ -34,8 +33,8 @@ TEST_CLIENTS = [
         "contact_name": "Bob",
         "contact_phone": "098-765-4321",
         "contact_email": "bob@test.com",
-        "created_at": str(datetime.now()),
-        "updated_at": str(datetime.now()),
+        "created_at": str(datetime.utcnow()),
+        "updated_at": str(datetime.utcnow()),
     },
 ]
 
