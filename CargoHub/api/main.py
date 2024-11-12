@@ -5,6 +5,7 @@ import sqlite3
 
 from providers import auth_provider
 from providers import data_provider
+from providers import key_provider
 from transfer_data import json_to_database
 
 from processors import notification_processor
@@ -382,7 +383,8 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         api_key = self.headers.get("API_KEY")
         user = auth_provider.get_user(api_key)
-        if user == None:
+        
+        if user is None:
             self.send_response(401)
             self.end_headers()
         else:
@@ -390,9 +392,13 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                 path = self.path.split("/")
                 if len(path) > 3 and path[1] == "api" and path[2] == "v1":
                     self.handle_get_version_1(path[3:], user)
-            except Exception:
+                else:
+                    self.send_response(404)
+                    self.end_headers()
+            except Exception as e:
                 self.send_response(500)
                 self.end_headers()
+
 
     def handle_post_version_1(self, path, user):
         if not auth_provider.has_access(user, path, "post"):
@@ -850,11 +856,8 @@ class transfer_data():
 if __name__ == "__main__":
     PORT = 3000
     with socketserver.TCPServer(("", PORT), ApiRequestHandler) as httpd:
-        auth_provider.init()
+        #auth_provider.init()
         data_provider.init()
-
-        # transfer_data_instance = transfer_data()
-        # transfer_data_instance.transfer()
 
         notification_processor.start()
         print(f"Serving on port {PORT}...")
