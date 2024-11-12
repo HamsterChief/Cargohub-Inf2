@@ -44,12 +44,14 @@ class Orders(Base):
         order["created_at"] = self.get_timestamp()
         order["updated_at"] = self.get_timestamp()
         self.data.append(order)
+        self.save()
 
     def update_order(self, order_id, order):
         order["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == order_id:
                 self.data[i] = order
+                self.save()
                 break
 
     def update_items_in_order(self, order_id, items):
@@ -106,6 +108,7 @@ class Orders(Base):
         for x in self.data:
             if x["id"] == order_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

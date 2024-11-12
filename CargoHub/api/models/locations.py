@@ -30,18 +30,21 @@ class Locations(Base):
         location["created_at"] = self.get_timestamp()
         location["updated_at"] = self.get_timestamp()
         self.data.append(location)
+        self.save()
 
     def update_location(self, location_id, location):
         location["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == location_id:
                 self.data[i] = location
+                self.save()
                 break
 
     def remove_location(self, location_id):
         for x in self.data:
             if x["id"] == location_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

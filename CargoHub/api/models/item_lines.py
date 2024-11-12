@@ -23,18 +23,21 @@ class ItemLines(Base):
         item_line["created_at"] = self.get_timestamp()
         item_line["updated_at"] = self.get_timestamp()
         self.data.append(item_line)
+        self.save()
 
     def update_item_line(self, item_line_id, item_line):
         item_line["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == item_line_id:
                 self.data[i] = item_line
+                self.save()
                 break
 
     def remove_item_line(self, item_line_id):
         for x in self.data:
             if x["id"] == item_line_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

@@ -51,18 +51,21 @@ class Items(Base):
         item["created_at"] = self.get_timestamp()
         item["updated_at"] = self.get_timestamp()
         self.data.append(item)
+        self.save()
 
     def update_item(self, item_id, item):
         item["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["uid"] == item_id:
                 self.data[i] = item
+                self.save()
                 break
 
     def remove_item(self, item_id):
         for x in self.data:
             if x["uid"] == item_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

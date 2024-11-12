@@ -23,18 +23,21 @@ class ItemGroups(Base):
         item_group["created_at"] = self.get_timestamp()
         item_group["updated_at"] = self.get_timestamp()
         self.data.append(item_group)
+        self.save()
 
     def update_item_group(self, item_group_id, item_group):
         item_group["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == item_group_id:
                 self.data[i] = item_group
+                self.save()
                 break
 
     def remove_item_group(self, item_group_id):
         for x in self.data:
             if x["id"] == item_group_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

@@ -30,12 +30,14 @@ class Shipments(Base):
         shipment["created_at"] = self.get_timestamp()
         shipment["updated_at"] = self.get_timestamp()
         self.data.append(shipment)
+        self.save()
 
     def update_shipment(self, shipment_id, shipment):
         shipment["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == shipment_id:
                 self.data[i] = shipment
+                self.save()
                 break
 
     def update_items_in_shipment(self, shipment_id, items):
@@ -78,6 +80,7 @@ class Shipments(Base):
         for x in self.data:
             if x["id"] == shipment_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

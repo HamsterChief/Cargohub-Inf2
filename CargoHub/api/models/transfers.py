@@ -31,18 +31,21 @@ class Transfers(Base):
         transfer["created_at"] = self.get_timestamp()
         transfer["updated_at"] = self.get_timestamp()
         self.data.append(transfer)
+        self.save()
 
     def update_transfer(self, transfer_id, transfer):
         transfer["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == transfer_id:
                 self.data[i] = transfer
+                self.save()
                 break
 
     def remove_transfer(self, transfer_id):
         for x in self.data:
             if x["id"] == transfer_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

@@ -45,18 +45,21 @@ class Inventories(Base):
         inventory["created_at"] = self.get_timestamp()
         inventory["updated_at"] = self.get_timestamp()
         self.data.append(inventory)
+        self.save()
 
     def update_inventory(self, inventory_id, inventory):
         inventory["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == inventory_id:
                 self.data[i] = inventory
+                self.save()
                 break
 
     def remove_inventory(self, inventory_id):
         for x in self.data:
             if x["id"] == inventory_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

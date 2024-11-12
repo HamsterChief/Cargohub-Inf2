@@ -23,18 +23,21 @@ class Suppliers(Base):
         supplier["created_at"] = self.get_timestamp()
         supplier["updated_at"] = self.get_timestamp()
         self.data.append(supplier)
+        self.save()
 
     def update_supplier(self, supplier_id, supplier):
         supplier["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == supplier_id:
                 self.data[i] = supplier
+                self.save()
                 break
 
     def remove_supplier(self, supplier_id):
         for x in self.data:
             if x["id"] == supplier_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:

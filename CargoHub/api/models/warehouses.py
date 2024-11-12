@@ -23,18 +23,21 @@ class Warehouses(Base):
         warehouse["created_at"] = self.get_timestamp()
         warehouse["updated_at"] = self.get_timestamp()
         self.data.append(warehouse)
+        self.save()
 
     def update_warehouse(self, warehouse_id, warehouse):
         warehouse["updated_at"] = self.get_timestamp()
         for i in range(len(self.data)):
             if self.data[i]["id"] == warehouse_id:
                 self.data[i] = warehouse
+                self.save()
                 break
 
     def remove_warehouse(self, warehouse_id):
         for x in self.data:
             if x["id"] == warehouse_id:
                 self.data.remove(x)
+                self.save()
 
     def load(self, is_debug):
         if is_debug:
