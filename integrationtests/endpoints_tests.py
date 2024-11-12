@@ -4,15 +4,15 @@ import requests
 
 # TODO: replace with test server url
 BASE_URL = "http://localhost:3000"
+API_KEY = "a1b2c3d4e5"
 
 def test_auth_get_clients():
     response = requests.get(f"{BASE_URL}/api/v1/clients", headers={"API_KEY": "a1b2c3d4e5"})
     assert response.status_code == 200
 
-# TODO: work out individually before discussing in your team
-
 ########################################################################################
-# Make integrationtests for resources clients, inventories, item_groups and item_lines.#
+# Integrationtests for resources clients, inventories, item_groups, item_lines,
+# shipments, suppliers, transfers and warehouses
 ########################################################################################
 
 ########################################################################################
@@ -240,3 +240,459 @@ def test_data_delete_item_lines():
     delete_item_line_2 = requests.delete(f"{BASE_URL}/api/v1/item_lines/2", headers={"API_KEY": "a1b2c3d4e5"})
     assert delete_item_line_1.status_code == 200
     assert delete_item_line_2.status_code == 200
+
+
+########################################################################################
+# integrationtests for shipments:                                                      #
+########################################################################################
+
+    # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+    # ✓ GET    get_shipment(shipment_id)
+    # ✓ GET    get_updated_shipment(shipment_id)
+    # ✓ GET    get_deleted_shipment()
+    # ✓ POST   add_shipment(new_client)
+    # ✓ PUT    update_shipment(shipment_id, updated_shipment)
+    # ✓ DELETE remove_shipment(shipment_id)
+
+
+def test_empty_data_get_shipments():
+    response = requests.get(f"{BASE_URL}/api/v1/shipments", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+    data = response.json()
+    assert data == [] or data == {}
+
+
+def test_data_post_shipment():
+    new_shipment = {
+        "id": 1,
+        "order_id": 1,
+        "source_id": 52,
+        "order_date": "1973-01-28",
+        "request_date": "1973-01-30",
+        "shipment_date": "1973-02-01",
+        "shipment_type": "I",
+        "shipment_status": "Pending",
+        "notes": "Hoog genot springen afspraak mond bus.",
+        "carrier_code": "DHL",
+        "carrier_description": "DHL Express",
+        "service_code": "NextDay",
+        "payment_type": "Automatic",
+        "transfer_mode": "Ground",
+        "total_package_count": 29,
+        "total_package_weight": 463.0,
+        "items": [
+            {
+                "item_id": "P010669",
+                "amount": 16
+            }
+        ]
+    }
+    reponse = requests.post(f"{BASE_URL}/api/v1/shipments", json=new_shipment, headers={"API_KEY": API_KEY})
+    assert reponse.status_code == 201
+
+
+def test_data_get_shipment():
+    shipment = {
+        "id": 1,
+        "order_id": 1,
+        "source_id": 52,
+        "order_date": "1973-01-28",
+        "request_date": "1973-01-30",
+        "shipment_date": "1973-02-01",
+        "shipment_type": "I",
+        "shipment_status": "Pending",
+        "notes": "Hoog genot springen afspraak mond bus.",
+        "carrier_code": "DHL",
+        "carrier_description": "DHL Express",
+        "service_code": "NextDay",
+        "payment_type": "Automatic",
+        "transfer_mode": "Ground",
+        "total_package_count": 29,
+        "total_package_weight": 463.0,
+        "items": [
+            {
+                "item_id": "P010669",
+                "amount": 16
+            }
+        ]
+    }
+
+    response = requests.get(f"{BASE_URL}/api/v1/shipments/{shipment['id']}", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+    response_data = response.json()
+    response_data.pop('created_at', None)
+    response_data.pop('updated_at', None)
+    assert response_data == shipment
+   
+  
+def test_data_put_shipment():
+    updated_shipment = {
+        "id": 1,
+        "order_id": 1,
+        "source_id": 52,
+        "order_date": "1973-01-28",
+        "request_date": "1973-01-30",
+        "shipment_date": "1973-02-01",
+        "shipment_type": "I",
+        "shipment_status": "Delivered",
+        "notes": "Het is geleverd",
+        "carrier_code": "DHL",
+        "carrier_description": "DHL Express",
+        "service_code": "NextDay",
+        "payment_type": "Automatic",
+        "transfer_mode": "Ground",
+        "total_package_count": 29,
+        "total_package_weight": 463.0,
+        "items": [
+            {
+                "item_id": "P010669",
+                "amount": 20
+            }
+        ]
+    }
+
+    response = requests.put(f"{BASE_URL}/api/v1/shipments/{updated_shipment['id']}", json=updated_shipment, headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_put_shipment():
+    expected_shipment = {
+        "id": 1,
+        "shipment_status": "Delivered",
+        "notes": "Het is geleverd",
+        "items": [
+            {
+                "item_id": "P010669",
+                "amount": 20
+            }
+        ]
+    }
+
+    response = requests.get(f"{BASE_URL}/api/v1/shipments/{expected_shipment['id']}", headers={"API_KEY": API_KEY})
+    response_json = response.json()
+
+    assert response_json["shipment_status"] == expected_shipment["shipment_status"]
+    assert response_json["notes"] == expected_shipment["notes"]
+    assert response_json["items"][0]["amount"] == expected_shipment["items"][0]["amount"]
+
+
+def test_data_delete_shipment():
+    response = requests.delete(f"{BASE_URL}/api/v1/shipments/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_delete_shipment():
+    response = requests.get(f"{BASE_URL}/api/v1/shipments/1", headers={"API_KEY": API_KEY})
+    assert response.json() is None 
+
+
+########################################################################################
+# Integration tests for suppliers:                                                      #
+########################################################################################
+
+# (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+# ✓ GET    get_supplier(supplier_id)
+# ✓ GET    get_updated_supplier(supplier_id)
+# ✓ GET    get_deleted_supplier()
+# ✓ POST   add_supplier(new_supplier)
+# ✓ PUT    update_supplier(supplier_id, updated_supplier)
+# ✓ DELETE remove_supplier(supplier_id)
+
+
+def test_data_post_supplier():
+    new_supplier = {
+        "id": 1,
+        "code": "SUP0001",
+        "name": "Lee, Parks and Johnson",
+        "address": "5989 Sullivan Drives",
+        "address_extra": "Apt. 996",
+        "city": "Port Anitaburgh",
+        "zip_code": "91688",
+        "province": "Illinois",
+        "country": "Czech Republic",
+        "contact_name": "Toni Barnett",
+        "phonenumber": "363.541.7282x36825",
+        "reference": "LPaJ-SUP0001"
+    }
+    response = requests.post(f"{BASE_URL}/api/v1/suppliers", json=new_supplier, headers={"API_KEY": API_KEY})
+    assert response.status_code == 201
+
+
+def test_data_get_supplier():
+    supplier = {
+        "id": 1,
+        "code": "SUP0001",
+        "name": "Lee, Parks and Johnson",
+        "address": "5989 Sullivan Drives",
+        "address_extra": "Apt. 996",
+        "city": "Port Anitaburgh",
+        "zip_code": "91688",
+        "province": "Illinois",
+        "country": "Czech Republic",
+        "contact_name": "Toni Barnett",
+        "phonenumber": "363.541.7282x36825",
+        "reference": "LPaJ-SUP0001"
+    }
+
+    response = requests.get(f"{BASE_URL}/api/v1/suppliers/{supplier['id']}", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+    response_data = response.json()
+    response_data.pop('created_at', None)
+    response_data.pop('updated_at', None)
+    assert response_data == supplier
+
+
+def test_data_put_supplier():
+    updated_supplier = {
+        "id": 1,
+        "code": "SUP0001",
+        "name": "Lee, Parks and Johnson - Updated",
+        "address": "5989 Sullivan Drives",
+        "address_extra": "Apt. 996",
+        "city": "Port Anitaburgh",
+        "zip_code": "91688",
+        "province": "Illinois",
+        "country": "Czech Republic",
+        "contact_name": "Toni Barnett",
+        "phonenumber": "363.541.7282x36825",
+        "reference": "LPaJ-SUP0001"
+    }
+
+    response = requests.put(f"{BASE_URL}/api/v1/suppliers/{updated_supplier['id']}", json=updated_supplier, headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_put_supplier():
+    supplier = {
+        "id": 1,
+        "name": "Lee, Parks and Johnson - Updated"
+    }
+
+    response = requests.get(f"{BASE_URL}/api/v1/suppliers/{supplier['id']}", headers={"API_KEY": API_KEY})
+    response_data = response.json()
+    assert response_data["name"] == supplier["name"]
+
+
+def test_data_delete_supplier():
+    response = requests.delete(f"{BASE_URL}/api/v1/suppliers/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_delete_supplier():
+    response = requests.get(f"{BASE_URL}/api/v1/suppliers/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data in (None, {}, []), f"Expected no data, but got {data}"
+
+
+########################################################################################
+# Integration tests for transfers:                                                      #
+########################################################################################
+
+# (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+# ✓ GET    get_transfer(transfer_id)
+# ✓ GET    get_updated_transfer(transfer_id)
+# ✓ GET    get_deleted_transfer()
+# ✓ POST   add_transfer(new_transfer)
+# ✓ PUT    update_transfer(transfer_id, updated_transfer)
+# ✓ DELETE remove_transfer(transfer_id)
+
+
+def test_data_post_transfer():
+    new_transfer = {
+        "id": 1,
+        "reference": "TR00001",
+        "transfer_from": None,
+        "transfer_to": 9229,
+        "transfer_status": "Scheduled",
+        "items": [
+            {
+                "item_id": "P007435",
+                "amount": 23
+            }
+        ]
+    }
+
+    response = requests.post(f"{BASE_URL}/api/v1/transfers", json=new_transfer, headers={"API_KEY": API_KEY})
+    assert response.status_code == 201
+
+
+def test_data_get_transfer():
+    transfer = {
+        "id": 1,
+        "reference": "TR00001",
+        "transfer_from": None,
+        "transfer_to": 9229,
+        "transfer_status": "Scheduled",
+        "items": [
+            {
+                "item_id": "P007435",
+                "amount": 23
+            }
+        ]
+    }
+
+    response = requests.get(f"{BASE_URL}/api/v1/transfers/{transfer['id']}", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+    data = response.json()
+    data.pop("created_at", None)
+    data.pop("updated_at", None)
+    assert data == transfer
+
+
+def test_data_put_transfer():
+    transfer = {
+        "id": 1,
+        "reference": "TR00001",
+        "transfer_from": None,
+        "transfer_to": 9229,
+        "transfer_status": "Not Completed",
+        "created_at": "2000-03-11T13:11:14Z",
+        "updated_at": "2000-03-12T16:11:14Z",
+        "items": [
+            {
+                "item_id": "P007435",
+                "amount": 20
+            }
+        ]
+    }
+
+    response = requests.put(f"{BASE_URL}/api/v1/transfers/{transfer['id']}", json=transfer, headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_put_transfer():
+    transfer = {
+        "id": 1,
+        "transfer_status": "Not Completed",
+        "items": [
+            {
+                "item_id": "P007435",
+                "amount": 20
+            }
+        ]
+    }
+    
+    response = requests.get(f"{BASE_URL}/api/v1/transfers/{transfer['id']}", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+    data = response.json()
+    assert data["transfer_status"] == transfer["transfer_status"]
+    assert data["items"][0]["amount"] == transfer["items"][0]["amount"]
+
+
+def test_data_delete_transfer():
+    response = requests.delete(f"{BASE_URL}/api/v1/transfers/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_delete_transfer():
+    response = requests.get(f"{BASE_URL}/api/v1/transfers/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data in (None, {}, []), f"Expected no data, but got {data}"
+
+
+########################################################################################
+# Integration tests for warehouses:                                                      #
+########################################################################################
+
+# (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+# ✓ GET    get_warehouse(warehouse_id)
+# ✓ GET    get_updated_warehouse(warehouse_id)
+# ✓ GET    get_deleted_warehouse()
+# ✓ POST   add_warehouse(new_warehouse)
+# ✓ PUT    update_warehouse(warehouse_id, updated_warehouse)
+# ✓ DELETE remove_warehouse(warehouse_id)
+
+
+def test_data_post_warehouse():
+    new_warehouse = {
+        "id": 1,
+        "code": "YQZZNL56",
+        "name": "Heemskerk cargo hub",
+        "address": "Karlijndreef 281",
+        "zip": "4002 AS",
+        "city": "Heemskerk",
+        "province": "Friesland",
+        "country": "NL",
+        "contact": {
+            "name": "Fem Keijzer",
+            "phone": "(078) 0013363",
+            "email": "blamore@example.net"
+        }
+    }
+
+    response = requests.post(f"{BASE_URL}/api/v1/warehouses", json=new_warehouse, headers={"API_KEY": API_KEY})
+    assert response.status_code == 201
+
+
+def test_data_get_warehouse():
+    warehouse = {
+        "id": 1,
+        "code": "YQZZNL56",
+        "name": "Heemskerk cargo hub",
+        "address": "Karlijndreef 281",
+        "zip": "4002 AS",
+        "city": "Heemskerk",
+        "province": "Friesland",
+        "country": "NL",
+        "contact": {
+            "name": "Fem Keijzer",
+            "phone": "(078) 0013363",
+            "email": "blamore@example.net"
+        }
+    }
+
+    response = requests.get(f"{BASE_URL}/api/v1/warehouses/{warehouse['id']}", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+    data = response.json()
+    data.pop("created_at", None)
+    data.pop("updated_at", None)
+    assert data == warehouse
+
+
+def test_data_put_warehouse():
+    updated_warehouse = {
+        "id": 1,
+        "code": "YQZZNL56",
+        "name": "Heemskerk cargo hub",
+        "address": "Karlijndreef 281",
+        "zip": "4002 AS",
+        "city": "Heemskerk",
+        "province": "Groningen",
+        "country": "NL",
+        "contact": {
+            "name": "Fem Keijzer",
+            "phone": "(078) 0013363",
+            "email": "blamore@example.net"
+        }
+    }
+
+    response = requests.put(f"{BASE_URL}/api/v1/warehouses/{updated_warehouse['id']}", json=updated_warehouse,  headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_put_warehouse():
+    response = requests.get(f"{BASE_URL}/api/v1/warehouses/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+    data = response.json()
+    assert data["province"] == "Groningen"
+
+
+def test_data_delete_warehouse():
+    response = requests.delete(f"{BASE_URL}/api/v1/warehouses/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+
+
+def test_data_check_delete_warehouse():
+    response = requests.get(f"{BASE_URL}/api/v1/warehouses/1", headers={"API_KEY": API_KEY})
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data in (None, {}, []), f"Expected no data, but got {data}"
