@@ -859,9 +859,6 @@ if __name__ == "__main__":
         #auth_provider.init()
         data_provider.init()
 
-        #transfer_data_instance = transfer_data()
-        #transfer_data_instance.transfer()
-
         notification_processor.start()
         print(f"Serving on port {PORT}...")
         httpd.serve_forever()
