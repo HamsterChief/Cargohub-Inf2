@@ -1,5 +1,6 @@
 import json
-
+import sqlite3
+import ast
 from models.base import Base
 from providers import data_provider
 
@@ -8,7 +9,7 @@ ORDERS = []
 
 class Orders(Base):
     def __init__(self, root_path, is_debug=False):
-        self.data_path = root_path + "orders.json"
+        self.data_path = root_path + "Cargohub.db"
         self.load(is_debug)
 
     def get_orders(self):
@@ -62,7 +63,8 @@ class Orders(Base):
                     found = True
                     break
             if not found:
-                inventories = data_provider.fetch_inventory_pool().get_inventories_for_item(x["item_id"])
+                inventories = data_provider.fetch_inventory_pool(
+                ).get_inventories_for_item(x["item_id"])
                 min_ordered = 1_000_000_000_000_000_000
                 min_inventory
                 for z in inventories:
@@ -70,12 +72,15 @@ class Orders(Base):
                         min_ordered = z["total_allocated"]
                         min_inventory = z
                 min_inventory["total_allocated"] -= x["amount"]
-                min_inventory["total_expected"] = y["total_on_hand"] + y["total_ordered"]
-                data_provider.fetch_inventory_pool().update_inventory(min_inventory["id"], min_inventory)
+                min_inventory["total_expected"] = y["total_on_hand"] + \
+                    y["total_ordered"]
+                data_provider.fetch_inventory_pool().update_inventory(
+                    min_inventory["id"], min_inventory)
         for x in current:
             for y in items:
                 if x["item_id"] == y["item_id"]:
-                    inventories = data_provider.fetch_inventory_pool().get_inventories_for_item(x["item_id"])
+                    inventories = data_provider.fetch_inventory_pool(
+                    ).get_inventories_for_item(x["item_id"])
                     min_ordered = 1_000_000_000_000_000_000
                     min_inventory
                     for z in inventories:
@@ -83,8 +88,10 @@ class Orders(Base):
                             min_ordered = z["total_allocated"]
                             min_inventory = z
                 min_inventory["total_allocated"] += y["amount"] - x["amount"]
-                min_inventory["total_expected"] = y["total_on_hand"] + y["total_ordered"]
-                data_provider.fetch_inventory_pool().update_inventory(min_inventory["id"], min_inventory)
+                min_inventory["total_expected"] = y["total_on_hand"] + \
+                    y["total_ordered"]
+                data_provider.fetch_inventory_pool().update_inventory(
+                    min_inventory["id"], min_inventory)
         order["items"] = items
         self.update_order(order_id, order)
 
@@ -111,11 +118,51 @@ class Orders(Base):
         if is_debug:
             self.data = ORDERS
         else:
-            f = open(self.data_path, "r")
-            self.data = json.load(f)
-            f.close()
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # harvest all data from the db table
+            cursor.execute("SELECT * FROM orders")
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = []
+            for row in cursor.fetchall():
+                order = dict(zip(columns, row))
+                # Convert the items string back into a list of dictionaries
+                if 'items' in order and order['items']:
+                    order['items'] = json.loads(order['items'])
+                self.data.append(order)
+            conn.close()
 
     def save(self):
-        f = open(self.data_path, "w")
-        json.dump(self.data, f)
-        f.close()
+        try:
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # excecute many has issues with dictionaries sadly still have to use for loop
+            cursor.execute("DELETE FROM orders")
+            for order in self.data:
+                items_json = json.dumps(order['items'])
+                cursor.execute("""
+                INSERT OR REPLACE INTO orders (
+                    id, source_id, order_date, request_date, reference, reference_extra,
+                    order_status, notes, shipping_notes, picking_notes, warehouse_id,
+                    ship_to, bill_to, shipment_id, total_amount, total_discount,
+                    total_tax, total_surcharge, created_at, updated_at, items
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                               (
+                                   order['id'], order['source_id'], order['order_date'], order[
+                                       'request_date'], order['reference'], order['reference_extra'],
+                                   order['order_status'], order['notes'], order['shipping_notes'], order[
+                                       'picking_notes'], order['warehouse_id'], order['ship_to'],
+                                   order['bill_to'], order['shipment_id'], order['total_amount'], order[
+                                       'total_discount'], order['total_tax'], order['total_surcharge'],
+                                   order['created_at'], order['updated_at'], items_json)
+                               )
+            conn.commit()
+        except sqlite3.Error as e:
+            # fail safe if theres an issue with the function
+            print(f"Inventory Database error: {e}")
+        finally:
+            conn.close()

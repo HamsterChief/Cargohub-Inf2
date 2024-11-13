@@ -3,50 +3,14 @@ import json
 
 conn = sqlite3.connect('./data/Cargohub.db')
 cursor = conn.cursor()
-conn.row_factory = sqlite3.Row
-cursor.execute("SELECT * FROM clients")
-print(cursor.fetchone())
-# self.data = [dict(row) for row in rows]
-conn.close()
-with open('data/.json', 'r') as file:
+
+with open('data/orders.json', 'r') as file:
     clients = json.load(file)
 
 
-# Step 1: Connect to SQLite database
-conn = sqlite3.connect('Cargohub.db')
-cursor = conn.cursor()
+# Execute the query to delete the table
 
-
-"""
-"id": 1,
-"source_id": 33,
-"order_date": "2019-04-03T11:33:15Z",
-"request_date": "2019-04-07T11:33:15Z",
-"reference": "ORD00001",
-"reference_extra": "Bedreven arm straffen bureau.",
-"order_status": "Delivered",
-"notes": "Voedsel vijf vork heel.",
-"shipping_notes": "Buurman betalen plaats bewolkt.",
-"picking_notes": "Ademen fijn volgorde scherp aardappel op leren.",
-"warehouse_id": 18,
-"ship_to": null,
-"bill_to": null,
-"shipment_id": 1,
-"total_amount": 9905.13,
-"total_discount": 150.77,
-"total_tax": 372.72,
-"total_surcharge": 77.6,
-"created_at": "2019-04-03T11:33:15Z",
-"updated_at": "2019-04-05T07:33:15Z",
-"items": [
-            {
-                "item_id": "P007435",
-                "amount": 23
-            }
-        ]
-"""
-
-cursor.execute('''
+create_table_query = '''
 CREATE TABLE IF NOT EXISTS orders (
     id INTEGER PRIMARY KEY,
     source_id INTEGER,
@@ -67,38 +31,30 @@ CREATE TABLE IF NOT EXISTS orders (
     total_tax REAL,
     total_surcharge REAL,
     created_at TEXT,
-    updated_at TEXT
+    updated_at TEXT,
     items TEXT
-)
-''')
-
-
-for client in clients:
-    # Step 2: Insert data into 'items' table
-    joined_items = ' | '.join(client['items'])
-    cursor.execute('''source_id,
-                   order_date,
-    request_date,
-    reference,
-    reference_extra,
-    order_status,
-    notes,
-    shipping_notes,
-    picking_notes,
-    warehouse_id,
-    ship_to,
-    bill_to,
-    shipment_id,
-    total_amount,
-    total_discount,
-    total_tax,
-    total_surcharge,
-    created_at,
-    updated_at
-    items TEXT (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-''', (client['id'], client['warehouse_id'], client['code'], client['name'], client['created_at'],
-      client['updated_at']))
-
+);
+'''
+cursor.execute(create_table_query)
+for order in clients:
+    items_json = json.dumps(order['items'])
+    cursor.execute("""
+                 INSERT OR REPLACE INTO orders (
+                     id, source_id, order_date, request_date, reference, reference_extra,
+                     order_status, notes, shipping_notes, picking_notes, warehouse_id,
+                     ship_to, bill_to, shipment_id, total_amount, total_discount,
+                     total_tax, total_surcharge, created_at, updated_at, items
+                 )
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 """,
+                   (
+                       order['id'], order['source_id'], order['order_date'], order['request_date'], order['reference'], order['reference_extra'],
+                       order['order_status'], order['notes'], order['shipping_notes'], order[
+                           'picking_notes'], order['warehouse_id'], order['ship_to'],
+                       order['bill_to'], order['shipment_id'], order['total_amount'], order[
+                           'total_discount'], order['total_tax'], order['total_surcharge'],
+                       order['created_at'], order['updated_at'], items_json)
+                   )
 
 conn.commit()
 conn.close()
