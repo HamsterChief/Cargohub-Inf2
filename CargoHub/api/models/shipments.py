@@ -1,4 +1,5 @@
 import json
+import sqlite3
 
 from models.base import Base
 from providers import data_provider
@@ -8,7 +9,7 @@ SHIPMENTS = []
 
 class Shipments(Base):
     def __init__(self, root_path, is_debug=False):
-        self.data_path = root_path + "shipments.json"
+        self.data_path = root_path + "Cargohub.db"
         self.load(is_debug)
 
     def get_shipments(self):
@@ -83,11 +84,49 @@ class Shipments(Base):
         if is_debug:
             self.data = SHIPMENTS
         else:
-            f = open(self.data_path, "r")
-            self.data = json.load(f)
-            f.close()
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # harvest all data from the db table
+            cursor.execute("SELECT * FROM shipments")
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = []
+            for row in cursor.fetchall():
+                shipment = dict(zip(columns, row))
+                # Convert the items string back into a list of dictionaries
+                if 'items' in shipment and shipment['items']:
+                    shipment['items'] = json.loads(shipment['items'])
+                self.data.append(shipment)
+            conn.close()
 
     def save(self):
-        f = open(self.data_path, "w")
-        json.dump(self.data, f)
-        f.close()
+        try:
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # excecute many has issues with dictionaries sadly still have to use for loop
+            cursor.execute("DELETE FROM shipments")
+            for shipment in self.data:
+                # Convert the 'items' list to a JSON string
+                items_json = json.dumps(shipment['items'])
+                cursor.execute("""
+                    INSERT OR REPLACE INTO shipments (
+                    id, order_id, source_id, order_date, request_date, shipment_date,
+                    shipment_type, shipment_status, notes, carrier_code, carrier_description,
+                    service_code, payment_type, transfer_mode, total_package_count,
+                    total_package_weight, created_at, updated_at, items
+                )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    shipment['id'], shipment['order_id'], shipment['source_id'], shipment['order_date'], shipment['request_date'], shipment['shipment_date'],
+                    shipment['shipment_type'], shipment['shipment_status'], shipment['notes'], shipment['carrier_code'], shipment['carrier_description'],
+                    shipment['service_code'], shipment['payment_type'], shipment['transfer_mode'], shipment['total_package_count'],
+                    shipment['total_package_weight'], shipment['created_at'], shipment['updated_at'], items_json
+                ))
+            conn.commit()
+        except sqlite3.Error as e:
+            # fail safe if theres an issue with the function
+            print(f"Inventory Database error: {e}")
+        finally:
+            conn.close()
+

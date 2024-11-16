@@ -1,5 +1,5 @@
 import json
-
+import sqlite3
 from models.base import Base
 
 WAREHOUSES = []
@@ -7,7 +7,7 @@ WAREHOUSES = []
 
 class Warehouses(Base):
     def __init__(self, root_path, is_debug=False):
-        self.data_path = root_path + "warehouses.json"
+        self.data_path = root_path + "Cargohub.db"
         self.load(is_debug)
 
     def get_warehouses(self):
@@ -40,11 +40,48 @@ class Warehouses(Base):
         if is_debug:
             self.data = WAREHOUSES
         else:
-            f = open(self.data_path, "r")
-            self.data = json.load(f)
-            f.close()
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # harvest all data from the db table
+            cursor.execute("SELECT * FROM warehouses")
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = []
+            for row in cursor.fetchall():
+                warehouse = dict(zip(columns, row))
+                # Convert the items string back into a list of dictionaries
+                if 'items' in warehouse and warehouse['items']:
+                    warehouse['items'] = json.loads(warehouse['items'])
+                self.data.append(warehouse)
+            conn.close()
 
     def save(self):
-        f = open(self.data_path, "w")
-        json.dump(self.data, f)
-        f.close()
+        try:
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # excecute many has issues with dictionaries sadly still have to use for loop
+            cursor.execute("DELETE FROM warehouses")
+            for warehouse in self.data:
+                # Convert the 'contact' dictionary to a JSON string
+                contact_json = json.dumps(warehouse['contact'])
+                cursor.execute("""
+                    INSERT OR REPLACE INTO warehouses (
+                    id, code, name, address, zip, city, province, country, 
+                    contact, created_at, updated_at
+                )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                warehouse['id'], warehouse['code'], warehouse['name'], warehouse['address'], warehouse['zip'], 
+                warehouse['city'], warehouse['province'], warehouse['country'], 
+                contact_json, warehouse['created_at'], warehouse['updated_at']
+                ))
+            conn.commit()
+        except sqlite3.Error as e:
+            # fail safe if theres an issue with the function
+            print(f"Inventory Database error: {e}")
+        finally:
+            conn.close()
+
+
+

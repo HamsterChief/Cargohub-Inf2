@@ -1,5 +1,5 @@
 import json
-
+import sqlite3
 from models.base import Base
 
 SUPPLIERS = []
@@ -7,7 +7,7 @@ SUPPLIERS = []
 
 class Suppliers(Base):
     def __init__(self, root_path, is_debug=False):
-        self.data_path = root_path + "suppliers.json"
+        self.data_path = root_path + "cargohub.db"
         self.load(is_debug)
 
     def get_suppliers(self):
@@ -40,11 +40,43 @@ class Suppliers(Base):
         if is_debug:
             self.data = SUPPLIERS
         else:
-            f = open(self.data_path, "r")
-            self.data = json.load(f)
-            f.close()
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            # harvest all data from the db table
+            cursor.execute("SELECT * FROM suppliers")
+            # Get column names from cursor description
+            columns = [description[0] for description in cursor.description]
+            # Fetch all rows and convert them to dictionaries
+            self.data = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            conn.close()
+
 
     def save(self):
-        f = open(self.data_path, "w")
-        json.dump(self.data, f)
-        f.close()
+        try:
+            conn = sqlite3.connect(self.data_path)
+            cursor = conn.cursor()
+            
+            # Empty the table before inserting new data
+            cursor.execute("DELETE FROM suppliers")
+
+            # Insert new data
+            for supplier in self.data:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO suppliers (
+                    id, code, name, address, address_extra, city, zip_code, province, 
+                    country, contact_name, phonenumber, reference, created_at, updated_at
+                )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    supplier['id'], supplier['code'], supplier['name'], supplier['address'], 
+                    supplier['address_extra'], supplier['city'], supplier['zip_code'], 
+                    supplier['province'], supplier['country'], supplier['contact_name'], 
+                    supplier['phonenumber'], supplier['reference'], 
+                    supplier['created_at'], supplier['updated_at']
+                ))
+            conn.commit()
+        except sqlite3.Error as e:
+            print(f"Client Database error: {e}")
+        finally:
+            conn.close()
+
