@@ -9,14 +9,59 @@ public class ShipmentService : IShipmentService
     {
         _context = DbContext;
     }
-    // public async Task<Shipment> ReadShipment(int id){
+    public async Task<Shipment> ReadShipment(int id){
 
-    //     var shipment = await _context.Shipments.FindAsync();
+        var shipment = await _context.Shipments.FindAsync(id);
+        if (shipment != null){
+            return shipment;
+        }
+        return null;
+    }
 
-    // }
+    public async Task<bool> CreateShipment(Shipment shipment){
+        shipment.created_at = DateTime.UtcNow;
+        shipment.updated_at = DateTime.UtcNow;
+        _context.Shipments.Add(shipment);
+        int n = await _context.SaveChangesAsync();
+        return n > 0;
+    }
+
+    public async Task<bool> UpdateShipment(Shipment shipment, int id){
+        var shipment_to_update = await _context.Shipments.FindAsync(id);
+        if (shipment_to_update != null){
+            return false;
+        }
+
+        shipment_to_update.order_date = shipment.order_date;
+        shipment_to_update.request_date = shipment.request_date;
+        shipment_to_update.hipment_Date = shipment.hipment_Date;
+        shipment_to_update.Shipment_Type = shipment.Shipment_Type;
+        shipment_to_update.Shipment_Status = shipment.Shipment_Status;
+        shipment_to_update.Notes = shipment.Notes;
+        shipment_to_update.Carrier_Code = shipment.Carrier_Code;
+        shipment_to_update.Carrier_Description = shipment.Carrier_Code;
+        shipment_to_update.service_code = shipment.service_code;
+        shipment_to_update.payment_type = shipment.payment_type;
+        shipment_to_update.transfer_mode = shipment.transfer_mode;
+        shipment_to_update.total_package_count = shipment.total_package_count;
+        shipment_to_update.total_package_weight = shipment.total_package_weight;
+        shipment_to_update.items = shipment.items;
+        shipment_to_update.updated_at = DateTime.UtcNow;
+
+        int n = await _context.SaveChangesAsync();
+        return n > 0;
+    }
+
+    public async Task<bool> DeleteShipment(int id){
+        var shipment = await _context.Shipments.FindAsync(id);
+        if (shipment != null){
+            _context.Remove(shipment);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        return false;
+    }
 }
-
-    
 
 public interface IShipmentService
 {

@@ -130,65 +130,66 @@ public class Shipment
     public int Id { get; set; }
     public int Order_Id { get; set; }
     public int Source_Id { get; set; }
-    public string Order_Date { get; set; }
-    public string Request_Date { get; set; }
-    public string Shipment_Date { get; set; }
-    public string Shipment_Type { get; set; }
-    public string Shipment_Status { get; set; }
-    public string Notes { get; set; }
-    public string Carrier_Code { get; set; }
-    public string Carrier_Description { get; set; }
-    public string Service_Code { get; set; }
-    public string Payment_Type { get; set; }
-    public string Transfer_Mode { get; set; }
-    public int Total_Package_Count { get; set; }
-    public double Total_Package_Weight { get; set; }
-    public DateTime Created_At { get; set; }
-    public DateTime Updated_At { get; set; }
-    public List<string> Items { get; set; }
+    public string? order_date { get; set; }
+    public string? request_date { get; set; }
+    public string? hipment_Date { get; set; }
+    public string? Shipment_Type { get; set; }
+    public string? Shipment_Status { get; set; }
+    public string? Notes { get; set; }
+    public string? Carrier_Code { get; set; }
+    public string? Carrier_Description { get; set; }
+    public string? service_code { get; set; }
+    public string? payment_type { get; set; }
+    public string? transfer_mode { get; set; }
+    public int total_package_count { get; set; }
+    public double total_package_weight { get; set; }
+    public DateTime created_at { get; set; }
+    public DateTime updated_at { get; set; }
+    public List<string>? items { get; set; }
 }
 
 public class Supplier
 {
-    public int Id { get; set; }
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public string Address { get; set; }
-    public string Address_Extra { get; set; }
-    public string City { get; set; }
-    public string Zip_Code { get; set; }
-    public string Province { get; set; }
-    public string Country { get; set; }
-    public string Contact_Name { get; set; }
-    public string Phonenumber { get; set; }
-    public string Reference { get; set; }
-    public DateTime Created_At { get; set; }
-    public DateTime Updated_At { get; set; }
+    public int id { get; set; }
+    public string code { get; set; }
+    public string name { get; set; }
+    public string address { get; set; }
+    public string address_extra { get; set; }
+    public string city { get; set; }
+    public string zip_code { get; set; }
+    public string province { get; set; }
+    public string country { get; set; }
+    public string contact_name { get; set; }
+    public string phonenumber { get; set; }
+    public string reference { get; set; }
+    public DateTime created_at { get; set; }
+    public DateTime updated_at { get; set; }
 }
+
 
 public class Transfer
 {
-    public int Id { get; set; }
-    public string Reference { get; set; }
-    public string Transfer_From { get; set; }
-    public string Transfer_To { get; set; }
-    public string Transfer_Status { get; set; }
-    public DateTime Created_At { get; set; }
-    public DateTime Updated_At { get; set; }
-    public List<string> Items { get; set; }
+    public int id { get; set; }
+    public string reference { get; set; }
+    public string transfer_from { get; set; }
+    public string transfer_to { get; set; }
+    public string transfer_status { get; set; }
+    public DateTime created_at { get; set; }
+    public DateTime updated_at { get; set; }
+    public List<string> items { get; set; }
 }
-
 public class Warehouse
 {
-    public int Id { get; set; }
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public string Address { get; set; }
-    public string Zip { get; set; }
-    public string City { get; set; }
-    public string Province { get; set; }
-    public string Country { get; set; }
-    public Dictionary<string, string> Contact { get; set; }
-    public DateTime Created_At { get; set; }
-    public DateTime Updated_At { get; set; }
+    public int id { get; set; }
+    public string code { get; set; }
+    public string name { get; set; }
+    public string address { get; set; }
+    public string zip { get; set; }
+    public string city { get; set; }
+    public string province { get; set; }
+    public string country { get; set; }
+    public Dictionary<string, string> contact { get; set; }
+    public DateTime created_at { get; set; }
+    public DateTime updated_at { get; set; }
 }
+
