@@ -127,6 +127,8 @@ class Orders(Base):
             # Fetch all rows and convert them to dictionaries
             self.data = []
             for row in cursor.fetchall():
+                # convert from a list value to dict (id: 1 instead of index 0: 1)
+                # uses the name of the row in the db as key
                 order = dict(zip(columns, row))
                 # Convert the items string back into a list of dictionaries
                 if 'items' in order and order['items']:
