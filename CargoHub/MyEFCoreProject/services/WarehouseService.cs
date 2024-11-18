@@ -22,6 +22,11 @@ public class WarehouseService : IWarehouseService
         return null;
     }
 
+    public async Task<IEnumerable<Warehouse>> GetAllWarehouses()
+    {
+        return await _context.Warehouses.ToListAsync();
+    }
+
     public async Task<bool> CreateWarehouse(Warehouse warehouse)
     {
         warehouse.created_at = DateTime.UtcNow;
@@ -69,6 +74,8 @@ public class WarehouseService : IWarehouseService
 public interface IWarehouseService
 {
     public Task<Warehouse> ReadWarehouse(int id);
+
+    public Task<IEnumerable<Warehouse>> GetAllWarehouses();
     public Task<bool> CreateWarehouse(Warehouse warehouse);
     public Task<bool> UpdateWarehouse(Warehouse warehouse, int id);
     public Task<bool> DeleteWarehouse(int id);

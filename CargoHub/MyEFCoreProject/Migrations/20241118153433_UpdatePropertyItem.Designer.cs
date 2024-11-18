@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MyEFCoreProject.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20241118153433_UpdatePropertyItem")]
+    partial class UpdatePropertyItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -521,18 +524,23 @@ namespace MyEFCoreProject.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("items")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("reference")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("transfer_from")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("transfer_status")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("transfer_to")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("updated_at")

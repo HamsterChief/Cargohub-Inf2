@@ -9,6 +9,12 @@ public class Api_Key
     public Dictionary<string, bool> Permissions { get; set; }
 }
 
+public class PropertyItem
+{
+    public string Item_Id { get; set; }
+    public int Amount { get; set; }
+}
+
 public class Client
 {
     public int id { get; set; }
@@ -122,22 +128,23 @@ public class Order
     public double Total_Surcharge { get; set; }
     public DateTime Created_At { get; set; }
     public DateTime Updated_At { get; set; }
-    public List<string> Items { get; set; }
+    public List<PropertyItem> items { get; set; }
 }
+
 
 public class Shipment
 {
-    public int Id { get; set; }
-    public int Order_Id { get; set; }
-    public int Source_Id { get; set; }
+    public int id { get; set; }
+    public int order_id { get; set; }
+    public int source_id { get; set; }
     public string? order_date { get; set; }
     public string? request_date { get; set; }
-    public string? hipment_Date { get; set; }
-    public string? Shipment_Type { get; set; }
-    public string? Shipment_Status { get; set; }
-    public string? Notes { get; set; }
-    public string? Carrier_Code { get; set; }
-    public string? Carrier_Description { get; set; }
+    public string? shipment_date { get; set; }
+    public string? shipment_type { get; set; }
+    public string? shipment_status { get; set; }
+    public string? notes { get; set; }
+    public string? carrier_code { get; set; }
+    public string? carrier_description { get; set; }
     public string? service_code { get; set; }
     public string? payment_type { get; set; }
     public string? transfer_mode { get; set; }
@@ -145,7 +152,7 @@ public class Shipment
     public double total_package_weight { get; set; }
     public DateTime created_at { get; set; }
     public DateTime updated_at { get; set; }
-    public List<string>? items { get; set; }
+    public List<PropertyItem>? items { get; set; }
 }
 
 public class Supplier
@@ -170,13 +177,13 @@ public class Supplier
 public class Transfer
 {
     public int id { get; set; }
-    public string reference { get; set; }
-    public string transfer_from { get; set; }
-    public string transfer_to { get; set; }
-    public string transfer_status { get; set; }
+    public string? reference { get; set; }
+    public string? transfer_from { get; set; }
+    public string? transfer_to { get; set; }
+    public string? transfer_status { get; set; }
     public DateTime created_at { get; set; }
     public DateTime updated_at { get; set; }
-    public List<string> items { get; set; }
+    public List<PropertyItem>? items { get; set; }
 }
 public class Warehouse
 {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MyEFCoreProject.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20241118135021_ChangedShipmentModel")]
+    partial class ChangedShipmentModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -316,6 +319,10 @@ namespace MyEFCoreProject.Migrations
                     b.Property<DateTime>("Created_At")
                         .HasColumnType("TEXT");
 
+                    b.PrimitiveCollection<string>("Items")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -376,10 +383,6 @@ namespace MyEFCoreProject.Migrations
                     b.Property<int>("Warehouse_Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("items")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
@@ -400,7 +403,7 @@ namespace MyEFCoreProject.Migrations
                     b.Property<DateTime>("created_at")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("items")
+                    b.PrimitiveCollection<string>("items")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("notes")
@@ -520,19 +523,24 @@ namespace MyEFCoreProject.Migrations
                     b.Property<DateTime>("created_at")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("items")
+                    b.PrimitiveCollection<string>("items")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("reference")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("transfer_from")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("transfer_status")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("transfer_to")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("updated_at")

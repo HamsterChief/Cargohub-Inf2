@@ -18,6 +18,16 @@ public class ShipmentService : IShipmentService
         return null;
     }
 
+    public async Task<IEnumerable<Shipment>> GetAllShipments(int page){
+        const int defaultPageSize = 200; 
+
+        return await _context.Shipments
+                            .AsNoTracking()
+                            .Skip((page - 1) * defaultPageSize) 
+                            .Take(defaultPageSize) 
+                            .ToListAsync();
+    }
+
     public async Task<bool> CreateShipment(Shipment shipment){
         shipment.created_at = DateTime.UtcNow;
         shipment.updated_at = DateTime.UtcNow;
@@ -28,18 +38,18 @@ public class ShipmentService : IShipmentService
 
     public async Task<bool> UpdateShipment(Shipment shipment, int id){
         var shipment_to_update = await _context.Shipments.FindAsync(id);
-        if (shipment_to_update != null){
+        if (shipment_to_update == null){
             return false;
         }
 
         shipment_to_update.order_date = shipment.order_date;
         shipment_to_update.request_date = shipment.request_date;
-        shipment_to_update.hipment_Date = shipment.hipment_Date;
-        shipment_to_update.Shipment_Type = shipment.Shipment_Type;
-        shipment_to_update.Shipment_Status = shipment.Shipment_Status;
-        shipment_to_update.Notes = shipment.Notes;
-        shipment_to_update.Carrier_Code = shipment.Carrier_Code;
-        shipment_to_update.Carrier_Description = shipment.Carrier_Code;
+        shipment_to_update.shipment_date = shipment.shipment_date;
+        shipment_to_update.shipment_type = shipment.shipment_type;
+        shipment_to_update.shipment_status = shipment.shipment_status;
+        shipment_to_update.notes = shipment.notes;
+        shipment_to_update.carrier_code = shipment.carrier_code;
+        shipment_to_update.carrier_description = shipment.carrier_code;
         shipment_to_update.service_code = shipment.service_code;
         shipment_to_update.payment_type = shipment.payment_type;
         shipment_to_update.transfer_mode = shipment.transfer_mode;
@@ -66,6 +76,8 @@ public class ShipmentService : IShipmentService
 public interface IShipmentService
 {
     public Task<Shipment> ReadShipment(int id);
+
+    public Task<IEnumerable<Shipment>> GetAllShipments(int page);
     public Task<bool> CreateShipment(Shipment shipment);
     public Task<bool> UpdateShipment(Shipment shipment, int id);
     public Task<bool> DeleteShipment(int id);

@@ -22,6 +22,18 @@ public class TransferService : ITransferService
         return null;
     }
 
+    public async Task<IEnumerable<Transfer>> GetAllTransfers(int page)
+    {
+        const int defaultPageSize = 500; 
+
+        return await _context.Transfers
+                            .AsNoTracking()
+                            .Skip((page - 1) * defaultPageSize) 
+                            .Take(defaultPageSize) 
+                            .ToListAsync();
+    }
+
+
     public async Task<bool> CreateTransfer(Transfer transfer)
     {
         transfer.created_at = DateTime.UtcNow;
@@ -66,6 +78,8 @@ public class TransferService : ITransferService
 public interface ITransferService
 {
     Task<Transfer> ReadTransfer(int id);
+
+    Task<IEnumerable<Transfer>> GetAllTransfers(int page);
     Task<bool> CreateTransfer(Transfer transfer);
     Task<bool> UpdateTransfer(Transfer transfer, int id);
     Task<bool> DeleteTransfer(int id);

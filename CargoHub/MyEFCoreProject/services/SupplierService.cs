@@ -21,6 +21,10 @@ public class SupplierService : ISupplierService
         return null;
     }
 
+    public async Task<IEnumerable<Supplier>> GetAllSuppliers(){
+        return await _context.Suppliers.ToListAsync();
+    }
+
     public async Task<bool> CreateSupplier(Supplier supplier)
     {
         supplier.created_at = DateTime.UtcNow;
@@ -71,6 +75,8 @@ public class SupplierService : ISupplierService
 public interface ISupplierService
 {
     public Task<Supplier> ReadSupplier(int id);
+
+    public Task<IEnumerable<Supplier>> GetAllSuppliers();
     public Task<bool> CreateSupplier(Supplier supplier);
     public Task<bool> UpdateSupplier(Supplier supplier, int id);
     public Task<bool> DeleteSupplier(int id);
