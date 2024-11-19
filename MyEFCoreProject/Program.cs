@@ -36,5 +36,8 @@ app.MapControllers();
 
 // Add authorization middleware if required
 // app.UseAuthorization(); 
-
+// to run on the ssh: 
+// cd Cargohub-inf2 ->
+// cd MyEFCoreProject ->
+// nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
 app.Run();
