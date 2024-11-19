@@ -190,10 +190,10 @@ DELETE http://localhost:5072/cargohub/item_types/1
 
 ############items
 
-GET https://localhost:5072/cargohub/items/1
+GET http://localhost:5072/cargohub/items/P000001
 
 ####
-POST https://localhost:5072/cargohub/items
+POST http://localhost:5072/cargohub/items
 Content-Type: application/json
 
 {
@@ -242,10 +242,10 @@ DELETE https://localhost:5072/cargohub/items/1
 
 ############locations
 
-GET https://localhost:5072/cargohub/locations/1
+GET http://localhost:5072/cargohub/locations/1
 
 ####
-POST https://localhost:5072/cargohub/locations
+POST http://localhost:5072/cargohub/locations
 Content-Type: application/json
 
 {
@@ -256,7 +256,7 @@ Content-Type: application/json
 }
 
 ####
-PUT https://localhost:5072/cargohub/locations/1
+PUT http://localhost:5072/cargohub/locations/1
 Content-Type: application/json
 
 {
@@ -271,7 +271,7 @@ DELETE https://localhost:5072/cargohub/locations/1
 
 ############orders
 
-GET https://localhost:5072/cargohub/orders/1
+GET http://localhost:5072/cargohub/orders/1
 
 ####
 POST https://localhost:5072/cargohub/orders
