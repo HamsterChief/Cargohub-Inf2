@@ -3242,24 +3242,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lucat\\.nuget\\packages\\": {}
+    "C:\\Users\\jimmy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Semester 3\\Process and Tools\\CargoHub\\CargoHub C#\\CargoHub-inf2\\CargoHub\\MyEFCoreProject\\MyEFCoreProject.csproj",
+      "projectUniqueName": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
       "projectName": "MyEFCoreProject",
-      "projectPath": "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Semester 3\\Process and Tools\\CargoHub\\CargoHub C#\\CargoHub-inf2\\CargoHub\\MyEFCoreProject\\MyEFCoreProject.csproj",
-      "packagesPath": "C:\\Users\\lucat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Semester 3\\Process and Tools\\CargoHub\\CargoHub C#\\CargoHub-inf2\\CargoHub\\MyEFCoreProject\\obj\\",
+      "projectPath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
+      "packagesPath": "C:\\Users\\jimmy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lucat\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jimmy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3317,7 +3319,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
