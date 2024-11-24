@@ -28,10 +28,13 @@ public class Item_GroupService : IItem_GroupService
 
     public async Task<bool> CreateItem_Group(Item_Group item_group)
     {
+<<<<<<< HEAD
+=======
         if (_context.Item_Groups.Any(x => x.Id == item_group.Id))
         {
             return false;
         }
+>>>>>>> Jimmy
         item_group.Created_At = DateTime.UtcNow;
         item_group.Updated_At = DateTime.UtcNow;
         _context.Item_Groups.Add(item_group);

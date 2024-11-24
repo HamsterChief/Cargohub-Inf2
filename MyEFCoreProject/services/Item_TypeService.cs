@@ -28,10 +28,13 @@ public class Item_TypeService : IItem_TypeService
 
     public async Task<bool> CreateItem_Type(Item_Type item_type)
     {
+<<<<<<< HEAD
+=======
         if (_context.Item_Types.Any(x => x.Id == item_type.Id))
         {
             return false;
         }
+>>>>>>> Jimmy
         item_type.Created_At = DateTime.UtcNow;
         item_type.Updated_At = DateTime.UtcNow;
         _context.Item_Types.Add(item_type);

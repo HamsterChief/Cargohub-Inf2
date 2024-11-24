@@ -29,10 +29,13 @@ public class SupplierService : ISupplierService
 
     public async Task<bool> CreateSupplier(Supplier supplier)
     {
+<<<<<<< HEAD
+=======
         if (_context.Suppliers.Any(x => x.Id == supplier.Id))
         {
             return false;
         }
+>>>>>>> Jimmy
         supplier.Created_At = DateTime.UtcNow;
         supplier.Updated_At = DateTime.UtcNow;
         _context.Suppliers.Add(supplier); 
