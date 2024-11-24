@@ -30,6 +30,13 @@ public class WarehouseService : IWarehouseService
 
     public async Task<bool> CreateWarehouse(Warehouse warehouse)
     {
+<<<<<<< HEAD
+=======
+        if (_context.Warehouses.Any(x => x.Id == warehouse.Id))
+        {
+            return false;
+        }
+>>>>>>> Jimmy
         warehouse.Created_At = DateTime.UtcNow;
         warehouse.Updated_At = DateTime.UtcNow;
         _context.Warehouses.Add(warehouse);

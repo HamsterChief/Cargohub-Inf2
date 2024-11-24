@@ -27,6 +27,13 @@ public class ShipmentService : IShipmentService
 
     public async Task<bool> CreateShipment(Shipment shipment)
     {
+<<<<<<< HEAD
+=======
+        if (_context.Shipments.Any(x => x.Id == shipment.Id))
+        {
+            return false;
+        }
+>>>>>>> Jimmy
         shipment.Created_At = DateTime.UtcNow;
         shipment.Updated_At = DateTime.UtcNow;
         _context.Shipments.Add(shipment);

@@ -35,6 +35,13 @@ public class OrderService : IOrderService
 
     public async Task<bool> CreateOrder(Order order)
     {
+<<<<<<< HEAD
+=======
+        if (_context.Orders.Any(x => x.Id == order.Id))
+        {
+            return false;
+        }
+>>>>>>> Jimmy
         order.Created_At = DateTime.UtcNow;
         order.Updated_At = DateTime.UtcNow;
         _context.Orders.Add(order);

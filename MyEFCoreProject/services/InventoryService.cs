@@ -23,6 +23,13 @@ public class InventoryService : IInventoryService
 
     public async Task<bool> CreateInventory(Inventory inventory)
     {
+<<<<<<< HEAD
+=======
+        if (_context.Inventories.Any(x => x.Id == inventory.Id))
+        {
+            return false;
+        }
+>>>>>>> Jimmy
         inventory.Created_At = DateTime.UtcNow;
         inventory.Updated_At = DateTime.UtcNow;
         _context.Inventories.Add(inventory);
