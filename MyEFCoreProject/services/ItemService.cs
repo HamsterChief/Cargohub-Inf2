@@ -44,7 +44,7 @@ public class ItemService : IItemService
 
     public async Task<bool> CreateItem(Item item)
     {
-        if (_context.Items.Any(x => x.Id == item.Id))
+        if (_context.Items.Any(x => x.UId == item.UId))
         {
             return false;
         }
