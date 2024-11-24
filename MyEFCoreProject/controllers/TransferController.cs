@@ -26,10 +26,20 @@ public class TransferController : Controller
     }
 
     [HttpGet("transfers")]
+    public async Task<IActionResult> GetAllTransfers(int page){
+        if (page < 1)
+        {
+            return BadRequest("Page must be greater than 0.");
+        }
+
+        var results = await _transferService.GetAllTransfers(page);
+        return Ok(results);
+    }
 
     [HttpGet("transfers/{transfer_id}/items")]
 
     [HttpPost("transfers")]
+    
     public async Task<IActionResult> CreateTransfer(Transfer transfer)
     {
         var result = await _transferService.CreateTransfer(transfer);
