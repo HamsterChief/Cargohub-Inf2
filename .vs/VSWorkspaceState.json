@@ -1,15 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\CargoHub",
-    "\\CargoHub\\api",
-    "\\CargoHub\\api\\models",
-    "\\CargoHub\\api\\processors",
-    "\\CargoHub\\api\\providers",
-    "\\CargoHub\\data",
-    "\\Tests\\api",
-    "\\Tests\\api\\models"
+    ""
   ],
-  "SelectedNode": "\\CargoHub\\api\\models\\orders.py",
+  "SelectedNode": "\\integrationtests",
   "PreviewInSolutionExplorer": false
 }
