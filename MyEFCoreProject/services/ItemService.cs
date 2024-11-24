@@ -44,13 +44,10 @@ public class ItemService : IItemService
 
     public async Task<bool> CreateItem(Item item)
     {
-<<<<<<< HEAD
-=======
-        if (_context.Items.Any(x => x.Id == item.Id))
+        if (_context.Items.Any(x => x.UId == item.UId))
         {
             return false;
         }
->>>>>>> Jimmy
         item.Created_At = DateTime.UtcNow;
         item.Updated_At = DateTime.UtcNow;
         _context.Items.Add(item);
