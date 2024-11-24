@@ -1,4 +1,3 @@
-
 ############clients
 GET http://localhost:5072/cargohub/clients/1
 
@@ -215,7 +214,7 @@ Content-Type: application/json
     "supplier_part_number": "E-86805-uTM",
 }
 
-PUT https://localhost:5072/cargohub/items/1
+PUT http://localhost:5072/cargohub/items/1
 Content-Type: application/json
 
 {
@@ -238,7 +237,7 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/items/1
+DELETE http://localhost:5072/cargohub/items/1
 
 ############locations
 
@@ -267,14 +266,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/locations/1
+DELETE http://localhost:5072/cargohub/locations/1
 
 ############orders
 
 GET http://localhost:5072/cargohub/orders/1
 
 ####
-POST https://localhost:5072/cargohub/orders
+POST http://localhost:5072/cargohub/orders
 Content-Type: application/json
 
 {
@@ -308,7 +307,7 @@ Content-Type: application/json
     ]
 }
 
-PUT https://localhost:5072/cargohub/orders/1
+PUT http://localhost:5072/cargohub/orders/1
 Content-Type: application/json
 
 {
@@ -343,7 +342,7 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/orders/1
+DELETE http://localhost:5072/cargohub/orders/1
 
 ############shipments
 
@@ -424,11 +423,11 @@ DELETE http://localhost:5072/cargohub/shipments/1
 
 ############suppliers
 
-GET https://localhost:5072/cargohub/suppliers/1
+GET http://localhost:5072/cargohub/suppliers/1
 
 ####
 
-POST https://localhost:5072/cargohub/suppliers
+POST http://localhost:5072/cargohub/suppliers
 Content-Type: application/json
 
 {
@@ -448,7 +447,7 @@ Content-Type: application/json
 
 ####
 
-PUT https://localhost:5072/cargohub/suppliers/1
+PUT http://localhost:5072/cargohub/suppliers/1
 Content-Type: application/json
 
 {
@@ -468,14 +467,14 @@ Content-Type: application/json
 
 ####
 
-DELETE https://localhost:5072/cargohub/suppliers/1
+DELETE http://localhost:5072/cargohub/suppliers/1
 
 ############transfers
 
-GET https://localhost:5072/cargohub/transfers/1
+GET http://localhost:5072/cargohub/transfers/1
 
 ####
-POST https://localhost:5072/cargohub/transfers
+POST http://localhost:5072/cargohub/transfers
 Content-Type: application/json
 
 {
@@ -495,7 +494,7 @@ Content-Type: application/json
 }
 
 ####
-PUT https://localhost:5072/cargohub/transfers/1
+PUT http://localhost:5072/cargohub/transfers/1
 Content-Type: application/json
 
 {
@@ -515,14 +514,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/transfers/1
+DELETE http://localhost:5072/cargohub/transfers/1
 
 ############warehouses
 
-GET https://localhost:5072/cargohub/warehouses/1
+GET http://localhost:5072/cargohub/warehouses/1
 
 ####
-POST https://localhost:5072/cargohub/warehouses
+POST http://localhost:5072/cargohub/warehouses
 Content-Type: application/json
 
 {
@@ -538,7 +537,7 @@ Content-Type: application/json
 }
 
 ####
-PUT https://localhost:5072/cargohub/warehouses/1
+PUT http://localhost:5072/cargohub/warehouses/1
 Content-Type: application/json
 
 {
@@ -554,4 +553,4 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/warehouses/1
+DELETE http://localhost:5072/cargohub/warehouses/1

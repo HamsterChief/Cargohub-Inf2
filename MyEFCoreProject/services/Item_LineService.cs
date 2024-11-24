@@ -28,6 +28,10 @@ public class Item_LineService : IItem_LineService
 
     public async Task<bool> CreateItem_Line(Item_Line item_line)
     {
+        if (_context.Item_Lines.Any(x => x.Id == item_line.Id))
+        {
+            return false;
+        }
         item_line.Created_At = DateTime.UtcNow;
         item_line.Updated_At = DateTime.UtcNow;
         _context.Item_Lines.Add(item_line);
