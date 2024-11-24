@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> Jimmy
 ############clients
 GET http://localhost:5072/cargohub/clients/1
 
@@ -218,11 +214,7 @@ Content-Type: application/json
     "supplier_part_number": "E-86805-uTM",
 }
 
-<<<<<<< HEAD
-PUT https://localhost:5072/cargohub/items/1
-=======
 PUT http://localhost:5072/cargohub/items/1
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -245,11 +237,7 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-DELETE https://localhost:5072/cargohub/items/1
-=======
 DELETE http://localhost:5072/cargohub/items/1
->>>>>>> Jimmy
 
 ############locations
 
@@ -278,22 +266,14 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-DELETE https://localhost:5072/cargohub/locations/1
-=======
 DELETE http://localhost:5072/cargohub/locations/1
->>>>>>> Jimmy
 
 ############orders
 
 GET http://localhost:5072/cargohub/orders/1
 
 ####
-<<<<<<< HEAD
-POST https://localhost:5072/cargohub/orders
-=======
 POST http://localhost:5072/cargohub/orders
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -327,11 +307,7 @@ Content-Type: application/json
     ]
 }
 
-<<<<<<< HEAD
-PUT https://localhost:5072/cargohub/orders/1
-=======
 PUT http://localhost:5072/cargohub/orders/1
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -366,11 +342,7 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-DELETE https://localhost:5072/cargohub/orders/1
-=======
 DELETE http://localhost:5072/cargohub/orders/1
->>>>>>> Jimmy
 
 ############shipments
 
@@ -451,19 +423,11 @@ DELETE http://localhost:5072/cargohub/shipments/1
 
 ############suppliers
 
-<<<<<<< HEAD
-GET https://localhost:5072/cargohub/suppliers/1
-
-####
-
-POST https://localhost:5072/cargohub/suppliers
-=======
 GET http://localhost:5072/cargohub/suppliers/1
 
 ####
 
 POST http://localhost:5072/cargohub/suppliers
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -483,11 +447,7 @@ Content-Type: application/json
 
 ####
 
-<<<<<<< HEAD
-PUT https://localhost:5072/cargohub/suppliers/1
-=======
 PUT http://localhost:5072/cargohub/suppliers/1
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -507,16 +467,6 @@ Content-Type: application/json
 
 ####
 
-<<<<<<< HEAD
-DELETE https://localhost:5072/cargohub/suppliers/1
-
-############transfers
-
-GET https://localhost:5072/cargohub/transfers/1
-
-####
-POST https://localhost:5072/cargohub/transfers
-=======
 DELETE http://localhost:5072/cargohub/suppliers/1
 
 ############transfers
@@ -525,7 +475,6 @@ GET http://localhost:5072/cargohub/transfers/1
 
 ####
 POST http://localhost:5072/cargohub/transfers
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -545,11 +494,7 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-PUT https://localhost:5072/cargohub/transfers/1
-=======
 PUT http://localhost:5072/cargohub/transfers/1
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -569,16 +514,6 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-DELETE https://localhost:5072/cargohub/transfers/1
-
-############warehouses
-
-GET https://localhost:5072/cargohub/warehouses/1
-
-####
-POST https://localhost:5072/cargohub/warehouses
-=======
 DELETE http://localhost:5072/cargohub/transfers/1
 
 ############warehouses
@@ -587,7 +522,6 @@ GET http://localhost:5072/cargohub/warehouses/1
 
 ####
 POST http://localhost:5072/cargohub/warehouses
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -603,11 +537,7 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-PUT https://localhost:5072/cargohub/warehouses/1
-=======
 PUT http://localhost:5072/cargohub/warehouses/1
->>>>>>> Jimmy
 Content-Type: application/json
 
 {
@@ -623,8 +553,4 @@ Content-Type: application/json
 }
 
 ####
-<<<<<<< HEAD
-DELETE https://localhost:5072/cargohub/warehouses/1
-=======
 DELETE http://localhost:5072/cargohub/warehouses/1
->>>>>>> Jimmy

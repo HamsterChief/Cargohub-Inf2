@@ -23,13 +23,10 @@ public class LocationService : ILocationService
 
     public async Task<bool> CreateLocation(Location location)
     {
-<<<<<<< HEAD
-=======
         if (_context.Locations.Any(x => x.Id == location.Id))
         {
             return false;
         }
->>>>>>> Jimmy
         location.Created_At = DateTime.UtcNow;
         location.Updated_At = DateTime.UtcNow;
         _context.Locations.Add(location);
