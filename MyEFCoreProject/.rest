@@ -194,6 +194,7 @@ GET http://localhost:5072/cargohub/items/P000001
 ####
 POST http://localhost:5072/cargohub/items
 Content-Type: application/json
+
 {
     "uid": "P000001",
     "code": "sjQ23408K",
@@ -275,6 +276,7 @@ GET http://localhost:5072/cargohub/orders/1
 ####
 POST http://localhost:5072/cargohub/orders
 Content-Type: application/json
+
 {
         "id": 1,
         "source_id": 33,
@@ -386,6 +388,7 @@ Content-Type: application/json
 ####
 PUT http://localhost:5072/cargohub/orders/1
 Content-Type: application/json
+
 {
         "id": 1,
         "source_id": 33,
