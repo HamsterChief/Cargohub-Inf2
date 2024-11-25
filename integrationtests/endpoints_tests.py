@@ -151,7 +151,7 @@ def test_data_delete_inventories():
 ########################################################################################
 
     # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
-    # ✓ POST   'Endpoint niet beschikbaar'
+    # ✓ POST   post_item_groups()
     # ✓ GET    get_item_groups()
     # ✓ GET    get_item_group(item_group_id)
     # ✓ GET    get_items_for_item_group(item_group_id)
@@ -179,7 +179,11 @@ def test_data_get_item_groups():
 
 def test_data_get_items_for_item_group():
     # To-Do: Uitlezen van items van item_group.
+    item_1 = {"uid": "P000001", "code": "sjQ23408K", "description": "Face-to-face clear-thinking complexity", "short_description": "must", "upc_code": "6523540947122", "model_number": "63-OFFTq0T", "commodity_code": "oTo304", "item_line": 1, "item_group": 1, "item_type": 1, "unit_purchase_quantity": 47, "unit_order_quantity": 13, "pack_order_quantity": 11, "supplier_id": 34, "supplier_code": "SUP423", "supplier_part_number": "E-86805-uTM"}
+    requests.post(f"{BASE_URL}/items", json=item_1, headers={"API_KEY": "a1b2c3d4e5"})
+
     items_for_item_group = requests.get(f"{BASE_URL}/item_groups/1/items", headers={"API_KEY": "a1b2c3d4e5"})
+    requests.delete(f"{BASE_URL}/items/1", headers={"API_KEY": "a1b2c3d4e5"})
     assert items_for_item_group.status_code == 200
 
 def test_data_put_item_group():
@@ -203,7 +207,7 @@ def test_data_delete_item_groups():
 ########################################################################################
 
     # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
-    # ✓ POST   'Endpoint niet beschikbaar'
+    # ✓ POST   post_item_lines()
     # ✓ GET    get_item_lines()
     # ✓ GET    get_item_line(item_line_id)
     # ✓ GET    get_items_for_item_line(item_line_id)
@@ -231,7 +235,11 @@ def test_data_get_item_lines():
 
 def test_data_get_items_for_item_line():
     # To-Do: Uitlezen van items van item_line.
+    item_1 = {"uid": "P000001", "code": "sjQ23408K", "description": "Face-to-face clear-thinking complexity", "short_description": "must", "upc_code": "6523540947122", "model_number": "63-OFFTq0T", "commodity_code": "oTo304", "item_line": 1, "item_group": 1, "item_type": 1, "unit_purchase_quantity": 47, "unit_order_quantity": 13, "pack_order_quantity": 11, "supplier_id": 34, "supplier_code": "SUP423", "supplier_part_number": "E-86805-uTM"}
+    requests.post(f"{BASE_URL}/items", json=item_1, headers={"API_KEY": "a1b2c3d4e5"})
+
     items_for_item_line = requests.get(f"{BASE_URL}/item_lines/1/items", headers={"API_KEY": "a1b2c3d4e5"})
+    requests.delete(f"{BASE_URL}/items/1", headers={"API_KEY": "a1b2c3d4e5"})
     assert items_for_item_line.status_code == 200
 
 def test_data_put_item_line():
@@ -255,7 +263,7 @@ def test_data_delete_item_lines():
 ########################################################################################
 
     # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
-    # ✓ POST   'Endpoint niet beschikbaar'
+    # ✓ POST   post_item_types()
     # ✓ GET    get_item_types()
     # ✓ GET    get_item_type(item_type_id)
     # ✓ GET    get_items_for_item_type(item_type_id)
@@ -283,7 +291,11 @@ def test_data_get_item_types():
 
 def test_data_get_items_for_item_type():
     # To-Do: Uitlezen van items van item_type.
+    item_1 = {"uid": "P000001", "code": "sjQ23408K", "description": "Face-to-face clear-thinking complexity", "short_description": "must", "upc_code": "6523540947122", "model_number": "63-OFFTq0T", "commodity_code": "oTo304", "item_line": 1, "item_group": 1, "item_type": 1, "unit_purchase_quantity": 47, "unit_order_quantity": 13, "pack_order_quantity": 11, "supplier_id": 34, "supplier_code": "SUP423", "supplier_part_number": "E-86805-uTM"}
+    requests.post(f"{BASE_URL}/items", json=item_1, headers={"API_KEY": "a1b2c3d4e5"})
+
     items_for_item_type = requests.get(f"{BASE_URL}/item_types/1/items", headers={"API_KEY": "a1b2c3d4e5"})
+    requests.delete(f"{BASE_URL}/items/1", headers={"API_KEY": "a1b2c3d4e5"})
     assert items_for_item_type.status_code == 200
 
 def test_data_put_item_type():
@@ -301,6 +313,173 @@ def test_data_delete_item_types():
     delete_item_type_2 = requests.delete(f"{BASE_URL}/item_types/2", headers={"API_KEY": "a1b2c3d4e5"})
     assert delete_item_type_1.status_code == 200
     assert delete_item_type_2.status_code == 200
+
+########################################################################################
+# integrationtests for items:                                                          #
+########################################################################################
+
+    # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+    # X POST   post_items()
+    # X GET    get_items()
+    # X GET    get_item(item_id)
+    # X GET    get_inventories_for_item(item_id)
+    # X GET    get_inventory_totals_for_item(item_id)
+    # X PUT    update_item(item_id, updated_item)
+    # X DELETE remove_item(item_id)
+
+def test_data_post_items():
+    # To-Do: Toevoegen van items.
+    item_1 = {"uid": "P000001", "code": "sjQ23408K", "description": "Face-to-face clear-thinking complexity", "short_description": "must", "upc_code": "6523540947122", "model_number": "63-OFFTq0T", "commodity_code": "oTo304", "item_line": 11, "item_group": 73, "item_type": 14, "unit_purchase_quantity": 47, "unit_order_quantity": 13, "pack_order_quantity": 11, "supplier_id": 34, "supplier_code": "SUP423", "supplier_part_number": "E-86805-uTM"}
+    item_2 = {"uid": "P000002", "code": "nyg48736S", "description": "Focused transitional alliance", "short_description": "may", "upc_code": "9733132830047", "model_number": "ck-109684-VFb", "commodity_code": "y-20588-owy", "item_line": 69, "item_group": 85, "item_type": 39, "unit_purchase_quantity": 10, "unit_order_quantity": 15, "pack_order_quantity": 23, "supplier_id": 57, "supplier_code": "SUP312", "supplier_part_number": "j-10730-ESk"}
+    post_item_1 = requests.post(f"{BASE_URL}/items", json=item_1, headers={"API_KEY": "a1b2c3d4e5"})
+    post_item_2 = requests.post(f"{BASE_URL}/items", json=item_2, headers={"API_KEY": "a1b2c3d4e5"})
+    assert post_item_1.status_code == 200
+    assert post_item_2.status_code == 200
+
+def test_data_get_item():
+    # To-Do: Uitlezen van item.
+    item_1 = requests.get(f"{BASE_URL}/items/P000001", headers={"API_KEY": "a1b2c3d4e5"})
+    assert item_1.status_code == 200
+
+def test_data_get_items():
+    # To-Do: Uitlezen van items.
+    items = requests.get(f"{BASE_URL}/items", headers={"API_KEY": "a1b2c3d4e5"})
+    assert items.status_code == 200
+
+def test_data_get_inventories_for_item():
+    # To-Do: Uitlezen van inventories van item.
+    inventory_1 = inventory_1 = {"id": 1, "item_id": "P000001", "description": "Face-to-face clear-thinking complexity", "item_reference": "sjQ23408K", "locations": [3211, 24700, 14123, 19538, 31071, 24701, 11606, 11817], "total_on_hand": 262, "total_expected": 0, "total_ordered": 80, "total_allocated": 41, "total_available": 141}
+    requests.post(f"{BASE_URL}/inventories", json=inventory_1, headers={"API_KEY": "a1b2c3d4e5"})
+
+    inventories_for_item = requests.get(f"{BASE_URL}/items/P000001/inventory", headers={"API_KEY": "a1b2c3d4e5"})
+    requests.delete(f"{BASE_URL}/inventories/1", headers={"API_KEY": "a1b2c3d4e5"})
+    assert inventories_for_item.status_code == 200
+
+def get_inventory_totals_for_item():
+    # To-Do: Uitlezen van inventory totals van item.
+    inventory_totals_for_item = requests.get(f"{BASE_URL}/items/P000001/inventory/totals", headers={"API_KEY": "a1b2c3d4e5"})
+    assert inventory_totals_for_item.status_code == 200
+
+def test_data_put_items():
+    # To-Do: Update de item met andere data.
+    item_1 = {"uid": "P000001", "code": "sjQ23408K", "description": "Updated Description", "short_description": "must", "upc_code": "6523540947122", "model_number": "63-OFFTq0T", "commodity_code": "oTo304", "item_line": 11, "item_group": 73, "item_type": 14, "unit_purchase_quantity": 47, "unit_order_quantity": 13, "pack_order_quantity": 11, "supplier_id": 34, "supplier_code": "SUP423", "supplier_part_number": "E-86805-uTM"}
+    item_2 = {"uid": "P000002", "code": "nyg48736S", "description": "Updated Description", "short_description": "may", "upc_code": "9733132830047", "model_number": "ck-109684-VFb", "commodity_code": "y-20588-owy", "item_line": 69, "item_group": 85, "item_type": 39, "unit_purchase_quantity": 10, "unit_order_quantity": 15, "pack_order_quantity": 23, "supplier_id": 57, "supplier_code": "SUP312", "supplier_part_number": "j-10730-ESk"}
+    update_item_1 = requests.put(f"{BASE_URL}/items/P000001", json=item_1, headers={"API_KEY": "a1b2c3d4e5"})
+    update_item_2 = requests.put(f"{BASE_URL}/items/P000002", json=item_2, headers={"API_KEY": "a1b2c3d4e5"})
+    assert update_item_1.status_code == 200
+    assert update_item_2.status_code == 200
+
+def test_data_delete_items():
+    # To-Do: Items verwijderen en json leegmaken.
+    delete_item_1 = requests.delete(f"{BASE_URL}/items/P000001", headers={"API_KEY": "a1b2c3d4e5"})
+    delete_item_2 = requests.delete(f"{BASE_URL}/items/P000002", headers={"API_KEY": "a1b2c3d4e5"})
+    assert delete_item_1.status_code == 200
+    assert delete_item_2.status_code == 200
+
+########################################################################################
+# integrationtests for locations:                                                      #
+########################################################################################
+
+    # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+    # X POST   post_locations()
+    # X GET    get_locations()
+    # X GET    get_location(location_id)
+    # X PUT    update_location(location_id, updated_location)
+    # X DELETE remove_location(location_id)
+
+def test_data_post_locarions():
+    # To-Do: Toevoegen van locations.
+    location_1 = {"id": 1, "warehouse_id": 1, "code": "A.1.0", "name": "Row: A, Rack: 1, Shelf: 0"}
+    location_2 = {"id": 2, "warehouse_id": 1, "code": "A.1.1", "name": "Row: A, Rack: 1, Shelf: 1"}
+    post_location_1 = requests.post(f"{BASE_URL}/locations", json=location_1, headers={"API_KEY": "a1b2c3d4e5"})
+    post_location_2 = requests.post(f"{BASE_URL}/locations", json=location_2, headers={"API_KEY": "a1b2c3d4e5"})
+    assert post_location_1.status_code == 200
+    assert post_location_2.status_code == 200
+
+def test_data_get_location():
+    # To-Do: Uitlezen van item.
+    location_1 = requests.get(f"{BASE_URL}/locations/1", headers={"API_KEY": "a1b2c3d4e5"})
+    assert location_1.status_code == 200
+
+def test_data_get_locations():
+    # To-Do: Uitlezen van locations.
+    locations = requests.get(f"{BASE_URL}/locations", headers={"API_KEY": "a1b2c3d4e5"})
+    assert locations.status_code == 200
+
+def test_data_put_locations():
+    # To-Do: Update de location met andere data.
+    location_1 = {"id": 1, "warehouse_id": 1, "code": "A.1.0", "name": "Row: B, Rack: 2, Shelf: 1"}
+    location_2 = {"id": 2, "warehouse_id": 1, "code": "A.1.1", "name": "Row: B, Rack: 2, Shelf: 2"}
+    update_location_1 = requests.put(f"{BASE_URL}/locations/1", json=location_1, headers={"API_KEY": "a1b2c3d4e5"})
+    update_location_2 = requests.put(f"{BASE_URL}/locations/2", json=location_2, headers={"API_KEY": "a1b2c3d4e5"})
+    assert update_location_1.status_code == 200
+    assert update_location_2.status_code == 200
+
+def test_data_delete_locations():
+    # To-Do: locations verwijderen en json leegmaken.
+    delete_location_1 = requests.delete(f"{BASE_URL}/locations/1", headers={"API_KEY": "a1b2c3d4e5"})
+    delete_location_2 = requests.delete(f"{BASE_URL}/locations/2", headers={"API_KEY": "a1b2c3d4e5"})
+    assert delete_location_1.status_code == 200
+    assert delete_location_2.status_code == 200
+
+########################################################################################
+# integrationtests for orders:                                                         #
+########################################################################################
+
+    # (Checklist) Deze test onderhoud van alle endpoints de inputs/outputs:
+    # X POST   post_orders()
+    # X GET    get_orders()
+    # X GET    get_order(order_id)
+    # X GET    get_items_in_order(order_id)
+    # X PUT    update_order(order_id, updated_order)
+    # X PUT    update_items_in_order(order_id)
+    # X DELETE remove_order(order_id)
+
+def test_data_post_orders():
+    # To-Do: Toevoegen van orders.
+    order_1 = {"id": 1, "source_id": 33, "order_date": "2019-04-03T11:33:15Z", "request_date": "2019-04-07T11:33:15Z", "reference": "ORD00001", "reference_extra": "Bedreven arm straffen bureau.", "order_status": "Pending", "notes": "Voedsel vijf vork heel.", "shipping_notes": "Buurman betalen plaats bewolkt.", "picking_notes": "Ademen fijn volgorde scherp aardappel op leren.", "warehouse_id": 18, "ship_to": None, "bill_to": None, "shipment_id": 1, "total_amount": 9905.13, "total_discount": 150.77, "total_tax": 372.72, "total_surcharge": 77.6, "items": [{"item_id": "P007435", "amount": 23}]}
+    order_2 = {"id": 2, "source_id": 9, "order_date": "1999-07-05T19:31:10Z", "request_date": "1999-07-09T19:31:10Z", "reference": "ORD00002", "reference_extra": "Vergelijken raak geluid beetje altijd.", "order_status": "Pending", "notes": "We hobby thee compleet wiel fijn.", "shipping_notes": "Nood provincie hier.", "picking_notes": "Borstelen dit verf suiker.", "warehouse_id": 20, "ship_to": None, "bill_to": None, "shipment_id": 2, "total_amount": 8484.98, "total_discount": 214.52, "total_tax": 665.09, "total_surcharge": 42.12, "items": [{"item_id": "P003790", "amount": 10}]}
+    post_order_1 = requests.post(f"{BASE_URL}/orders", json=order_1, headers={"API_KEY": "a1b2c3d4e5"})
+    post_order_2 = requests.post(f"{BASE_URL}/orders", json=order_2, headers={"API_KEY": "a1b2c3d4e5"})
+    assert post_order_1.status_code == 200
+    assert post_order_2.status_code == 200
+
+def test_data_get_order():
+    # To-Do: Uitlezen van order.
+    order_1 = requests.get(f"{BASE_URL}/orders/1", headers={"API_KEY": "a1b2c3d4e5"})
+    assert order_1.status_code == 200
+
+def test_data_get_orders():
+    # To-Do: Uitlezen van orders.
+    orders = requests.get(f"{BASE_URL}/orders", headers={"API_KEY": "a1b2c3d4e5"})
+    assert orders.status_code == 200
+
+def get_items_in_order():
+    # To-Do: Uitlezen van items in order.
+    items_in_order_1 = requests.get(f"{BASE_URL}/orders/1/items", headers={"API_KEY": "a1b2c3d4e5"})
+    assert items_in_order_1.status_code == 200
+
+def test_data_put_orders():
+    # To-Do: Update de order met andere data.
+    order_1 = {"id": 1, "source_id": 33, "order_date": "2019-04-03T11:33:15Z", "request_date": "2019-04-07T11:33:15Z", "reference": "ORD00001", "reference_extra": "Bedreven arm straffen bureau.", "order_status": "Delivered", "notes": "Voedsel vijf vork heel.", "shipping_notes": "Buurman betalen plaats bewolkt.", "picking_notes": "Ademen fijn volgorde scherp aardappel op leren.", "warehouse_id": 18, "ship_to": None, "bill_to": None, "shipment_id": 1, "total_amount": 9905.13, "total_discount": 150.77, "total_tax": 372.72, "total_surcharge": 77.6, "items": [{"item_id": "P007435", "amount": 23}]}
+    order_2 = {"id": 2, "source_id": 9, "order_date": "1999-07-05T19:31:10Z", "request_date": "1999-07-09T19:31:10Z", "reference": "ORD00002", "reference_extra": "Vergelijken raak geluid beetje altijd.", "order_status": "Delivered", "notes": "We hobby thee compleet wiel fijn.", "shipping_notes": "Nood provincie hier.", "picking_notes": "Borstelen dit verf suiker.", "warehouse_id": 20, "ship_to": None, "bill_to": None, "shipment_id": 2, "total_amount": 8484.98, "total_discount": 214.52, "total_tax": 665.09, "total_surcharge": 42.12, "items": [{"item_id": "P003790", "amount": 10}]}
+    update_order_1 = requests.put(f"{BASE_URL}/orders/1", json=order_1, headers={"API_KEY": "a1b2c3d4e5"})
+    update_order_2 = requests.put(f"{BASE_URL}/orders/2", json=order_2, headers={"API_KEY": "a1b2c3d4e5"})
+    assert update_order_1.status_code == 200
+    assert update_order_2.status_code == 200
+
+def test_data_update_items_in_order():
+    # To-Do: Update de items in order met andere data.
+    items_in_order_1 = [{"item_id": "P007435", "amount": 23}]
+    update_items_in_order_1 = requests.put(f"{BASE_URL}/orders/1/items", json=items_in_order_1, headers={"API_KEY": "a1b2c3d4e5"})
+    assert update_items_in_order_1.status_code == 200
+
+def test_data_delete_orders():
+    # To-Do: orders verwijderen en json leegmaken.
+    delete_order_1 = requests.delete(f"{BASE_URL}/orders/1", headers={"API_KEY": "a1b2c3d4e5"})
+    delete_order_2 = requests.delete(f"{BASE_URL}/orders/2", headers={"API_KEY": "a1b2c3d4e5"})
+    assert delete_order_1.status_code == 200
+    assert delete_order_2.status_code == 200
 
 ########################################################################################
 # integrationtests for shipments:                                                      #
@@ -380,6 +559,8 @@ def test_data_get_shipment():
     response = requests.get(f"{BASE_URL}/shipments/{shipment['id']}", headers={"API_KEY": API_KEY})
     assert response.status_code == 200
     response_data = response.json()
+    response_data.pop('created_at', None)
+    response_data.pop('updated_at', None)
     assert response_data == shipment
    
   
@@ -495,6 +676,8 @@ def test_data_get_supplier():
     response = requests.get(f"{BASE_URL}/suppliers/{supplier['id']}", headers={"API_KEY": API_KEY})
     assert response.status_code == 200
     response_data = response.json()
+    response_data.pop('created_at', None)
+    response_data.pop('updated_at', None)
     assert response_data == supplier
 
 
@@ -593,6 +776,8 @@ def test_data_get_transfer():
     assert response.status_code == 200
 
     data = response.json()
+    data.pop('created_at', None)
+    data.pop('updated_at', None)
     assert data == transfer
 
 
@@ -703,6 +888,8 @@ def test_data_get_warehouse():
     assert response.status_code == 200
 
     data = response.json()
+    data.pop('created_at', None)
+    data.pop('updated_at', None)
     assert data == warehouse
 
 
