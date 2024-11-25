@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MyEFCoreProject",
+    "\\MyEFCoreProject\\Migrations",
+    "\\MyEFCoreProject\\models",
+    "\\MyEFCoreProject\\Properties",
+    "\\MyEFCoreProject\\services"
   ],
-  "SelectedNode": "\\integrationtests",
+  "SelectedNode": "\\MyEFCoreProject\\.rest",
   "PreviewInSolutionExplorer": false
 }
