@@ -31,6 +31,10 @@ public class TransferService : ITransferService
 
     public async Task<bool> CreateTransfer(Transfer transfer)
     {
+        if (_context.Transfers.Any(x => x.Id == transfer.Id))
+        {
+            return false;
+        }
         transfer.Created_At = DateTime.UtcNow;
         transfer.Updated_At = DateTime.UtcNow;
         _context.Transfers.Add(transfer);

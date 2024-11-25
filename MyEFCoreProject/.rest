@@ -1,4 +1,3 @@
-
 ############clients
 GET http://localhost:5072/cargohub/clients/1
 
@@ -212,10 +211,11 @@ Content-Type: application/json
     "pack_order_quantity": 11,
     "supplier_id": 34,
     "supplier_code": "SUP423",
-    "supplier_part_number": "E-86805-uTM",
+    "supplier_part_number": "E-86805-uTM"
 }
 
-PUT https://localhost:5072/cargohub/items/1
+####
+PUT http://localhost:5072/cargohub/items/P000001
 Content-Type: application/json
 
 {
@@ -234,11 +234,11 @@ Content-Type: application/json
     "pack_order_quantity": 11,
     "supplier_id": 34,
     "supplier_code": "SUP423",
-    "supplier_part_number": "E-86805-uTM",
+    "supplier_part_number": "E-86805-uTM"
 }
 
 ####
-DELETE https://localhost:5072/cargohub/items/1
+DELETE http://localhost:5072/cargohub/items/P000001
 
 ############locations
 
@@ -267,83 +267,239 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/locations/1
+DELETE http://localhost:5072/cargohub/locations/1
 
 ############orders
 
 GET http://localhost:5072/cargohub/orders/1
 
 ####
-POST https://localhost:5072/cargohub/orders
+POST http://localhost:5072/cargohub/orders
 Content-Type: application/json
 
 {
-    "id": 1,
-    "source_id": 33,
-    "order_date": "2019-04-03T11:33:15Z",
-    "request_date": "2019-04-07T11:33:15Z",
-    "reference": "ORD00001",
-    "reference_extra": "Bedreven arm straffen bureau.",
-    "order_status": "Pending",
-    "notes": "Voedsel vijf vork heel.",
-    "shipping_notes": "Buurman betalen plaats bewolkt.",
-    "picking_notes": "Ademen fijn volgorde scherp aardappel op leren.",
-    "warehouse_id": 18,
-    "ship_to": null,
-    "bill_to": null,
-    "shipment_id": 1,
-    "total_amount": 9905.13,
-    "total_discount": 150.77,
-    "total_tax": 372.72,
-    "total_surcharge": 77.6,
-    "items": [
-        {
-            "item_id": "P007435",
-            "amount": 23
-        },
-        {
-            "item_id": "P009557",
-            "amount": 1
-        }
-    ]
+        "id": 1,
+        "source_id": 33,
+        "order_date": "2019-04-03T11:33:15Z",
+        "request_date": "2019-04-07T11:33:15Z",
+        "reference": "ORD00001",
+        "reference_extra": "Bedreven arm straffen bureau.",
+        "order_status": "Delivered",
+        "notes": "Voedsel vijf vork heel.",
+        "shipping_notes": "Buurman betalen plaats bewolkt.",
+        "picking_notes": "Ademen fijn volgorde scherp aardappel op leren.",
+        "warehouse_id": 18,
+        "ship_to": null,
+        "bill_to": null,
+        "shipment_id": 1,
+        "total_amount": 9905.13,
+        "total_discount": 150.77,
+        "total_tax": 372.72,
+        "total_surcharge": 77.6,
+        "created_at": "2019-04-03T11:33:15Z",
+        "updated_at": "2019-04-05T07:33:15Z",
+        "items": [
+            {
+                "item_id": "P007435",
+                "amount": 23
+            },
+            {
+                "item_id": "P009557",
+                "amount": 1
+            },
+            {
+                "item_id": "P009553",
+                "amount": 50
+            },
+            {
+                "item_id": "P010015",
+                "amount": 16
+            },
+            {
+                "item_id": "P002084",
+                "amount": 33
+            },
+            {
+                "item_id": "P009663",
+                "amount": 18
+            },
+            {
+                "item_id": "P010125",
+                "amount": 18
+            },
+            {
+                "item_id": "P005768",
+                "amount": 26
+            },
+            {
+                "item_id": "P004051",
+                "amount": 1
+            },
+            {
+                "item_id": "P005026",
+                "amount": 29
+            },
+            {
+                "item_id": "P000726",
+                "amount": 22
+            },
+            {
+                "item_id": "P008107",
+                "amount": 47
+            },
+            {
+                "item_id": "P001598",
+                "amount": 32
+            },
+            {
+                "item_id": "P002855",
+                "amount": 20
+            },
+            {
+                "item_id": "P010404",
+                "amount": 30
+            },
+            {
+                "item_id": "P010446",
+                "amount": 6
+            },
+            {
+                "item_id": "P001517",
+                "amount": 9
+            },
+            {
+                "item_id": "P009265",
+                "amount": 2
+            },
+            {
+                "item_id": "P001108",
+                "amount": 20
+            },
+            {
+                "item_id": "P009110",
+                "amount": 18
+            },
+            {
+                "item_id": "P009686",
+                "amount": 13
+            }
+        ]
 }
-
-PUT https://localhost:5072/cargohub/orders/1
+####
+PUT http://localhost:5072/cargohub/orders/1
 Content-Type: application/json
 
 {
-    "id": 1,
-    "source_id": 33,
-    "order_date": "2019-04-03T11:33:15Z",
-    "request_date": "2019-04-07T11:33:15Z",
-    "reference": "ORD00001",
-    "reference_extra": "Bedreven arm straffen bureau.",
-    "order_status": "Delivered",
-    "notes": "Voedsel vijf vork heel.",
-    "shipping_notes": "Buurman betalen plaats bewolkt.",
-    "picking_notes": "Ademen fijn volgorde scherp aardappel op leren.",
-    "warehouse_id": 18,
-    "ship_to": null,
-    "bill_to": null,
-    "shipment_id": 1,
-    "total_amount": 9905.13,
-    "total_discount": 150.77,
-    "total_tax": 372.72,
-    "total_surcharge": 77.6,
-    "items": [
-        {
-            "item_id": "P007435",
-            "amount": 23
-        },
-        {
-            "item_id": "P009557",
-            "amount": 1
-        }
-    ]
+        "id": 1,
+        "source_id": 33,
+        "order_date": "2019-04-03T11:33:15Z",
+        "request_date": "2019-04-07T11:33:15Z",
+        "reference": "ORD00001",
+        "reference_extra": "Bedreven arm straffen bureau.",
+        "order_status": "Delivered",
+        "notes": "Voedsel vijf vork heel.",
+        "shipping_notes": "Buurman betalen plaats bewolkt.",
+        "picking_notes": "Ademen fijn volgorde scherp aardappel op leren.",
+        "warehouse_id": 18,
+        "ship_to": null,
+        "bill_to": null,
+        "shipment_id": 1,
+        "total_amount": 9905.13,
+        "total_discount": 150.77,
+        "total_tax": 372.72,
+        "total_surcharge": 77.6,
+        "created_at": "2019-04-03T11:33:15Z",
+        "updated_at": "2019-04-05T07:33:15Z",
+        "items": [
+            {
+                "item_id": "P007435",
+                "amount": 23
+            },
+            {
+                "item_id": "P009557",
+                "amount": 1
+            },
+            {
+                "item_id": "P009553",
+                "amount": 50
+            },
+            {
+                "item_id": "P010015",
+                "amount": 16
+            },
+            {
+                "item_id": "P002084",
+                "amount": 33
+            },
+            {
+                "item_id": "P009663",
+                "amount": 18
+            },
+            {
+                "item_id": "P010125",
+                "amount": 18
+            },
+            {
+                "item_id": "P005768",
+                "amount": 26
+            },
+            {
+                "item_id": "P004051",
+                "amount": 1
+            },
+            {
+                "item_id": "P005026",
+                "amount": 29
+            },
+            {
+                "item_id": "P000726",
+                "amount": 22
+            },
+            {
+                "item_id": "P008107",
+                "amount": 47
+            },
+            {
+                "item_id": "P001598",
+                "amount": 32
+            },
+            {
+                "item_id": "P002855",
+                "amount": 20
+            },
+            {
+                "item_id": "P010404",
+                "amount": 30
+            },
+            {
+                "item_id": "P010446",
+                "amount": 6
+            },
+            {
+                "item_id": "P001517",
+                "amount": 9
+            },
+            {
+                "item_id": "P009265",
+                "amount": 2
+            },
+            {
+                "item_id": "P001108",
+                "amount": 20
+            },
+            {
+                "item_id": "P009110",
+                "amount": 18
+            },
+            {
+                "item_id": "P009686",
+                "amount": 13
+            }
+        ]
 }
 
 ####
-DELETE https://localhost:5072/cargohub/orders/1
+DELETE http://localhost:5072/cargohub/orders/1
 
 ############shipments
 
@@ -424,11 +580,11 @@ DELETE http://localhost:5072/cargohub/shipments/1
 
 ############suppliers
 
-GET https://localhost:5072/cargohub/suppliers/1
+GET http://localhost:5072/cargohub/suppliers/1
 
 ####
 
-POST https://localhost:5072/cargohub/suppliers
+POST http://localhost:5072/cargohub/suppliers
 Content-Type: application/json
 
 {
@@ -448,7 +604,7 @@ Content-Type: application/json
 
 ####
 
-PUT https://localhost:5072/cargohub/suppliers/1
+PUT http://localhost:5072/cargohub/suppliers/1
 Content-Type: application/json
 
 {
@@ -468,24 +624,22 @@ Content-Type: application/json
 
 ####
 
-DELETE https://localhost:5072/cargohub/suppliers/1
+DELETE http://localhost:5072/cargohub/suppliers/1
 
 ############transfers
 
-GET https://localhost:5072/cargohub/transfers/1
+GET http://localhost:5072/cargohub/transfers/1
 
 ####
-POST https://localhost:5072/cargohub/transfers
+POST http://localhost:5072/cargohub/transfers
 Content-Type: application/json
 
 {
     "id": 1,
     "reference": "TR00001",
     "transfer_from": null,
-    "transfer_to": 9229,
+    "transfer_to": "9229",
     "transfer_status": "Pending",
-    "created_at": "2000-03-11T13:11:14Z",
-    "updated_at": "2000-03-12T16:11:14Z",
     "items": [
         {
             "item_id": "P007435",
@@ -495,17 +649,15 @@ Content-Type: application/json
 }
 
 ####
-PUT https://localhost:5072/cargohub/transfers/1
+PUT http://localhost:5072/cargohub/transfers/1
 Content-Type: application/json
 
 {
     "id": 1,
     "reference": "TR00001",
     "transfer_from": null,
-    "transfer_to": 9229,
+    "transfer_to": "9229",
     "transfer_status": "Completed",
-    "created_at": "2000-03-11T13:11:14Z",
-    "updated_at": "2000-03-12T16:11:14Z",
     "items": [
         {
             "item_id": "P007435",
@@ -515,14 +667,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/transfers/1
+DELETE http://localhost:5072/cargohub/transfers/1
 
 ############warehouses
 
-GET https://localhost:5072/cargohub/warehouses/1
+GET http://localhost:5072/cargohub/warehouses/1
 
 ####
-POST https://localhost:5072/cargohub/warehouses
+POST http://localhost:5072/cargohub/warehouses
 Content-Type: application/json
 
 {
@@ -538,7 +690,7 @@ Content-Type: application/json
 }
 
 ####
-PUT https://localhost:5072/cargohub/warehouses/1
+PUT http://localhost:5072/cargohub/warehouses/1
 Content-Type: application/json
 
 {
@@ -554,4 +706,4 @@ Content-Type: application/json
 }
 
 ####
-DELETE https://localhost:5072/cargohub/warehouses/1
+DELETE http://localhost:5072/cargohub/warehouses/1

@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\",
   "Documents": [
     {
@@ -85,6 +86,65 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\base.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CargoHub\\api\\models\\base.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+=======
+  "WorkspaceRootPath": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\WarehouseService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\WarehouseService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\TransferService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\SupplierService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\SupplierService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ShipmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\ShipmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\OrderService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\OrderService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\LocationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\LocationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_TypeService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\Item_TypeService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_LineService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\Item_LineService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_GroupService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\Item_GroupService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ItemService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\ItemService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\InventoryService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\InventoryService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ClientService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\ClientService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\.rest||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\controllers\\ClientController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Jimmy
     }
   ],
   "DocumentGroupContainers": [
@@ -94,6 +154,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 8,
           "Children": [
             {
@@ -107,11 +168,27 @@
               "ViewState": "AQIAALkBAAAAAAAAAAAAAL8BAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-10-01T07:54:02.779Z",
+=======
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ClientController.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\controllers\\ClientController.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs",
+              "RelativeToolTip": "MyEFCoreProject\\controllers\\ClientController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAADAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:25:34.155Z",
+>>>>>>> Jimmy
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 1,
               "Title": "inventories.json",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\data\\inventories.json",
@@ -195,10 +272,24 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2024-10-15T09:58:07.388Z"
+=======
+              "DocumentIndex": 11,
+              "Title": "ClientService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ClientService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\ClientService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ClientService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\ClientService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:26:17.219Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+>>>>>>> Jimmy
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "SQLsetup.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\SQLsetup.py",
               "RelativeDocumentMoniker": "CargoHub\\SQLsetup.py",
@@ -207,10 +298,21 @@
               "ViewState": "AQIAACAAAAAAAAAAAADwvyoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-10-15T09:57:31.768Z",
+=======
+              "Title": "WarehouseService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\WarehouseService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\WarehouseService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\WarehouseService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\WarehouseService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:35:54.778Z",
+>>>>>>> Jimmy
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 9,
               "Title": "items.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\items.py",
@@ -232,10 +334,23 @@
               "ViewState": "AQIAAB4AAAAAAAAAAAAAADIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-10-01T07:51:44.413Z"
+=======
+              "DocumentIndex": 1,
+              "Title": "TransferService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\TransferService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\TransferService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:35:39Z",
+              "EditorCaption": ""
+>>>>>>> Jimmy
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+<<<<<<< HEAD
               "Title": "inventories.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\inventories.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\inventories.py",
@@ -244,11 +359,48 @@
               "ViewState": "AQIAADcAAAAAAAAAAAAlwF4AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-11-13T12:06:52.784Z",
+=======
+              "Title": "SupplierService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\SupplierService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\SupplierService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\SupplierService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\SupplierService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:35:23.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShipmentService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ShipmentService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\ShipmentService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ShipmentService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\ShipmentService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:34:57.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\OrderService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\OrderService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\OrderService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\OrderService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:34:38.505Z",
+>>>>>>> Jimmy
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+<<<<<<< HEAD
               "Title": "shipments.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\shipments.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\shipments.py",
@@ -357,6 +509,99 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+=======
+              "Title": "LocationService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\LocationService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\LocationService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\LocationService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\LocationService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:34:21.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Item_TypeService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_TypeService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\Item_TypeService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_TypeService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\Item_TypeService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:33:52.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Item_LineService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_LineService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\Item_LineService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_LineService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\Item_LineService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:33:21.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Item_GroupService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_GroupService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\Item_GroupService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\Item_GroupService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\Item_GroupService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:33:04.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InventoryService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\InventoryService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\InventoryService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\InventoryService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\InventoryService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:32:22.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ItemService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ItemService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\ItemService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ItemService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\ItemService.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAADAAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T22:26:12.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": ".rest",
+              "DocumentMoniker": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\.rest",
+              "ToolTip": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest",
+              "RelativeToolTip": "MyEFCoreProject\\.rest",
+              "ViewState": "AQIAABUAAAAAAAAAAAA1wAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-11-24T22:25:46.106Z",
+              "EditorCaption": ""
+>>>>>>> Jimmy
             }
           ]
         }

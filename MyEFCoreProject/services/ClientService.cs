@@ -23,6 +23,10 @@ public class ClientService : IClientService
 
     public async Task<bool> CreateClient(Client client)
     {
+        if (_context.Clients.Any(x => x.Id == client.Id))
+        {
+            return false;
+        }
         client.Created_At = DateTime.UtcNow;
         client.Updated_At = DateTime.UtcNow;
         _context.Clients.Add(client);

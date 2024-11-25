@@ -113,9 +113,9 @@ public class Order
     public string Shipping_Notes { get; set; }
     public string Picking_Notes { get; set; }
     public int Warehouse_Id { get; set; }
-    public string Ship_To { get; set; }
-    public string Bill_To { get; set; }
-    public int Shipment_Id { get; set; }
+    public string? Ship_To { get; set; }
+    public string? Bill_To { get; set; }
+    public int? Shipment_Id { get; set; }
     public double Total_Amount { get; set; }
     public double Total_Discount { get; set; }
     public double Total_Tax { get; set; }
@@ -170,7 +170,7 @@ public class Transfer
 {
     public int Id { get; set; }
     public string Reference { get; set; }
-    public string Transfer_From { get; set; }
+    public string? Transfer_From { get; set; }
     public string Transfer_To { get; set; }
     public string Transfer_Status { get; set; }
     public DateTime Created_At { get; set; }
