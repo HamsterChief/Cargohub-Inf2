@@ -51,10 +51,9 @@ public class TransferController : Controller
         return BadRequest("Failed to update transfer.");
     }
 
-    [HttpDelete("transfers/{transfer_id}")]
+    [HttpDelete("transfers/{id}")]
     public async Task<IActionResult> DeleteTransfer(int transfer_id)
     {
-        Console.WriteLine(transfer_id);
         var result = await _transferService.DeleteTransfer(transfer_id);
         if (result)
         {
