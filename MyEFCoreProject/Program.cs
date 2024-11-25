@@ -17,6 +17,7 @@ builder.Services.AddScoped<IShipmentService, ShipmentService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ITransferService, TransferService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
+builder.Services.AddScoped<ApiKeyService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -27,6 +28,8 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
+
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseSession();
 
