@@ -49,7 +49,7 @@ jobs:
     # # -v for more detailed output
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
-    #SSH Connection to Server
+    #SSH Connection to Server#
     - name: Connect to SSH Server and Run Commands
       uses: appleboy/ssh-action@v0.1.6
       with:
