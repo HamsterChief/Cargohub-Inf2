@@ -30,7 +30,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     
-    # FOR NOW not needed when integration tests in C# are finished
+    # C# Integration Tests
     # # Run .NET tests
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
@@ -51,20 +51,20 @@ jobs:
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
     # SSH Connection to Server
-    - name: Connect to SSH Server and Run Commands
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22  
-        script: |
-          pkill -f 'dotnet run' || true
+    # - name: Connect to SSH Server and Run Commands
+    #   uses: appleboy/ssh-action@v0.1.6
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USER }}
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     port: 22  
+    #     script: |
+    #       pkill -f 'dotnet run' || true
 
-          cd Cargohub-Inf2/MyEFCoreProject/
+    #       cd Cargohub-Inf2/MyEFCoreProject/
 
-          git pull origin C#-Cargohub
+    #       git pull origin C#-Cargohub
 
-          nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+    #       nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
 
-          ps aux | grep 'dotnet run'
+    #       ps aux | grep 'dotnet run'
