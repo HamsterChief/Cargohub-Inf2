@@ -18,8 +18,24 @@ public class TransferService : ITransferService
         return transfer!;
     }
 
+    public async Task<List<Transfer>> ReadTransfers()
+    {
+        return await _context.Transfers.ToListAsync();
+    }
+
+    public async Task<List<PropertyItem>> ReadTransferItems(int transfer_id)
+    {
+        var transfer = await _context.Transfers.FindAsync(transfer_id);
+        if(transfer == null) return null;
+        return transfer.Items;
+    }
+
     public async Task<bool> CreateTransfer(Transfer transfer)
     {
+        if (_context.Transfers.Any(x => x.Id == transfer.Id))
+        {
+            return false;
+        }
         transfer.Created_At = DateTime.UtcNow;
         transfer.Updated_At = DateTime.UtcNow;
         _context.Transfers.Add(transfer);
@@ -61,7 +77,10 @@ public class TransferService : ITransferService
 
 public interface ITransferService
 {
+    Task<List<Transfer>> ReadTransfers();
     Task<Transfer> ReadTransfer(int trasnfer_id);
+
+    Task<List<PropertyItem>> ReadTransferItems(int shipment_id);
     Task<bool> CreateTransfer(Transfer transfer);
     Task<bool> UpdateTransfer(Transfer transfer, int trasnfer_id);
     Task<bool> DeleteTransfer(int trasnfer_id);

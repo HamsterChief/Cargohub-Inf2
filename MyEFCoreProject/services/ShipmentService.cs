@@ -27,6 +27,10 @@ public class ShipmentService : IShipmentService
 
     public async Task<bool> CreateShipment(Shipment shipment)
     {
+        if (_context.Shipments.Any(x => x.Id == shipment.Id))
+        {
+            return false;
+        }
         shipment.Created_At = DateTime.UtcNow;
         shipment.Updated_At = DateTime.UtcNow;
         _context.Shipments.Add(shipment);
@@ -34,6 +38,29 @@ public class ShipmentService : IShipmentService
         return n > 0;
     }
 
+    public async Task<bool> UpdateShipmentItems(List<PropertyItem> items, int shipment_id)
+    {
+        var shipment_to_update = await _context.Shipments.FindAsync(shipment_id);
+        if (shipment_to_update == null)
+        {
+            return false;
+        }
+        shipment_to_update.Items = items;
+        int n = await _context.SaveChangesAsync();
+        return n > 0;
+    }
+    public async Task<bool> UpdateShipmentOrder(Order order, int shipment_id)
+    {
+        var shipment_to_update = await _context.Shipments.FindAsync(shipment_id);
+        if (shipment_to_update == null)
+        {
+            return false;
+        }
+
+        shipment_to_update.Order_Id = order.Id;
+        int n = await _context.SaveChangesAsync();
+        return n > 0;
+    }
     public async Task<bool> UpdateShipment(Shipment shipment, int shipment_id){
         var shipment_to_update = await _context.Shipments.FindAsync(shipment_id);
         if (shipment_to_update == null)
@@ -71,14 +98,43 @@ public class ShipmentService : IShipmentService
         }
         return false;
     }
+
+    public async Task<List<PropertyItem>> ReadShipmentItems(int shipment_id)
+    {
+        var items = await _context.Shipments
+            .Where(x => x.Id == shipment_id)
+            .Select(x => x.Items)
+            .FirstOrDefaultAsync();
+
+        return items ?? new List<PropertyItem>();
+    }
+
+    public async Task<Order> ReadShipmentOrders(int shipment_id)
+    {
+        var shipment = await _context.Shipments
+            .FirstOrDefaultAsync(x => x.Id == shipment_id);
+
+        if(shipment == null) { return null; }
+
+        var order= await _context.Orders
+            .FirstOrDefaultAsync(x => x.Id == shipment.Order_Id);
+
+        return order;
+    }
 }
 
 public interface IShipmentService
 {
     public Task<Shipment> ReadShipment(int shipment_id);
-
     public Task<IEnumerable<Shipment>> GetAllShipments(int page);
     public Task<bool> CreateShipment(Shipment shipment);
     public Task<bool> UpdateShipment(Shipment shipment, int shipment_id);
     public Task<bool> DeleteShipment(int shipment_id);
+
+    public Task<List<PropertyItem>> ReadShipmentItems(int shipment_id);
+    public Task<Order> ReadShipmentOrders(int shipment_id);
+
+    public Task<bool> UpdateShipmentOrder(Order order, int shipment_id);
+
+    public Task<bool> UpdateShipmentItems(List<PropertyItem> items, int shipment_id);
 }

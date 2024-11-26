@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\melve\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {}
+    "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Github\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\melve\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {
+    "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Github\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\melve\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
+        "projectUniqueName": "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Github\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
         "projectName": "MyEFCoreProject",
-        "projectPath": "C:\\Users\\melve\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
-        "packagesPath": "C:\\Users\\melve\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\melve\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\obj\\",
+        "projectPath": "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Github\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
+        "packagesPath": "C:\\Users\\lucat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucat\\OneDrive - Hogeschool Rotterdam\\Github\\Cargohub-Inf2\\MyEFCoreProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\melve\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\lucat\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,12 +32,25 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -79,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
