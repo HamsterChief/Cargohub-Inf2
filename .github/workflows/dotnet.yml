@@ -49,3 +49,20 @@ jobs:
     # - name: Run pytest tests
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
+
+    # SSH Connection to Server
+    - name: Connect to SSH Server and Run Commands
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: $145.24.223.190 
+        username: $ubuntu-1049142
+        key: $427cPPw3
+        port: 22  
+        script: |
+          cd Cargohub-Inf2/MyEFCoreProject/
+
+          git pull origin C#-Cargohub
+
+          nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+
+          ps aux | grep 'dotnet run'
