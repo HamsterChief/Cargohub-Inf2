@@ -51,7 +51,7 @@ jobs:
 
     #SSH Connection to Server
     - name: Connect to SSH Server and Run Commands
-      uses: appleboy/ssh-action@v0.1.6
+      uses: webfactory/ssh-agent@v0.5.3
       with:
         #Github secrets
         host: ${{ secrets.SSH_HOST }}
