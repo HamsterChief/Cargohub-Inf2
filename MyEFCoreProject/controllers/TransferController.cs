@@ -26,20 +26,28 @@ public class TransferController : Controller
     }
 
     [HttpGet("transfers")]
-    public async Task<IActionResult> GetAllTransfers(int page){
-        if (page < 1)
+    public async Task<IActionResult> ReadTransfers()
+    {
+        var result = await _transferService.ReadTransfers();
+        if (result != null)
         {
-            return BadRequest("Page must be greater than 0.");
+            return Ok(result);
         }
-
-        var results = await _transferService.GetAllTransfers(page);
-        return Ok(results);
+        return NotFound("No clients found");
     }
 
     [HttpGet("transfers/{transfer_id}/items")]
+    public async Task<IActionResult> ReadTransferItems(int shipment_id)
+    {
+        var result = await _transferService.ReadTransferItems(shipment_id);
+        if (result != null)
+        {
+            return Ok("Shipment updated succesfully.");
+        }
+        return BadRequest("Failed to update shipment");
+    }
 
     [HttpPost("transfers")]
-    
     public async Task<IActionResult> CreateTransfer(Transfer transfer)
     {
         var result = await _transferService.CreateTransfer(transfer);

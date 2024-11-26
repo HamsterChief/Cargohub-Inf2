@@ -18,15 +18,16 @@ public class TransferService : ITransferService
         return transfer!;
     }
 
-    public async Task<IEnumerable<Transfer>> GetAllTransfers(int page)
+    public async Task<List<Transfer>> ReadTransfers()
     {
-        const int defaultPageSize = 500; 
+        return await _context.Transfers.ToListAsync();
+    }
 
-        return await _context.Transfers
-                            .AsNoTracking()
-                            .Skip((page - 1) * defaultPageSize) 
-                            .Take(defaultPageSize) 
-                            .ToListAsync();
+    public async Task<List<PropertyItem>> ReadTransferItems(int transfer_id)
+    {
+        var transfer = await _context.Transfers.FindAsync(transfer_id);
+        if(transfer == null) return null;
+        return transfer.Items;
     }
 
     public async Task<bool> CreateTransfer(Transfer transfer)
@@ -76,9 +77,10 @@ public class TransferService : ITransferService
 
 public interface ITransferService
 {
+    Task<List<Transfer>> ReadTransfers();
     Task<Transfer> ReadTransfer(int trasnfer_id);
 
-    Task<IEnumerable<Transfer>> GetAllTransfers(int page);
+    Task<List<PropertyItem>> ReadTransferItems(int shipment_id);
     Task<bool> CreateTransfer(Transfer transfer);
     Task<bool> UpdateTransfer(Transfer transfer, int trasnfer_id);
     Task<bool> DeleteTransfer(int trasnfer_id);
