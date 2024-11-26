@@ -81,9 +81,9 @@ public class ShipmentController : Controller
     }
 
     [HttpPut("shipments/{shipment_id}/orders")]
-    public async Task<IActionResult> UpdateShipmentOrder([FromBody] int order_id, int shipment_id)
+    public async Task<IActionResult> UpdateShipmentOrder([FromBody] Order order, int shipment_id)
     {
-        var result = await _shipmentService.UpdateShipmentOrder(order_id, shipment_id);
+        var result = await _shipmentService.UpdateShipmentOrder(order, shipment_id);
         if (result)
         {
             return Ok("Shipment updated succesfully.");
