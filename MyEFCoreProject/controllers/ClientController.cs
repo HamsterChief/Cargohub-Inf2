@@ -36,6 +36,15 @@ public class ClientController : Controller
     }
 
     [HttpGet("clients/{client_id}/orders")]
+    public async Task<IActionResult> ReadClientsOrder(int client_id)
+    {
+        var result = await _clientService.ReadClientsOrder(client_id);
+        if (result.Count() != 0)
+        {
+            return Ok(result);
+        }
+        return NotFound("No orders found");
+    }
 
     [HttpPost("clients")]
     public async Task<IActionResult> CreateClient([FromBody] Client client)

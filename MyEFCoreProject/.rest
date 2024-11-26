@@ -2,6 +2,9 @@
 GET http://localhost:5072/cargohub/clients/1
 
 ####
+GET http://localhost:5072/cargohub/clients/1/orders
+
+####
 POST http://localhost:5072/cargohub/clients
 Content-Type: application/json
 
@@ -506,8 +509,13 @@ DELETE http://localhost:5072/cargohub/orders/1
 GET http://localhost:5072/cargohub/shipments/1
 
 ####
+GET http://localhost:5072/cargohub/shipments/1/orders
+####
 
 GET http://localhost:5072/cargohub/shipments?page=1
+
+####
+GET http://localhost:5072/cargohub/shipments/1/items
 
 ####
 POST http://localhost:5072/cargohub/shipments

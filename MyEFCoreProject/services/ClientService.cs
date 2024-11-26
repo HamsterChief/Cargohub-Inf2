@@ -68,6 +68,13 @@ public class ClientService : IClientService
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<List<Order>> ReadClientsOrder(int client_id)
+    {
+        return await _context.Orders
+            .Where(x => x.Source_Id == client_id)
+            .ToListAsync(); 
+    }
 }
 
 public interface IClientService
@@ -77,4 +84,6 @@ public interface IClientService
     public Task<bool> CreateClient(Client client);
     public Task<bool> UpdateClient(Client client, int client_id);
     public Task<bool> DeleteClient(int client_id);
+
+    public Task<List<Order>> ReadClientsOrder(int client_id);
 }

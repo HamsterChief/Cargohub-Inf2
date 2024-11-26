@@ -37,6 +37,15 @@ public class ShipmentController : Controller
     }
 
     [HttpGet("shipments/{shipment_id}/items")]
+    public async Task<IActionResult> ReadShipmentItems(int shipment_id)
+    {
+        var result = await _shipmentService.ReadShipmentItems(shipment_id);
+        if (result.Count() != 0)
+        {
+            return Ok(result);
+        }
+        return NotFound($"No such shipment with Id: {shipment_id}");
+    }
 
     [HttpPost("shipments")]
     public async Task<IActionResult> CreateShipment([FromBody] Shipment shipment)
@@ -50,6 +59,15 @@ public class ShipmentController : Controller
     }
 
     [HttpGet("shipments/{shipment_id}/orders")]
+    public async Task<IActionResult> ReadShipmentOrders(int shipment_id)
+    {
+        var result = await _shipmentService.ReadShipmentOrders(shipment_id);
+        if (result != null)
+        {
+            return Ok(result);
+        }
+        return NotFound($"No such shipment with Id: {shipment_id}");
+    }
 
     [HttpPut("shipments/{shipment_id}")]
     public async Task<IActionResult> UpdateShipment([FromBody] Shipment shipment, int shipment_id)
@@ -63,8 +81,26 @@ public class ShipmentController : Controller
     }
 
     [HttpPut("shipments/{shipment_id}/orders")]
+    public async Task<IActionResult> UpdateShipmentOrder([FromBody] Order order, int shipment_id)
+    {
+        var result = await _shipmentService.UpdateShipmentOrder(order, shipment_id);
+        if (result)
+        {
+            return Ok("Shipment updated succesfully.");
+        }
+        return BadRequest("Failed to update shipment");
+    }
 
     [HttpPut("shipments/{shipment_id}/items")]
+    public async Task<IActionResult> UpdateShipmentItems([FromBody] List<PropertyItem> items, int shipment_id)
+    {
+        var result = await _shipmentService.UpdateShipmentItems(items, shipment_id);
+        if (result)
+        {
+            return Ok("Shipment updated succesfully.");
+        }
+        return BadRequest("Failed to update shipment");
+    }
 
     [HttpDelete("shipments/{shipment_id}")]
     public async Task<IActionResult> DeleteShipment(int shipment_id)
