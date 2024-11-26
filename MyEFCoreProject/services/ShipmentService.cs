@@ -15,7 +15,7 @@ public class ShipmentService : IShipmentService
         return shipment!;
     }
 
-    public async Task<IEnumerable<Shipment>> GetAllShipments(int page){
+    public async Task<List<Shipment>> GetAllShipments(int page){
         const int defaultPageSize = 200; 
 
         return await _context.Shipments
@@ -126,7 +126,7 @@ public class ShipmentService : IShipmentService
 public interface IShipmentService
 {
     public Task<Shipment> ReadShipment(int shipment_id);
-    public Task<IEnumerable<Shipment>> GetAllShipments(int page);
+    public Task<List<Shipment>> GetAllShipments(int page);
     public Task<bool> CreateShipment(Shipment shipment);
     public Task<bool> UpdateShipment(Shipment shipment, int shipment_id);
     public Task<bool> DeleteShipment(int shipment_id);
