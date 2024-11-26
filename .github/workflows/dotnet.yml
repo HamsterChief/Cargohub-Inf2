@@ -49,22 +49,22 @@ jobs:
     # # -v for more detailed output
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
-    # SSH Connection to Server
-    # - name: Connect to SSH Server and Run Commands
-    #   uses: appleboy/ssh-action@v0.1.6
-    #   with:
-    #     #Github secrets
-    #     host: ${{ secrets.SSH_HOST }}
-    #     username: ${{ secrets.SSH_USER }}
-    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-    #     port: 22  
-    #     script: |
-    #       #kill all previous dotnet programs
-    #       pkill -f 'dotnet run' || true
-    #       cd Cargohub-Inf2/MyEFCoreProject/
+    #SSH Connection to Server
+    - name: Connect to SSH Server and Run Commands
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        #Github secrets
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22  
+        script: |
+          #kill all previous dotnet programs
+          pkill -f 'dotnet run' || true
+          cd Cargohub-Inf2/MyEFCoreProject/
 
-    #       git pull origin C#-Cargohub
-    #       #nohup keeps the dotnet running 
-    #       nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
-    #       #shows all running dotnet programs
-    #       ps aux | grep 'dotnet run'
+          git pull origin C#-Cargohub
+          #nohup keeps the dotnet running 
+          nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+          #shows all running dotnet programs
+          ps aux | grep 'dotnet run'
