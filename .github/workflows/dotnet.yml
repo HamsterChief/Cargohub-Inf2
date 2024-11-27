@@ -67,8 +67,3 @@ jobs:
         nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
         # Shows all running dotnet programs
         ps aux | grep 'dotnet run'
-        # #Github secrets not necicary due to it using the ssh as runner
-        # host: ${{ secrets.SSH_HOST }}
-        # username: ${{ secrets.SSH_USER }}
-        # key: ${{ secrets.SSH_PRIVATE_KEY }}
-        # port: 22  

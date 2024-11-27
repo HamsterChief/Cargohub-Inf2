@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.github",
+    "\\.github\\workflows"
   ],
-  "SelectedNode": "\\integrationtests",
+  "SelectedNode": "\\CargoHub.sln",
   "PreviewInSolutionExplorer": false
 }
