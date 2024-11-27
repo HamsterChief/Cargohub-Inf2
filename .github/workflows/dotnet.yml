@@ -65,7 +65,7 @@ jobs:
 
         git pull origin C#-Cargohub
         # nohup keeps the dotnet running
-        nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+        nohup dotnet run --urls "http://0.0.0.0:5072" 2>&1 &
         disown
         # Shows all running dotnet programs
         ps aux | grep 'dotnet run'
