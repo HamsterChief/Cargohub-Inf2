@@ -16,23 +16,23 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    # - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
     
-    # - name: Setup .NET
-    #   uses: actions/setup-dotnet@v4
-    #   with:
-    #     dotnet-version: 8.0.x
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
     
-    # - name: Restore dependencies
-    #   run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
     
-    # - name: Build
-    #   run: dotnet build --no-restore
+    - name: Build
+      run: dotnet build --no-restore
     
     # C# Integration Tests
-    # # Run .NET tests
-    # - name: Test
-    #   run: dotnet test --no-build --verbosity normal
+    # Run .NET tests
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
     
     # PYTEST
     # - name: Set up Python
@@ -50,24 +50,24 @@ jobs:
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
     #SSH Connection to Server
-    - name: Connect to SSH Server and Run Commands
-      run: |
-        # Kill all previous dotnet programs
-        pkill -f 'dotnet run' || true
+    # - name: Connect to SSH Server and Run Commands
+    #   run: |
+    #     # Kill all previous dotnet programs
+    #     pkill -f 'dotnet run' || true
 
-        cd 
+    #     cd 
 
-        cd Cargohub-Inf2
+    #     cd Cargohub-Inf2
 
 
-        # Discard all local changes
-        git reset --hard HEAD
+    #     # Discard all local changes
+    #     git reset --hard HEAD
 
-        git pull origin C#-Cargohub
-        cd MyEFCoreProject
-        # nohup keeps the dotnet running
-        dotnet build
-        nohup dotnet run --project home/ubuntu-1049142/Cargohub-Inf2/MyEFCoreProject/MyEFCoreProject.csproj  2>&1 & # --urls "http://0.0.0.0:5072"
-        disown
-        # Shows all running dotnet programs
-        ps aux | grep 'dotnet run'
+    #     git pull origin C#-Cargohub
+    #     cd MyEFCoreProject
+    #     # nohup keeps the dotnet running
+    #     dotnet build
+    #     nohup dotnet run  --urls "http://0.0.0.0:5072" --project home/ubuntu-1049142/Cargohub-Inf2/MyEFCoreProject/MyEFCoreProject.csproj  2>&1 & #
+    #     disown
+    #     # Shows all running dotnet programs
+    #     ps aux | grep 'dotnet run'

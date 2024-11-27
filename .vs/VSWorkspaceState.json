@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\.github",
-    "\\.github\\workflows"
+    "\\.github\\workflows",
+    "\\MyEFCoreProject",
+    "\\MyEFCoreProject\\controllers"
   ],
-  "SelectedNode": "\\CargoHub.sln",
+  "SelectedNode": "\\MyEFCoreProject\\MyEFCoreProject.csproj",
   "PreviewInSolutionExplorer": false
 }
