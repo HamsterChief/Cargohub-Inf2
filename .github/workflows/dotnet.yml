@@ -53,11 +53,11 @@ jobs:
     - name: Connect to SSH Server and Run Commands
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        #Github secrets
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22  
+        # #Github secrets not necicary due to it using the ssh as runner
+        # host: ${{ secrets.SSH_HOST }}
+        # username: ${{ secrets.SSH_USER }}
+        # key: ${{ secrets.SSH_PRIVATE_KEY }}
+        # port: 22  
         script: |
           #kill all previous dotnet programs
           pkill -f 'dotnet run' || true
