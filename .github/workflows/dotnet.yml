@@ -55,6 +55,8 @@ jobs:
         # Kill all previous dotnet programs
         pkill -f 'dotnet run' || true
 
+        cd 
+
         cd Cargohub-Inf2/MyEFCoreProject/
 
         git pull origin C#-Cargohub
