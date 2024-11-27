@@ -59,6 +59,8 @@ jobs:
 
         cd Cargohub-Inf2/MyEFCoreProject/
 
+        echo "Current directory: $(pwd)"
+
         # Discard all local changes
         git reset --hard HEAD
 
