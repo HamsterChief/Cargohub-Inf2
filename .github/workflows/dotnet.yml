@@ -51,20 +51,19 @@ jobs:
 
     #SSH Connection to Server
     - name: Connect to SSH Server and Run Commands
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
+      run: |
+        # Kill all previous dotnet programs
+        pkill -f 'dotnet run' || true
+
+        cd Cargohub-Inf2/MyEFCoreProject/
+
+        git pull origin C#-Cargohub
+        # nohup keeps the dotnet running
+        nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+        # Shows all running dotnet programs
+        ps aux | grep 'dotnet run'
         # #Github secrets not necicary due to it using the ssh as runner
         # host: ${{ secrets.SSH_HOST }}
         # username: ${{ secrets.SSH_USER }}
         # key: ${{ secrets.SSH_PRIVATE_KEY }}
         # port: 22  
-        script: |
-          #kill all previous dotnet programs
-          pkill -f 'dotnet run' || true
-          cd Cargohub-Inf2/MyEFCoreProject/
-
-          git pull origin C#-Cargohub
-          #nohup keeps the dotnet running 
-          nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
-          #shows all running dotnet programs
-          ps aux | grep 'dotnet run'
