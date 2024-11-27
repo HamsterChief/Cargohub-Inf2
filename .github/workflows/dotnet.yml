@@ -56,11 +56,9 @@ jobs:
         pkill -f 'dotnet run' || true
 
         cd 
-        echo "Current directory: $(pwd)"
 
         cd Cargohub-Inf2/MyEFCoreProject/
 
-        echo "Current directory: $(pwd)"
 
         # Discard all local changes
         git reset --hard HEAD
