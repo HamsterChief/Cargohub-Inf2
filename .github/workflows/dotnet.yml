@@ -56,6 +56,7 @@ jobs:
         pkill -f 'dotnet run' || true
 
         cd 
+        echo "Current directory: $(pwd)"
 
         cd Cargohub-Inf2/MyEFCoreProject/
 
