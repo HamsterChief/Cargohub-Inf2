@@ -59,6 +59,9 @@ jobs:
 
         cd Cargohub-Inf2/MyEFCoreProject/
 
+        # Discard all local changes
+        git reset --hard HEAD
+
         git pull origin C#-Cargohub
         # nohup keeps the dotnet running
         nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
