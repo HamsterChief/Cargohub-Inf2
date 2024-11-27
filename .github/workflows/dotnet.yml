@@ -69,4 +69,3 @@ jobs:
         disown
         # Shows all running dotnet programs
         ps aux | grep 'dotnet run'
-        tail -f output.log
