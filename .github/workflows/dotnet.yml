@@ -63,4 +63,3 @@ jobs:
             disown
             # Shows all running dotnet programs
             ps aux | grep 'dotnet run'
-            curl http://145.24.223.190:5072
