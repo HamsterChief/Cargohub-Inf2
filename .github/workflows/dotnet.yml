@@ -48,3 +48,20 @@ jobs:
     # - name: Run pytest tests
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
+
+    - name: Connect to SSH Server and Run Commands
+      run: |
+        # Kill all previous dotnet programs
+        pkill -f 'dotnet run' || true
+        cd 
+        cd Cargohub-Inf2
+        # Discard all local changes
+        git reset --hard HEAD
+        git pull origin C#-Cargohub
+        cd MyEFCoreProject
+        # nohup keeps the dotnet running
+        dotnet build
+        nohup dotnet run --project home/ubuntu-1049142/ubuntu-1049142/Cargohub-Inf2/MyEFCoreProject/MyEFCoreProject.csproj  2>&1 & # --urls "http://0.0.0.0:5072"
+        disown
+        # Shows all running dotnet programs
+        ps aux | grep 'dotnet run'
