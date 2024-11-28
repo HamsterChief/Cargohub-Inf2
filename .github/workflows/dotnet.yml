@@ -10,6 +10,7 @@ on:
   pull_request:
     branches: 
       - "C#-Cargohub"
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build:
@@ -59,7 +60,7 @@ jobs:
             cd MyEFCoreProject
             # nohup keeps the dotnet running
             dotnet build
-            nohup dotnet run  2>&1 & # --urls "http://0.0.0.0:5072"
-            disown
-            # Shows all running dotnet programs
-            ps aux | grep 'dotnet run'
+            # Start server in tmux session
+            tmux new-session -d -s dotnet_server "dotnet run --urls http://0.0.0.0:5072"
+            # Verify it's running
+            tmux list-sessions
