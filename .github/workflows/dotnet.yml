@@ -53,15 +53,7 @@ jobs:
       run: |
             # Kill all previous dotnet programs
             pkill -f 'dotnet run' || true
-            echo "This YAML file path: ${GITHUB_WORKFLOW}"
             cd $GITHUB_WORKSPACE
-            echo "Listing contents of $GITHUB_WORKSPACE"
-            ls
-            if [ ! -d "$GITHUB_WORKSPACE/Cargohub-Inf2" ]; then
-                echo "Directory Cargohub-Inf2 does not exist."
-                exit 1
-            fi
-            cd Cargohub-Inf2
             git reset --hard HEAD
             git pull origin C#-Cargohub
             cd MyEFCoreProject
