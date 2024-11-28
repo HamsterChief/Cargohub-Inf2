@@ -53,7 +53,9 @@ jobs:
       run: |
         # Kill all previous dotnet programs
         pkill -f 'dotnet run' || true
+        echo "This YAML file path: ${GITHUB_WORKFLOW}"
         cd 
+        echo "This YAML file path: ${GITHUB_WORKFLOW}"
         cd Cargohub-Inf2
         # Discard all local changes
         git reset --hard HEAD
