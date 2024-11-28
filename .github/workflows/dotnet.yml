@@ -51,19 +51,23 @@ jobs:
 
     - name: Connect to SSH Server and Run Commands
       run: |
-        # Kill all previous dotnet programs
-        pkill -f 'dotnet run' || true
-        echo "This YAML file path: ${GITHUB_WORKFLOW}"
-        cd 
-        echo "This YAML file path: ${GITHUB_WORKFLOW}"
-        cd Cargohub-Inf2
-        # Discard all local changes
-        git reset --hard HEAD
-        git pull origin C#-Cargohub
-        cd MyEFCoreProject
-        # nohup keeps the dotnet running
-        dotnet build
-        nohup dotnet run --project home/ubuntu-1049142/ubuntu-1049142/Cargohub-Inf2/MyEFCoreProject/MyEFCoreProject.csproj  2>&1 & # --urls "http://0.0.0.0:5072"
-        disown
-        # Shows all running dotnet programs
-        ps aux | grep 'dotnet run'
+            # Kill all previous dotnet programs
+            pkill -f 'dotnet run' || true
+            echo "This YAML file path: ${GITHUB_WORKFLOW}"
+            cd $GITHUB_WORKSPACE
+            echo "Listing contents of $GITHUB_WORKSPACE"
+            ls
+            if [ ! -d "$GITHUB_WORKSPACE/Cargohub-Inf2" ]; then
+                echo "Directory Cargohub-Inf2 does not exist."
+                exit 1
+            fi
+            cd Cargohub-Inf2
+            git reset --hard HEAD
+            git pull origin C#-Cargohub
+            cd MyEFCoreProject
+            # nohup keeps the dotnet running
+            dotnet build
+            nohup dotnet run --project $GITHUB_WORKSPACE/Cargohub-Inf2/MyEFCoreProject/MyEFCoreProject.csproj 2>&1 & 
+            disown
+            # Shows all running dotnet programs
+            ps aux | grep 'dotnet run'
