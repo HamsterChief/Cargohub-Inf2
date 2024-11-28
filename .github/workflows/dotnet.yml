@@ -71,5 +71,5 @@ jobs:
             tmux detach -s dotnet_server
 
             # Optionally, verify tmux session is still running
-            tmux list-sessions
             sleep 10
+            tmux list-sessions
