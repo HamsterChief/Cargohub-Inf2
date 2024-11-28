@@ -57,9 +57,9 @@ jobs:
             cd $GITHUB_WORKSPACE
             git reset --hard HEAD
             git pull origin C#-Cargohub
-            cd /
+            cd MyEFCoreProject
             # nohup keeps the dotnet running
-            nohup dotnet run --project /home/ubuntu-1049142/Cargohub-Inf2/MyEFCoreProject/MyEFCoreProject.csproj --urls "http://0.0.0.0:5072" 2>&1 &
+            nohup dotnet run --project ./MyEFCoreProject.csproj --urls "http://0.0.0.0:5072" 2>&1 &
             disown
             # Shows all running dotnet programs
             ps aux | grep 'dotnet run'
