@@ -38,6 +38,7 @@ public class ShipmentService : IShipmentService
         return n > 0;
     }
 
+    // is this correct when items is this value?: [{"item_id": "P007435", "amount": 23}]
     public async Task<bool> UpdateShipmentItems(List<PropertyItem> items, int shipment_id)
     {
         var shipment_to_update = await _context.Shipments.FindAsync(shipment_id);
@@ -49,7 +50,7 @@ public class ShipmentService : IShipmentService
         int n = await _context.SaveChangesAsync();
         return n > 0;
     }
-    public async Task<bool> UpdateShipmentOrder(Order order, int shipment_id)
+    public async Task<bool> UpdateShipmentOrder(int order_id, int shipment_id)
     {
         var shipment_to_update = await _context.Shipments.FindAsync(shipment_id);
         if (shipment_to_update == null)
@@ -57,7 +58,7 @@ public class ShipmentService : IShipmentService
             return false;
         }
 
-        shipment_to_update.Order_Id = order.Id;
+        shipment_to_update.Order_Id = order_id;
         int n = await _context.SaveChangesAsync();
         return n > 0;
     }
@@ -134,7 +135,7 @@ public interface IShipmentService
     public Task<List<PropertyItem>> ReadShipmentItems(int shipment_id);
     public Task<Order> ReadShipmentOrders(int shipment_id);
 
-    public Task<bool> UpdateShipmentOrder(Order order, int shipment_id);
+    public Task<bool> UpdateShipmentOrder(int order_id, int shipment_id);
 
     public Task<bool> UpdateShipmentItems(List<PropertyItem> items, int shipment_id);
 }

@@ -770,4 +770,3 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\r
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.pdb
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.genruntimeconfig.cache
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\ref\MyEFCoreProject.dll
-C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\BCrypt.Net.dll

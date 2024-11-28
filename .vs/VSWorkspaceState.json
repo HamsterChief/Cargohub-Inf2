@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\.github",
-    "\\.github\\workflows",
-    "\\MyEFCoreProject",
-    "\\MyEFCoreProject\\controllers"
+    ""
   ],
-  "SelectedNode": "\\MyEFCoreProject\\MyEFCoreProject.csproj",
+  "SelectedNode": "\\integrationtests",
   "PreviewInSolutionExplorer": false
 }

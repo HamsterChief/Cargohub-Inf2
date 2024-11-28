@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "Gnttcb7tNYfavhY/Z34WYwH39ZNVRSy7ZW3GuUPvjxCN5ypm0vsCc+MvfIS/uz3nL4tboZ6XxLjDsP9riM/s2Q==",
+  "dgSpecHash": "283dsTjqmI8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
+  "projectFilePath": "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jimmy\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.build.framework\\17.8.3\\microsoft.build.framework.17.8.3.nupkg.sha512",
@@ -23,7 +22,6 @@
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.0\\microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\9.0.0\\microsoft.entityframeworkcore.sqlite.9.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\9.0.0\\microsoft.entityframeworkcore.sqlite.core.9.0.0.nupkg.sha512",
-    "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\9.0.0\\microsoft.entityframeworkcore.tools.9.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.0\\microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.0\\microsoft.extensions.caching.memory.9.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0\\microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",
@@ -57,16 +55,5 @@
     "C:\\Users\\jimmy\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
     "C:\\Users\\jimmy\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "BCrypt.Net",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }
