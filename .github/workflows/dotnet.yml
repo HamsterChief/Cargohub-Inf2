@@ -72,3 +72,4 @@ jobs:
 
             # Optionally, verify tmux session is still running
             tmux list-sessions
+            sleep 10
