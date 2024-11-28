@@ -63,4 +63,5 @@ jobs:
             disown
             # Shows all running dotnet programs
             ps aux | grep 'dotnet run'
+            cd
             tail -f nohup.out
