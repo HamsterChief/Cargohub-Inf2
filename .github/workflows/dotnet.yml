@@ -52,15 +52,23 @@ jobs:
 
     - name: Connect to SSH Server and Run Commands
       run: |
-            # Kill all previous dotnet programs
-            pkill -f 'dotnet run' || true
             cd $GITHUB_WORKSPACE
             git reset --hard HEAD
             git pull origin C#-Cargohub
             cd MyEFCoreProject
-            # nohup keeps the dotnet running
             dotnet build
-            # Start server in tmux session
-            tmux new-session -d -s dotnet_server "dotnet run --urls http://0.0.0.0:5072"
-            # Verify it's running
+
+            # Check if the server is already running using tmux
+            if ! tmux has-session -t dotnet_server 2>/dev/null; then
+                echo "Starting new server session..."
+                # Start the server in a new tmux session
+                tmux new-session -d -s dotnet_server "dotnet run --urls http://0.0.0.0:5072"
+            else
+                echo "Server is already running. Skipping restart."
+            fi
+
+            # Detach the tmux session to keep the server running
+            tmux detach -s dotnet_server
+
+            # Optionally, verify tmux session is still running
             tmux list-sessions
