@@ -113,8 +113,8 @@ public class Order
     public string Shipping_Notes { get; set; }
     public string Picking_Notes { get; set; }
     public int Warehouse_Id { get; set; }
-    public string? Ship_To { get; set; }
-    public string? Bill_To { get; set; }
+    public int? Ship_To { get; set; }
+    public int? Bill_To { get; set; }
     public int? Shipment_Id { get; set; }
     public double Total_Amount { get; set; }
     public double Total_Discount { get; set; }

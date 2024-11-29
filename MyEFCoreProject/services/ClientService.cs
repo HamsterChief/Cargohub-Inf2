@@ -72,7 +72,7 @@ public class ClientService : IClientService
     public async Task<List<Order>> ReadClientsOrder(int client_id)
     {
         return await _context.Orders
-            .Where(x => x.Source_Id == client_id)
+            .Where(x => x.Bill_To == client_id || x.Ship_To == client_id)
             .ToListAsync(); 
     }
 }
