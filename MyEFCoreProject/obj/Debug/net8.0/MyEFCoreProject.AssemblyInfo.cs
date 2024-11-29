@@ -14,15 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a029c4dbade67f2c81b3fc1b843d78ffc20312e8")]
-=======
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ed4c66f65efa9845ae646cf113878916f607429")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97900093b0024e6e068ce3e520e60e791efea10b")]
->>>>>>> 08452ac0b8eb85af8327dc369d34c1bdaa7f0b19
->>>>>>> parent of ec32b29 (Revert "a")
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3527d8381bf05a87980c9c4d1b9a925715632e0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

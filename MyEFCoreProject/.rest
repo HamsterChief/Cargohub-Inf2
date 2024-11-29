@@ -1,11 +1,13 @@
 ############clients
 GET http://localhost:5072/cargohub/clients/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ####
 GET http://localhost:5072/cargohub/clients/1/orders
-
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 ####
 POST http://localhost:5072/cargohub/clients
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
@@ -777,27 +779,30 @@ DELETE http://localhost:5072/cargohub/suppliers/1
 ############transfers
 
 GET http://localhost:5072/cargohub/transfers/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ####
 POST http://localhost:5072/cargohub/transfers
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
     "id": 1,
     "reference": "TR00001",
-    "transfer_from": null,
-    "transfer_to": "9229",
-    "transfer_status": "Pending",
+    "transfer_from": 0,
+    "transfer_to": 9229,
+    "transfer_status": "Scheduled",
     "items": [
         {
             "item_id": "P007435",
-            "amount": 23
+                    "amount": 23
         }
     ]
 }
 
 ####
 PUT http://localhost:5072/cargohub/transfers/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
@@ -815,7 +820,9 @@ Content-Type: application/json
 }
 
 ####
+
 DELETE http://localhost:5072/cargohub/transfers/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ############warehouses
 

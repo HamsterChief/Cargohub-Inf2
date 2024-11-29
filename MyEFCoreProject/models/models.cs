@@ -16,7 +16,7 @@ public class Client
     public string Address { get; set; }
     public string City { get; set; }
     public string Zip_Code { get; set; }
-    public string Province { get; set; }
+    public string? Province { get; set; }
     public string Country { get; set; }
     public string Contact_Name { get; set; }
     public string Contact_Phone { get; set; }
