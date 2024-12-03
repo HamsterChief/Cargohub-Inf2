@@ -1,3 +1,7 @@
+To ping the server: ubuntu-1049142@1049142-ubuntu-2025-feb:~$ sudo netstat -tuln | grep 5072
+~expected result: tcp        0      0 0.0.0.0:5072            0.0.0.0:*               LISTEN
+
+
 Step 1: Create the systemd Service File
 
 SSH into your server or GitHub self-hosted runner where the application is running.
