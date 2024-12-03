@@ -52,7 +52,7 @@ jobs:
     - name: Update SERVER
       run: |
 
-        # Kill previous dotnet programs.
+        # Kill previous dotnet programs
         pkill -f 'dotnet run' || true
       
         # Navigate to the persistent directory
