@@ -51,14 +51,19 @@ jobs:
     #
     - name: Update SERVER
       run: |
-            #Kill all previous dotnet programs
-            pkill -f 'dotnet run' || true
-            cd $GITHUB_WORKSPACE
-            #git reset --hard HEAD
-            #git pull origin C#-Cargohub
-            git clone https://github.com/HamsterChief/Cargohub-Inf2.git
-            cd MyEFCoreProject
-            #nohup keeps the dotnet running
-            nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
-            #Shows all running dotnet programs
-            ps aux | grep 'dotnet run'
+        # Kill previous dotnet programs
+        pkill -f 'dotnet run' || true
+        
+        # Clone the repo into a persistent directory
+        mkdir -p ~/persistent-dir
+        git clone https://github.com/HamsterChief/Cargohub-Inf2.git ~/persistent-dir/Cargohub-Inf2
+        
+        # Change to the project directory
+        cd ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject
+        
+        # Start the application in the background with nohup
+        nohup dotnet run --urls "http://0.0.0.0:5072" > ~/persistent-dir/output.log 2>&1 &
+        
+        # Check running processes and ports
+        ps aux | grep 'dotnet'
+        lsof -i :5072
