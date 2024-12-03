@@ -49,15 +49,15 @@ jobs:
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
-    # - name: Update SERVER
-    #   run: |
-    #         #Kill all previous dotnet programs
-    #         pkill -f 'dotnet run' || true
-    #         cd $GITHUB_WORKSPACE
-    #         git reset --hard HEAD
-    #         git pull origin C-Cargohub
-    #         cd MyEFCoreProject
-    #         #nohup keeps the dotnet running
-    #         nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
-    #         Shows all running dotnet programs
-    #         ps aux | grep 'dotnet run'
+    - name: Update SERVER
+      run: |
+            #Kill all previous dotnet programs
+            pkill -f 'dotnet run' || true
+            cd $GITHUB_WORKSPACE
+            git reset --hard HEAD
+            git pull origin C-Cargohub
+            cd MyEFCoreProject
+            #nohup keeps the dotnet running
+            nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+            #Shows all running dotnet programs
+            ps aux | grep 'dotnet run'
