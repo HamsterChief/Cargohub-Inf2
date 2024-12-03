@@ -49,9 +49,12 @@ jobs:
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
-    - name: Update SERVER
+    - name: Update SERVER and restart
       run: |
 
+        # Kill previous dotnet programs
+        pkill -f 'dotnet run' || true
+      
         # Navigate to the persistent directory
         mkdir -p ~/persistent-dir/Cargohub-Inf2
       
@@ -70,17 +73,6 @@ jobs:
         # Change to the project directory
         cd ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject
       
-        # Start the application in the background with nohup
-        nohup dotnet run --urls "http://0.0.0.0:5072" > ~/persistent-dir/output.log 2>&1 &
-      
-        # Check running processes and ports
-        ps aux | grep 'dotnet'
-
-    - name: Start Server
-      run: |
-
-        # Kill previous dotnet programs
-        pkill -f 'dotnet run' || true
         # Start the application in the background with nohup
         nohup dotnet run --urls "http://0.0.0.0:5072" > ~/persistent-dir/output.log 2>&1 &
       
