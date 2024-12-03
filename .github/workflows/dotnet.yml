@@ -56,7 +56,6 @@ jobs:
         pkill -f 'dotnet run' || true
         
         # Clone the repo into a persistent directory
-        mkdir -p ~/persistent-dir
         git clone --branch "C#-Cargohub" https://github.com/HamsterChief/Cargohub-Inf2.git ~/persistent-dir/Cargohub-Inf2
         
         # Change to the project directory
