@@ -74,7 +74,7 @@ jobs:
         cd ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject
       
         # Start the application in the background with nohup
-        nohup dotnet run --urls "http://0.0.0.0:5072" > ~/persistent-dir/output.log 2>&1 </dev/null &
+        setsid dotnet run --urls "http://0.0.0.0:5072" > ~/persistent-dir/output.log 2>&1 &
       
         # Check running processes and ports
         ps aux | grep 'dotnet'
