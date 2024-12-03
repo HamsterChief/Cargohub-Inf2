@@ -78,3 +78,8 @@ jobs:
       
         # Check running processes and ports
         ps aux | grep 'dotnet'
+
+    - name: Verify Build
+      run: |
+          cd ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject
+          dotnet build --configuration Release
