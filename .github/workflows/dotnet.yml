@@ -48,7 +48,7 @@ jobs:
     # - name: Run pytest tests
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
-
+    #
     - name: Update SERVER
       run: |
             #Kill all previous dotnet programs
