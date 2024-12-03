@@ -49,36 +49,15 @@ jobs:
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
 
-    - name: Update SERVER and restart
+    # Step to pull the latest code from Git
+    - name: Pull Latest Changes from Git
       run: |
-
-        # Kill previous dotnet programs
-        pkill -f 'dotnet run' || true
-      
-        # Navigate to the persistent directory
-        mkdir -p ~/persistent-dir/Cargohub-Inf2
-      
         cd ~/persistent-dir/Cargohub-Inf2
-      
-        # Initialize git repo if not already initialized
-        if [ ! -d ".git" ]; then
-          git init
-          git remote add origin https://github.com/HamsterChief/Cargohub-Inf2.git
-        fi
-      
-        # Fetch the branch and reset to ensure synchronization
-        git fetch origin "C#-Cargohub"
-        git reset --hard origin/"C#-Cargohub"
+        git fetch origin C#-Cargohub
+        git reset --hard origin/C#-Cargohub
 
-        # Change to the project directory
-        cd ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject
-      
-        # Start the application in the background with nohup
-        tmux new-session -d -s myefcoreproject "dotnet run --urls 'http://0.0.0.0:5072'"
-      
-        # Check running processes and ports.
-        ps aux | grep 'dotnet'
-    - name: Check Running Processes
+    # Step to restart the service after pulling the latest code
+    - name: Restart EF Core Project Service
       run: |
-          ps aux | grep 'dotnet'
-          curl http://0.0.0.0:5072
+        sudo systemctl restart myefcoreproject
+        sudo systemctl status myefcoreproject  # Verify it's running
