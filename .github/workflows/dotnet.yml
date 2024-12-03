@@ -76,7 +76,7 @@ jobs:
         # Start the application in the background with nohup
         nohup dotnet run --urls "http://0.0.0.0:5072" > ~/persistent-dir/output.log 2>&1 &
       
-        # Check running processes and ports.
+        # Check running processes and ports
         ps aux | grep 'dotnet'
 
     - name: Verify Build
