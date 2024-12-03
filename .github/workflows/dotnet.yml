@@ -52,7 +52,7 @@ jobs:
 
     - name: Connect to SSH Server and Run Commands
       run: |
-            # Kill all previous dotnet programs
+            # Kill all previous dotnet programs.
             pkill -f 'dotnet run' || true
             cd $GITHUB_WORKSPACE
             git reset --hard HEAD
