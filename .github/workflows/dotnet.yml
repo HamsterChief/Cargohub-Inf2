@@ -56,7 +56,7 @@ jobs:
         git fetch origin C#-Cargohub
         git reset --hard origin/C#-Cargohub
 
-    # Step to restart the service after pulling the latest code
+    # Step to restart the service after pulling the latest code.
     - name: Restart EF Core Project Service
       run: |
         sudo systemctl restart myefcoreproject
