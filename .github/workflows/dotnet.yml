@@ -15,7 +15,7 @@ on:
 jobs:
   build:
 
-    runs-on: [self-hosted, linux, ARM64]
+    runs-on: "1049142-ubuntu-2025-feb"
 
     steps:
     - uses: actions/checkout@v4
