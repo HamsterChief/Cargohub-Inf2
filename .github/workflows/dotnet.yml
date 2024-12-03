@@ -55,12 +55,14 @@ jobs:
         #Kill previous dotnet programs.
         pkill -f 'dotnet run' || true
         
-        # Remove the existing directory if it exists
-        if [ -d "~/persistent-dir/Cargohub-Inf2" ]; then
-        rm -rf ~/persistent-dir/Cargohub-Inf2
+        # Ensure the directory exists or clone if not
+        if [ ! -d "~/persistent-dir/Cargohub-Inf2" ]; then
+          git clone --branch "C#-Cargohub" https://github.com/HamsterChief/Cargohub-Inf2.git ~/persistent-dir/Cargohub-Inf2
+        else
+          cd ~/persistent-dir/Cargohub-Inf2
+          git fetch origin "C#-Cargohub"
+          git reset --hard origin/"C#-Cargohub"
         fi
-        # Clone the repo into a persistent directory
-        git clone --branch "C#-Cargohub" https://github.com/HamsterChief/Cargohub-Inf2.git ~/persistent-dir/Cargohub-Inf2
         
         # Change to the project directory
         cd ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject
