@@ -54,8 +54,9 @@ jobs:
             #Kill all previous dotnet programs
             pkill -f 'dotnet run' || true
             cd $GITHUB_WORKSPACE
-            git reset --hard HEAD
-            git pull origin C#-Cargohub
+            #git reset --hard HEAD
+            #git pull origin C#-Cargohub
+            git clone https://github.com/HamsterChief/Cargohub-Inf2.git
             cd MyEFCoreProject
             #nohup keeps the dotnet running
             nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
