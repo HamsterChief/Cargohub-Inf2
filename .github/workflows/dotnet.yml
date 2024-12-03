@@ -59,5 +59,5 @@ jobs:
     # Step to restart the service after pulling the latest code.
     - name: Restart EF Core Project Service
       run: |
-        sudo systemctl restart myefcoreproject
+        echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
         sudo systemctl status myefcoreproject  # Verify it's running
