@@ -67,4 +67,3 @@ jobs:
         
         # Check running processes and ports
         ps aux | grep 'dotnet'
-        lsof -i :5072
