@@ -15,7 +15,7 @@ on:
 jobs:
   build:
 
-    runs-on: "1049142-ubuntu-2025-feb"
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
     
     - name: Build
       run: dotnet build --no-restore
-
+    
     # # Run .NET tests
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
@@ -48,10 +48,11 @@ jobs:
     # - name: Run pytest tests
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
-    #
+
     - name: Update SERVER
       run: |
-        # Kill previous dotnet programs
+
+        #Kill previous dotnet programs
         pkill -f 'dotnet run' || true
         
         # Clone the repo into a persistent directory
