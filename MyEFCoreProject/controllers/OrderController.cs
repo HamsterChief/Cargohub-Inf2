@@ -25,15 +25,29 @@ public class OrderController : Controller
     }
 
     [HttpGet("orders")]
-    public async Task<IActionResult> ReadOrders()
+    public async Task<IActionResult> ReadOrders([FromQuery] int page = 1, [FromQuery] string? status = null)
     {
-        var result = await _orderService.ReadOrders();
-        if (result != null)
+        var orders = await _orderService.GetAllOrders(page);
+
+        if (orders == null || !orders.Any())
         {
-            return Ok(result);
+            return NotFound("No orders found");
         }
-        return NotFound("No orders found");
+
+        if (!string.IsNullOrEmpty(status))
+        {
+            orders = orders.Where(o => o.Order_Status != null && 
+                                    o.Order_Status.Equals(status, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!orders.Any())
+        {
+            return NotFound($"No orders found with status '{status}'.");
+        }
+
+        return Ok(orders);
     }
+
 
     [HttpGet("orders/{order_id}/items")]
     public async Task<IActionResult> ReadItemsInOrder(int order_id)

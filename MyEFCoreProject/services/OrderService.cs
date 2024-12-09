@@ -20,9 +20,14 @@ public class OrderService : IOrderService
         return order!;
     }
 
-    public async Task<List<Order>> ReadOrders()
-    {
-        return await _context.Orders.ToListAsync();
+    public async Task<IEnumerable<Order>> GetAllOrders(int page){
+        const int defaultPageSize = 200; 
+
+        return await _context.Orders
+                            .AsNoTracking()
+                            .Skip((page - 1) * defaultPageSize) 
+                            .Take(defaultPageSize) 
+                            .ToListAsync();
     }
 
     public async Task<List<Item>> ReadItemsInOrder(int order_id)
@@ -149,7 +154,7 @@ public class OrderService : IOrderService
 public interface IOrderService
 {
     public Task<Order> ReadOrder(int order_id);
-    public Task<List<Order>> ReadOrders();
+    public Task<IEnumerable<Order>> GetAllOrders(int page);
     public Task<List<Item>> ReadItemsInOrder(int order_id);
     public Task<bool> CreateOrder(Order order);
     public Task<bool> UpdateOrder(Order order, int order_id);
