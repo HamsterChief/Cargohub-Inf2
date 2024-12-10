@@ -45,7 +45,7 @@ jobs:
 
     - name: Backup appsettings.json
       run: |
-        cp ~/persistent-dir/Cargohub-Inf2/appsettings.json ~/persistent-dir/Cargohub-Inf2/appsettings.json.bak
+        cp ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json.bak
 
     - name: Update appsettings.json for Test Database
       run: |
@@ -78,7 +78,7 @@ jobs:
 
     - name: Restore Original appsettings.json
       run: |
-        mv ~/persistent-dir/Cargohub-Inf2/appsettings.json.bak ~/persistent-dir/Cargohub-Inf2/appsettings.json
+        mv ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json.bak ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json
 
     # Restart the service to restore original appsettings
     - name: Restart EF Core Project Service with Original Configuration
