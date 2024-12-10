@@ -80,7 +80,7 @@ jobs:
       run: |
         mv ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json.bak ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json
 
-    # Restart the service to restore original appsettings
+    # Restart the service to restore original appsettings.
     - name: Restart EF Core Project Service with Original Configuration
       run: |
         echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
