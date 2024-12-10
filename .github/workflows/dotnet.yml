@@ -64,6 +64,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.12'
+
     
     - name: Install pytest
       run: |
@@ -72,7 +73,7 @@ jobs:
     
     - name: Run pytest tests
     # -v for more detailed output (easier debugging)
-      run: pytest ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/Integrationtests/endpoints_tests.py -v
+      run: pytest ~/persistent-dir/Cargohub-Inf2/Integrationtests/endpoints_tests.py -v
 
 
     - name: Restore Original appsettings.json
