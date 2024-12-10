@@ -49,7 +49,7 @@ jobs:
 
     - name: Update appsettings.json for Test Database
       run: |
-        sed -i 's|"sqlite": "Data Source=cargohub_database.db"|"sqlite": "Data Source=cargohub_Test_database.db"|' ~/persistent-dir/Cargohub-Inf2/appsettings.json
+        sed -i 's|"sqlite": "Data Source=cargohub_database.db"|"sqlite": "Data Source=cargohub_Test_database.db"|' ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json
 
     #restart so it uses the updated appsettings.json
     - name: Restart EF Core Project Service
