@@ -56,9 +56,8 @@ jobs:
       run: |
         echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
         sudo systemctl status myefcoreproject  # Verify it's running
+        sleep 5  # Sleep for 5 seconds to ensure the server is ready
 
-    - name: Verify Test File Content
-      run: cat ~/persistent-dir/Cargohub-Inf2/Integrationtests/endpoints_tests.py
 
     - name: Set up Python
       uses: actions/setup-python@v4
