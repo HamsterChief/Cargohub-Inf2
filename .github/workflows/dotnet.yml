@@ -35,6 +35,31 @@ jobs:
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
     
+
+    # Step to pull the latest code from Git
+    - name: Pull Latest Changes from Git
+      run: |
+        cd ~/persistent-dir/Cargohub-Inf2
+        git fetch origin C#-Cargohub
+        git reset --hard origin/C#-Cargohub
+
+    - name: Backup appsettings.json
+      run: |
+        cp ~/persistent-dir/Cargohub-Inf2/appsettings.json ~/persistent-dir/Cargohub-Inf2/appsettings.json.bak
+
+    - name: Update appsettings.json for Test Database
+      run: |
+        sed -i 's|"sqlite": "Data Source=cargohub_database.db"|"sqlite": "Data Source=cargohub_Test_database.db"|' ~/persistent-dir/Cargohub-Inf2/appsettings.json
+
+    #restart so it uses the updated appsettings.json
+    - name: Restart EF Core Project Service
+      run: |
+        echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
+        sudo systemctl status myefcoreproject  # Verify it's running
+
+    - name: Check Current Directory
+      run: pwd
+
     # - name: Set up Python
     #   uses: actions/setup-python@v4
     #   with:
@@ -48,16 +73,15 @@ jobs:
     # - name: Run pytest tests
     # # -v for more detailed output (easier debugging)
     #   run: pytest ./Integrationtests/endpoints_tests.py -v
+    # Run your tests (replace with your actual tests)
 
-    # Step to pull the latest code from Git
-    - name: Pull Latest Changes from Git
+
+    - name: Restore Original appsettings.json
       run: |
-        cd ~/persistent-dir/Cargohub-Inf2
-        git fetch origin C#-Cargohub
-        git reset --hard origin/C#-Cargohub
+        mv ~/persistent-dir/Cargohub-Inf2/appsettings.json.bak ~/persistent-dir/Cargohub-Inf2/appsettings.json
 
-    # Step to restart the service after pulling the latest code.
-    - name: Restart EF Core Project Service
+    # Restart the service to restore original appsettings
+    - name: Restart EF Core Project Service with Original Configuration
       run: |
         echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
         sudo systemctl status myefcoreproject  # Verify it's running
