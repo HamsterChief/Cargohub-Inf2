@@ -73,7 +73,6 @@ jobs:
     - name: Run pytest tests
     # -v for more detailed output (easier debugging)
       run: pytest ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/Integrationtests/endpoints_tests.py -v
-           Run your tests (replace with your actual tests)
 
 
     - name: Restore Original appsettings.json
