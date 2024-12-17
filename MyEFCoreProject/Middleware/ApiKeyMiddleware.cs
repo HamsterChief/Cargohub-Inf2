@@ -17,15 +17,11 @@ public class ApiKeyMiddleware
             await _next(context);  // Bypass middleware for api/v1
             return;
         }
-<<<<<<< HEAD
-
-=======
         if (context.Request.Path.StartsWithSegments("/swagger"))
         {
             await _next(context);  // Bypass middleware for Swagger
             return;
         }
->>>>>>> Jimmy
         if (!context.Request.Headers.TryGetValue("API_KEY", out var extractedApiKey))
         {
             context.Response.StatusCode = 401;
