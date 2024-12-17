@@ -74,19 +74,29 @@ public class TransferService : ITransferService
         return false;
     }
 
-    //public async Task<bool> CommitTransfer(int transfer_id)
-    //{
-    //    var transfer = await _context.Transfers.FindAsync(transfer_id);
-    //    if (transfer == null) { return false; }
-    //    foreach(var item in transfer.Items)
-    //    {
-    //        var Inventory = await _context.Inventories.FindAsync(x => x.Id == item["item_id"]);
-    //        if (Inventory == null) { return false; }
-    //        Inventory.Total_On_Hand += item["amount"]; 
+    public async Task<bool> CommitTransfer(int transfer_id)
+    {
+        var transfer = await _context.Transfers.FindAsync(transfer_id);
+        if (transfer == null)
+        {
+            return false;
+        }
 
-    //    }
-
-    //}
+        foreach (var item_set in transfer.Items)
+        {
+            var inventory = await _context.Inventories
+                                          .FirstOrDefaultAsync(x => x.Item_Id == item_set.Item_Id);
+            if (inventory == null)
+            {
+                return false;
+            }
+            inventory.Total_On_Hand += item_set.Amount;
+            _context.Inventories.Update(inventory);
+        }
+        transfer.Transfer_Status = "Completed";
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }
 
 public interface ITransferService
@@ -98,4 +108,5 @@ public interface ITransferService
     Task<bool> CreateTransfer(Transfer transfer);
     Task<bool> UpdateTransfer(Transfer transfer, int trasnfer_id);
     Task<bool> DeleteTransfer(int trasnfer_id);
+    Task<bool> CommitTransfer(int  trasnfer_id);
 }

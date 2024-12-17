@@ -4,8 +4,10 @@
     "\\.github",
     "\\.github\\workflows",
     "\\MyEFCoreProject",
-    "\\MyEFCoreProject\\controllers"
+    "\\MyEFCoreProject\\controllers",
+    "\\MyEFCoreProject\\models",
+    "\\MyEFCoreProject\\services"
   ],
-  "SelectedNode": "\\.github\\workflows\\dotnet.yml",
+  "SelectedNode": "\\MyEFCoreProject\\.rest",
   "PreviewInSolutionExplorer": false
 }
