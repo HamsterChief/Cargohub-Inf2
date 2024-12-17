@@ -9,6 +9,6 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Home()
     {
-        return Ok();
+        return Redirect("/swagger"); // This will redirect users to the Swagger UI
     }
 }

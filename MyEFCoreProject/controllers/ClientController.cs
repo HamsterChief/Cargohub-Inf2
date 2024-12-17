@@ -12,7 +12,10 @@ public class ClientController : Controller
     {
         _clientService = clientService;
     }
-    
+    /// <summary>
+    /// Retrieves a clients.
+    /// </summary>
+    /// <returns>A client.</returns>
     [HttpGet("clients/{client_id}")]
     public async Task<IActionResult> ReadClient(int client_id)
     {
@@ -24,6 +27,10 @@ public class ClientController : Controller
         return NotFound($"No such client with Id: {client_id}");
     }
 
+    /// <summary>
+    /// Retrieves all clients.
+    /// </summary>
+    /// <returns>A list of clients.</returns>
     [HttpGet("clients")]
     public async Task<IActionResult> ReadClients()
     {

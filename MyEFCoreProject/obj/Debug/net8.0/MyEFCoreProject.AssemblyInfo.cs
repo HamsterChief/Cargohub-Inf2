@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+941bfc11a5ce8573f5b6cc57b1a3bbfefc19da79")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ee3e8a0aa91c2fda51f154775cbfc1fc202d2a7")]
->>>>>>> C#-Cargohub
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ef96c3402382b26233e0db55921a3c95b046481")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

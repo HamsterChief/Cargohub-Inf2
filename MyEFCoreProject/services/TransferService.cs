@@ -74,19 +74,19 @@ public class TransferService : ITransferService
         return false;
     }
 
-    public async Task<bool> CommitTransfer(int transfer_id)
-    {
-        var transfer = await _context.Transfers.FindAsync(transfer_id);
-        if (transfer == null) { return false; }
-        foreach(var item in transfer.Items)
-        {
-            var Inventory = await _context.Inventories.FindAsync(x => x.Id == item["item_id"]);
-            if (Inventory == null) { return false; }
-            Inventory.Total_On_Hand += item["amount"]; 
+    //public async Task<bool> CommitTransfer(int transfer_id)
+    //{
+    //    var transfer = await _context.Transfers.FindAsync(transfer_id);
+    //    if (transfer == null) { return false; }
+    //    foreach(var item in transfer.Items)
+    //    {
+    //        var Inventory = await _context.Inventories.FindAsync(x => x.Id == item["item_id"]);
+    //        if (Inventory == null) { return false; }
+    //        Inventory.Total_On_Hand += item["amount"]; 
 
-        }
+    //    }
 
-    }
+    //}
 }
 
 public interface ITransferService
