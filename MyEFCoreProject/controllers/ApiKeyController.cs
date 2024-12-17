@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("cargohub/apikey")]
+[Route("api/v1/apikey")]
 public class ApiKeyController : ControllerBase
 {
     private readonly ApiKeyService _apiKeyService;

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MyEFCoreProject.Controllers;
 
-[Route("cargohub")]
+[Route("api/v1")]
 [ApiController]
 public class TransferController : Controller
 {

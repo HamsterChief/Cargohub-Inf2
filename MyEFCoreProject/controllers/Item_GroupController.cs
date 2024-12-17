@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyEFCoreProject.Controllers;
 
-[Route("cargohub")]
+[Route("api/v1")]
 [ApiController]
 public class Item_GroupController : Controller
 {
