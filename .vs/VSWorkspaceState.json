@@ -6,6 +6,6 @@
     "\\MyEFCoreProject",
     "\\MyEFCoreProject\\controllers"
   ],
-  "SelectedNode": "\\.github\\workflows\\dotnet.yml",
+  "SelectedNode": "\\MyEFCoreProject\\controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
