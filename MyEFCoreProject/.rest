@@ -2,7 +2,7 @@
 GET http://localhost:80/api/v1
 
 ####
-GET http://localhost:5072/cargohub/clients/1/orders
+GET http://localhost:80/api/v1/clients/1/orders
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 ####
 POST http://localhost:5072/cargohub/clients
