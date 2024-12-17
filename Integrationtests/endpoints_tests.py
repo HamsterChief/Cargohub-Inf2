@@ -3,7 +3,7 @@ import requests
 # Documentation: https://docs.python-requests.org
 
 # TODO: replace with test server url
-BASE_URL = "http://localhost:80/cargohub"
+BASE_URL = "http://localhost:80/api/v1"
 API_KEY = "5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b"
 
 def test_data_post_transfer():
