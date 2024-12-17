@@ -30,15 +30,6 @@ public class DatabaseContext : DbContext
         modelBuilder.Entity<Item>()
             .HasKey(i => i.UId);
 
-        var permissionsConverter = new ValueConverter<Dictionary<string, bool>, string>(
-            v => JsonConvert.SerializeObject(v),
-            v => JsonConvert.DeserializeObject<Dictionary<string, bool>>(v)
-        );
-
-        modelBuilder.Entity<Api_Key>()
-            .Property(a => a.Permissions)
-            .HasConversion(permissionsConverter);
-        
         var contactsConverter = new ValueConverter<Dictionary<string, string>, string>(
             v => JsonConvert.SerializeObject(v),
             v => JsonConvert.DeserializeObject<Dictionary<string, string>>(v)
@@ -64,5 +55,11 @@ public class DatabaseContext : DbContext
         modelBuilder.Entity<Transfer>()
             .Property(a => a.Items)
             .HasConversion(itemsConverter);
+
+        modelBuilder.Entity<Api_Key>()
+            .HasIndex(k => k.Id).IsUnique();
+
+        modelBuilder.Entity<Api_Key>()
+            .HasData(new Api_Key { Id = 1, ApiKey = ApiKeyService.HashApiKey("f3f0efb1-917d-4457-a279-90280da97439"), App = "CargoHUB Dashboard 1", Permissions = "admin" });
     }
 }
