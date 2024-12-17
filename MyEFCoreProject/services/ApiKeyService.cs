@@ -16,28 +16,28 @@ public class ApiKeyService
         return Guid.NewGuid().ToString(); 
     }
 
-    public string HashApiKey(string apiKey)
+    public static string HashApiKey(string apiKey)
     {
         return BCrypt.Net.BCrypt.HashPassword(apiKey);
     }
 
-    public async Task<string> CreateAndSaveApiKeyAsync(string appName, Dictionary<string, bool> permissions)
-    {
-        var rawApiKey = GenerateApiKey();
-        var hashedApiKey = HashApiKey(rawApiKey);
+    // public async Task<string> CreateAndSaveApiKeyAsync(string appName, string permissions)
+    // {
+    //     var rawApiKey = GenerateApiKey();
+    //     var hashedApiKey = HashApiKey(rawApiKey);
 
-        var newApiKey = new Api_Key
-        {
-            ApiKey = hashedApiKey,
-            App = appName,
-            Permissions = permissions
-        };
+    //     var newApiKey = new Api_Key
+    //     {
+    //         ApiKey = hashedApiKey,
+    //         App = appName,
+    //         Permissions = permissions
+    //     };
 
-        _dbContext.Api_Keys.Add(newApiKey);
-        await _dbContext.SaveChangesAsync();
+    //     _dbContext.Api_Keys.Add(newApiKey);
+    //     await _dbContext.SaveChangesAsync();
 
-        Console.WriteLine($"The raw api key is: {rawApiKey}");
+    //     Console.WriteLine($"The raw api key is: {rawApiKey}");
 
-        return rawApiKey;
-    }
+    //     return rawApiKey;
+    // }
 }

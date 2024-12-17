@@ -7,75 +7,105 @@ namespace MyEFCoreProject.Controllers;
 public class ClientController : Controller
 {
     private readonly IClientService _clientService;
+    private readonly IAuditLogService _auditLogService;
 
-    public ClientController(IClientService clientService)
+    public ClientController(IClientService clientService, IAuditLogService auditLogService)
     {
         _clientService = clientService;
+        _auditLogService = auditLogService;
     }
     
     [HttpGet("clients/{client_id}")]
     public async Task<IActionResult> ReadClient(int client_id)
     {
-        var result = await _clientService.ReadClient(client_id);
-        if (result != null)
+        var serviceResult = await _clientService.ReadClient(client_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound($"No such client with Id: {client_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("clients")]
     public async Task<IActionResult> ReadClients()
     {
-        var result = await _clientService.ReadClients();
-        if (result != null)
+        var serviceResult = await _clientService.ReadClients(Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound("No clients found");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("clients/{client_id}/orders")]
     public async Task<IActionResult> ReadClientsOrder(int client_id)
     {
-        var result = await _clientService.ReadClientsOrder(client_id);
-        if (result.Count() != 0)
+        var serviceResult = await _clientService.ReadClientsOrder(client_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound("No orders found");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPost("clients")]
     public async Task<IActionResult> CreateClient([FromBody] Client client)
     {
-        var result = await _clientService.CreateClient(client);
-        if (result)
+        var serviceResult = await _clientService.CreateClient(client, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Client created successfully.");
         }
-        return BadRequest("Failed to create client.");
+        else if (serviceResult.StatusCode == 409)
+        {
+            return Conflict(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPut("clients/{client_id}")]
     public async Task<IActionResult> UpdateClient([FromBody] Client client, int client_id)
     {
-        var result = await _clientService.UpdateClient(client, client_id);
-        if (result)
+        var serviceResult = await _clientService.UpdateClient(client, client_id, Request.Headers["API_KEY"]!);
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Client updated successfully.");
         }
-        return BadRequest("Failed to update client.");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpDelete("clients/{client_id}")]
     public async Task<IActionResult> DeleteClient(int client_id)
     {
-        var result = await _clientService.DeleteClient(client_id);
-        if (result)
+        var serviceResult = await _clientService.DeleteClient(client_id, Request.Headers["API_KEY"]!);
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Client deleted succesfully.");
         }
-        return BadRequest("Failed to delete client.");
+        else if (serviceResult.StatusCode == 400)
+        {
+            return BadRequest(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 }

@@ -18,6 +18,7 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ITransferService, TransferService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 builder.Services.AddScoped<ApiKeyService>();
+builder.Services.AddScoped<IAuditLogService, AuditLogService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -29,11 +30,11 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-app.UseMiddleware<ApiKeyMiddleware>();
+app.UseRouting();
 
 app.UseSession();
 
-app.UseRouting();
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 

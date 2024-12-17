@@ -11,27 +11,21 @@ public class ApiKeyController : ControllerBase
         _apiKeyService = apiKeyService;
     }
 
-    [HttpPost("create")]
-    public async Task<IActionResult> CreateApiKey([FromBody] ApiKeyRequest request)
-    {
-        var rawApiKey = await _apiKeyService.CreateAndSaveApiKeyAsync(
-            request.AppName,
-            new Dictionary<string, bool>
-            {
-                { "Read", request.Permissions.Read },
-                { "Write", request.Permissions.Write },
-                {"Update", request.Permissions.Update},
-                {"Delete", request.Permissions.Delete}
-            });
+    // [HttpPost("create")]
+    // public async Task<IActionResult> CreateApiKey([FromBody] ApiKeyRequest request)
+    // {
+    //     var rawApiKey = await _apiKeyService.CreateAndSaveApiKeyAsync(
+    //         request.AppName,
+    //         request.Permissions);
 
-        return Ok(new { ApiKey = rawApiKey });
-    }
+    //     return Ok(new { ApiKey = rawApiKey });
+    // }
 }
 
 public class ApiKeyRequest
 {
     public string AppName { get; set; }
-    public PermissionsDto Permissions { get; set; }
+    public string Permissions { get; set; }
 }
 
 public class PermissionsDto
