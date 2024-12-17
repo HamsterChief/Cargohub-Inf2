@@ -75,12 +75,15 @@ jobs:
       run: pytest ~/persistent-dir/Cargohub-Inf2/Integrationtests/endpoints_tests.py -v
 
 
+    # Always restore the original appsettings.json
     - name: Restore Original appsettings.json
+      if: always()
       run: |
         mv ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json.bak ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json
 
-    # Restart the service to restore original appsettings.
+    # Restart the service with the original configuration
     - name: Restart EF Core Project Service with Original Configuration
+      if: always()
       run: |
         echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
         sudo systemctl status myefcoreproject  # Verify it's running
