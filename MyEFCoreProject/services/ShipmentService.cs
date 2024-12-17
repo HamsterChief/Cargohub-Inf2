@@ -121,6 +121,30 @@ public class ShipmentService : IShipmentService
 
         return order;
     }
+
+    public async Task<bool> CommitShipment(int transfer_id)
+    {
+        var Shipment = await _context.Shipments.FindAsync(transfer_id);
+        if (Shipment == null)
+        {
+            return false;
+        }
+
+        foreach (var item_set in Shipment.Items)
+        {
+            var inventory = await _context.Inventories
+                                          .FirstOrDefaultAsync(x => x.Item_Id == item_set.Item_Id);
+            if (inventory == null)
+            {
+                return false;
+            }
+            inventory.Total_On_Hand += item_set.Amount;
+            _context.Inventories.Update(inventory);
+        }
+        Shipment.Shipment_Status = "Delivered";
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }
 
 public interface IShipmentService
@@ -137,4 +161,5 @@ public interface IShipmentService
     public Task<bool> UpdateShipmentOrder(Order order, int shipment_id);
 
     public Task<bool> UpdateShipmentItems(List<PropertyItem> items, int shipment_id);
+    public Task<bool> CommitShipment(int trasnfer_id);
 }

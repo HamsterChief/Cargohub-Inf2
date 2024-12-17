@@ -1,5 +1,5 @@
 ############clients
-put http://localhost:80/api/v1/transfers/Commit/1
+put http://localhost:80/api/v1/shipments/Commit/1
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 #######

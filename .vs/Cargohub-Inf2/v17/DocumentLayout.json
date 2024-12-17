@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\.rest||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ShipmentController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\controllers\\ShipmentController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\.github\\workflows\\dotnet.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\dotnet.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ShipmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\ShipmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\TransferService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\WarehouseService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\WarehouseService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\OrderService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\OrderService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\TransferController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\controllers\\TransferController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\models\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\models\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,24 +51,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\controllers\\ClientController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\.rest||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\Middleware\\ApiKeyMiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\Middleware\\ApiKeyMiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\services\\TransferService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\TransferController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyEFCoreProject\\controllers\\TransferController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\.github\\workflows\\dotnet.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\dotnet.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\SQLsetup.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -126,11 +146,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "main.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\main.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\main.py",
@@ -142,20 +162,115 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientController.cs",
-              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs",
-              "RelativeDocumentMoniker": "MyEFCoreProject\\controllers\\ClientController.cs",
-              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs",
-              "RelativeToolTip": "MyEFCoreProject\\controllers\\ClientController.cs",
-              "ViewState": "AQIAAEMAAAAAAAAAAADwv1cAAAABAAAA",
+              "DocumentIndex": 5,
+              "Title": "WarehouseService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\WarehouseService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\WarehouseService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\WarehouseService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\WarehouseService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T10:19:08.903Z",
+              "WhenOpened": "2024-12-17T13:24:15.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\OrderService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\OrderService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\OrderService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\OrderService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T13:24:02.819Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": ".rest",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\.rest",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest",
+              "RelativeToolTip": "MyEFCoreProject\\.rest",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-12-17T13:20:52.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "models.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\models\\models.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\models\\models.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\models\\models.cs",
+              "RelativeToolTip": "MyEFCoreProject\\models\\models.cs",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAAAIgAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T13:18:19.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShipmentService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ShipmentService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\ShipmentService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\ShipmentService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\ShipmentService.cs",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAAAIIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T13:17:03.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ShipmentController.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ShipmentController.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\controllers\\ShipmentController.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ShipmentController.cs",
+              "RelativeToolTip": "MyEFCoreProject\\controllers\\ShipmentController.cs",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAowHMAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T13:15:39.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TransferService.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\TransferService.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs",
+              "RelativeToolTip": "MyEFCoreProject\\services\\TransferService.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAF8AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T09:58:55.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dotnet.yml",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\.github\\workflows\\dotnet.yml",
+              "RelativeDocumentMoniker": ".github\\workflows\\dotnet.yml",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\.github\\workflows\\dotnet.yml",
+              "RelativeToolTip": ".github\\workflows\\dotnet.yml",
+              "ViewState": "AQIAACYAAAAAAAAAAAAAACsAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2024-11-28T22:03:02.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "MyEFCoreProject\\controllers\\HomeController.cs",
@@ -168,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "ApiKeyMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\Middleware\\ApiKeyMiddleware.cs",
               "RelativeDocumentMoniker": "MyEFCoreProject\\Middleware\\ApiKeyMiddleware.cs",
@@ -176,81 +291,48 @@
               "RelativeToolTip": "MyEFCoreProject\\Middleware\\ApiKeyMiddleware.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T10:04:35.892Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-17T10:04:35.892Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": ".rest",
-              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest",
-              "RelativeDocumentMoniker": "MyEFCoreProject\\.rest",
-              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\.rest",
-              "RelativeToolTip": "MyEFCoreProject\\.rest",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-12-17T09:59:12.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TransferService.cs",
-              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs",
-              "RelativeDocumentMoniker": "MyEFCoreProject\\services\\TransferService.cs",
-              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\services\\TransferService.cs",
-              "RelativeToolTip": "MyEFCoreProject\\services\\TransferService.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAFIAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T09:58:55.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "TransferController.cs",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\TransferController.cs",
               "RelativeDocumentMoniker": "MyEFCoreProject\\controllers\\TransferController.cs",
               "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\TransferController.cs",
               "RelativeToolTip": "MyEFCoreProject\\controllers\\TransferController.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAFIAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T09:58:47.635Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
+              "Title": "ClientController.cs",
+              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs",
+              "RelativeDocumentMoniker": "MyEFCoreProject\\controllers\\ClientController.cs",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\controllers\\ClientController.cs",
+              "RelativeToolTip": "MyEFCoreProject\\controllers\\ClientController.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAADwv1cAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T10:19:08.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\Program.cs",
               "RelativeDocumentMoniker": "MyEFCoreProject\\Program.cs",
-              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\Program.cs*",
-              "RelativeToolTip": "MyEFCoreProject\\Program.cs*",
+              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\Program.cs",
+              "RelativeToolTip": "MyEFCoreProject\\Program.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAADwv0cAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T09:58:33.294Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+              "WhenOpened": "2024-12-17T09:58:33.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "dotnet.yml",
-              "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\.github\\workflows\\dotnet.yml",
-              "RelativeDocumentMoniker": ".github\\workflows\\dotnet.yml",
-              "ToolTip": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\.github\\workflows\\dotnet.yml",
-              "RelativeToolTip": ".github\\workflows\\dotnet.yml",
-              "ViewState": "AQIAAFMAAAAAAAAAAAAAAA4AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-11-28T22:03:02.796Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "inventories.json",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\data\\inventories.json",
               "RelativeDocumentMoniker": "CargoHub\\data\\inventories.json",
@@ -261,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "item_groups.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\item_groups.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\item_groups.py",
@@ -272,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "orders.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\Tests\\api\\models\\orders.py",
               "RelativeDocumentMoniker": "Tests\\api\\models\\orders.py",
@@ -283,7 +365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "orders.json",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\data\\orders.json",
               "RelativeDocumentMoniker": "CargoHub\\data\\orders.json",
@@ -294,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "orders.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\orders.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\orders.py",
@@ -305,7 +387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "locations.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\locations.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\locations.py",
@@ -316,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": ".rest",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\.rest",
               "RelativeDocumentMoniker": "CargoHub\\.rest",
@@ -327,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "SQLsetup.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\SQLsetup.py",
               "RelativeDocumentMoniker": "CargoHub\\SQLsetup.py",
@@ -339,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "items.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\items.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\items.py",
@@ -350,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "clients.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\clients.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\clients.py",
@@ -361,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "inventories.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\inventories.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\inventories.py",
@@ -372,7 +454,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "shipments.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\shipments.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\shipments.py",
@@ -383,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "warehouses.json",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\data\\warehouses.json",
               "RelativeDocumentMoniker": "CargoHub\\data\\warehouses.json",
@@ -394,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "warehouses.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\warehouses.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\warehouses.py",
@@ -405,7 +487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "__ init __.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\__ init __.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\__ init __.py",
@@ -416,7 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "notification_processor.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\processors\\notification_processor.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\processors\\notification_processor.py",
@@ -427,7 +509,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "auth_provider.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\providers\\auth_provider.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\providers\\auth_provider.py",
@@ -438,7 +520,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "start-system.sh",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\start-system.sh",
               "RelativeDocumentMoniker": "CargoHub\\start-system.sh",
@@ -449,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -460,7 +542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "base.py",
               "DocumentMoniker": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\CargoHub\\api\\models\\base.py",
               "RelativeDocumentMoniker": "CargoHub\\api\\models\\base.py",
