@@ -7,102 +7,121 @@ namespace MyEFCoreProject.Controllers;
 public class OrderController : Controller
 {
     private readonly IOrderService _orderService;
-    private readonly IAuditLogService _auditLogService;
 
-    public OrderController(IOrderService orderService, IAuditLogService auditLogService)
+    public OrderController(IOrderService orderService)
     {
         _orderService = orderService;
-        _auditLogService = auditLogService;
     }
 
     [HttpGet("orders/{order_id}")]
     public async Task<IActionResult> ReadOrder(int order_id)
     {
-        var result = await _orderService.ReadOrder(order_id);
-        if (result != null)
+        var serviceResult = await _orderService.ReadOrder(order_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching order", Request.Headers["API_KEY"]!);
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: Fetching order", Request.Headers["API_KEY"]!);
-        return NotFound($"No such order with Id: {order_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("orders")]
     public async Task<IActionResult> ReadOrders()
     {
-        var result = await _orderService.ReadOrders();
-        if (result != null)
+        var serviceResult = await _orderService.ReadOrders(Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple orders", Request.Headers["API_KEY"]!);
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: Fetching multiple orders", Request.Headers["API_KEY"]!);
-        return NotFound("No orders found");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("orders/{order_id}/items")]
     public async Task<IActionResult> ReadItemsInOrder(int order_id)
     {
-        List<Item> result = await _orderService.ReadItemsInOrder(order_id);
-        if (result.Count > 0)
+        var serviceResult = await _orderService.ReadItemsInOrder(order_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching items in order", Request.Headers["API_KEY"]!);
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: Fetching items in order", Request.Headers["API_KEY"]!);
-        return NotFound($"no items found in order with Id: {order_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPost("orders")]
     public async Task<IActionResult> CreateOrder([FromBody] Order order)
     {
-        var result = await _orderService.CreateOrder(order);
-        if (result)
+        var serviceResult = await _orderService.CreateOrder(order, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("POST", "200 OK: Creating order", Request.Headers["API_KEY"]!);
             return Ok("Order created successfully.");
         }
-        await _auditLogService.LogActionAsync("POST", "400 BAD REQUEST: Creating order", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to create order.");
+        else if (serviceResult.StatusCode == 409)
+        {
+            return Conflict(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPut("orders/{order_id}")]
     public async Task<IActionResult> UpdateOrder([FromBody] Order order, int order_id)
     {
-        var result = await _orderService.UpdateOrder(order, order_id);
-        if (result)
+        var serviceResult = await _orderService.UpdateOrder(order, order_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updating order", Request.Headers["API_KEY"]!);
             return Ok("Order updated successfully.");
         }
-        await _auditLogService.LogActionAsync("PUT", "400 BAD REQUEST: Updating order", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to update order.");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPut("orders/{order_id}/items")]
     public async Task<IActionResult> UpdateItemsInOrder(int order_id, [FromBody] List<PropertyItem> updated_items)
     {
-        var result = await _orderService.UpdateItemsInOrder(order_id, updated_items);
-        if (result)
+        var serviceResult = await _orderService.UpdateItemsInOrder(order_id, updated_items, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updating items in order", Request.Headers["API_KEY"]!);
-            return Ok("Items in order updated succesfully.");
+            return Ok("Items in order updated successfully.");
         }
-        await _auditLogService.LogActionAsync("PUT", "400 BAD REQUEST: Updating items in order", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to update items in order.");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpDelete("orders/{order_id}")]
     public async Task<IActionResult> DeleteOrder(int order_id)
     {
-        var result = await _orderService.DeleteOrder(order_id);
-        if (result)
+        var serviceResult = await _orderService.DeleteOrder(order_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleting order", Request.Headers["API_KEY"]!);
             return Ok("Order deleted succesfully.");
         }
-        await _auditLogService.LogActionAsync("DELETE", "400 BAD REQUEST: Deleting order", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to delete order.");
+        else if (serviceResult.StatusCode == 400)
+        {
+            return BadRequest(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 }

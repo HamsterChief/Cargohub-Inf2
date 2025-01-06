@@ -8,89 +8,105 @@ namespace MyEFCoreProject.Controllers;
 public class WarehouseController : Controller
 {
     private readonly IWarehouseService _warehouseService;
-    private readonly IAuditLogService _auditLogService;
 
-    public WarehouseController(IWarehouseService warehouseService, IAuditLogService auditLogService)
+    public WarehouseController(IWarehouseService warehouseService)
     {
         _warehouseService = warehouseService;
-        _auditLogService = auditLogService;
     }
 
     [HttpGet("warehouses/{warehouse_id}")]
     public async Task<IActionResult> ReadWarehouse(int warehouse_id)
     {
-        var result = await _warehouseService.ReadWarehouse(warehouse_id);
-        if (result != null)
+        var serviceResult = await _warehouseService.ReadWarehouse(warehouse_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching warehouse", Request.Headers["API_KEY"]!);
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: Fetching warehouse", Request.Headers["API_KEY"]!);
-        return NotFound($"No such warehouse with Id: {warehouse_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("warehouses")]
     public async Task<IActionResult> ReadWarehouses()
     {
-        var result = await _warehouseService.ReadWarehouses();
-        if (result != null)
+        var serviceResult = await _warehouseService.ReadWarehouses(Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple warehouses", Request.Headers["API_KEY"]!);
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: Fetching multiple warehouses", Request.Headers["API_KEY"]!);
-        return NotFound("No warehouses found");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("warehouses/{warehouse_id}/locations")]
     public async Task<IActionResult> ReadLocationsInWarehouse(int warehouse_id)
     {
-        List<Location> result = await _warehouseService.ReadLocationsInWarehouse(warehouse_id);
-        if (result.Count > 0)
+        var serviceResult = await _warehouseService.ReadLocationsInWarehouse(warehouse_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching locations for warehouse", Request.Headers["API_KEY"]!);
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: Fetching locations for warehouse", Request.Headers["API_KEY"]!);
-        return NotFound($"no locations found for warehouse with Id: {warehouse_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPost("warehouses")]
     public async Task<IActionResult> CreateWarehouse(Warehouse warehouse)
     {
-        var result = await _warehouseService.CreateWarehouse(warehouse);
-        if (result)
+        var serviceResult = await _warehouseService.CreateWarehouse(warehouse, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("POST", "200 OK: Creating warehouse", Request.Headers["API_KEY"]!);
             return Ok("Warehouse created successfully.");
         }
-        await _auditLogService.LogActionAsync("POST", "400 BAD REQUEST: Creating warehouse", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to create warehouse.");
+        else if (serviceResult.StatusCode == 409)
+        {
+            return Conflict(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPut("warehouses/{warehouse_id}")]
     public async Task<IActionResult> UpdateWarehouse(Warehouse warehouse, int warehouse_id)
     {
-        var result = await _warehouseService.UpdateWarehouse(warehouse, warehouse_id);
-        if (result)
+        var serviceResult = await _warehouseService.UpdateWarehouse(warehouse, warehouse_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updating warehouse", Request.Headers["API_KEY"]!);
             return Ok("Warehouse updated successfully.");
         }
-        await _auditLogService.LogActionAsync("PUT", "400 BAD REQUEST: Updating warehouse", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to update warehouse.");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpDelete("warehouses/{warehouse_id}")]
     public async Task<IActionResult> DeleteWarehouse(int warehouse_id)
     {
-        var result = await _warehouseService.DeleteWarehouse(warehouse_id);
-        if (result)
+        var serviceResult = await _warehouseService.DeleteWarehouse(warehouse_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleting warehouse", Request.Headers["API_KEY"]!);
-            return Ok("Warehouse deleted successfully.");
+            return Ok("Warehouse deleted succesfully.");
         }
-        await _auditLogService.LogActionAsync("DELETE", "400 BAD REQUEST: Deleting warehouse", Request.Headers["API_KEY"]!);
-        return BadRequest("Failed to delete warehouse.");
+        else if (serviceResult.StatusCode == 400)
+        {
+            return BadRequest(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 }

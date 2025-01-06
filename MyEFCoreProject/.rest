@@ -1,3 +1,17 @@
+POST http://localhost:5072/cargohub/apikey/create 
+API_KEY: 104e99b1-64c4-4026-bc71-6cd6cb854de6
+Content-Type: application/json
+
+{
+  "appName": "CargoHUB Dashboard 1",
+  "permissions": {
+    "read": true,
+    "write": true,
+    "delete": true,
+    "update": true
+  }
+}
+
 ############clients
 GET http://localhost:5072/cargohub/clients/1
 

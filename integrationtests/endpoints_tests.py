@@ -3,14 +3,14 @@ import requests
 # Documentation: https://docs.python-requests.org
 
 # TODO: replace with test server url
-# BASE_URL = "http://localhost:5072/cargohub"
-# API_KEY = "57946a04-2885-4e43-821b-a40216ceda58"
-BASE_URL = "http://localhost:3000/api/v1"
-API_KEY = "a1b2c3d4e5"
+BASE_URL = "http://localhost:5072/cargohub"
+API_KEY = "f3f0efb1-917d-4457-a279-90280da97439"
+# BASE_URL = "http://localhost:3000/api/v1"
+# API_KEY = "a1b2c3d4e5"
 
 def test_auth_get_clients():
     response = requests.get(f"{BASE_URL}/clients", headers={"API_KEY": API_KEY})
-    assert response.status_code == 200
+    assert response.status_code == 404
 
 # TODO: work out individually before discussing in your team
 

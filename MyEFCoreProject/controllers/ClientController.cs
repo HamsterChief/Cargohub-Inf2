@@ -7,12 +7,10 @@ namespace MyEFCoreProject.Controllers;
 public class ClientController : Controller
 {
     private readonly IClientService _clientService;
-    private readonly IAuditLogService _auditLogService;
 
-    public ClientController(IClientService clientService, IAuditLogService auditLogService)
+    public ClientController(IClientService clientService)
     {
         _clientService = clientService;
-        _auditLogService = auditLogService;
     }
     
     [HttpGet("clients/{client_id}")]
@@ -83,6 +81,7 @@ public class ClientController : Controller
     public async Task<IActionResult> UpdateClient([FromBody] Client client, int client_id)
     {
         var serviceResult = await _clientService.UpdateClient(client, client_id, Request.Headers["API_KEY"]!);
+
         if (serviceResult.StatusCode == 200)
         {
             return Ok("Client updated successfully.");
@@ -98,6 +97,7 @@ public class ClientController : Controller
     public async Task<IActionResult> DeleteClient(int client_id)
     {
         var serviceResult = await _clientService.DeleteClient(client_id, Request.Headers["API_KEY"]!);
+        
         if (serviceResult.StatusCode == 200)
         {
             return Ok("Client deleted succesfully.");

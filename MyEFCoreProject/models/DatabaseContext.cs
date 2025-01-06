@@ -60,6 +60,7 @@ public class DatabaseContext : DbContext
             .HasIndex(k => k.Id).IsUnique();
 
         modelBuilder.Entity<Api_Key>()
-            .HasData(new Api_Key { Id = 1, ApiKey = ApiKeyService.HashApiKey("f3f0efb1-917d-4457-a279-90280da97439"), App = "CargoHUB Dashboard 1", Permissions = "admin" });
+            .HasData(new Api_Key 
+            { Id = 1, ApiKey = ApiKeyService.HashApiKey("f3f0efb1-917d-4457-a279-90280da97439"), App = "CargoHUB Dashboard 1", Permissions = "admin" });
     }
 }
