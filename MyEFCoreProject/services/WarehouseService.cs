@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 public class WarehouseService : IWarehouseService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
 
-    public WarehouseService(DatabaseContext context, IAuditLogService auditLogService)
+    public WarehouseService(DatabaseContext context)
     {
         _context = context;
-        _auditLogService = auditLogService;
     }
 
     public async Task<ServiceResult> ReadWarehouse(int warehouse_id, string api_key)
@@ -22,16 +20,16 @@ public class WarehouseService : IWarehouseService
 
             if (warehouse == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such warehouse with id: {warehouse_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such warehouse with id: {warehouse_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such warehouse with id: {warehouse_id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching warehouse", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching warehouse", api_key);
             return new ServiceResult { Object = warehouse, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch warehouse with id {warehouse_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch warehouse with id {warehouse_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -44,16 +42,16 @@ public class WarehouseService : IWarehouseService
 
             if (!warehouses.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No warehouses found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No warehouses found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No warehouses found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple warehouses", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple warehouses", api_key);
             return new ServiceResult { Object = warehouses, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple warehouses - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple warehouses - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -64,18 +62,18 @@ public class WarehouseService : IWarehouseService
         {
             if (await _context.Warehouses.FindAsync(warehouse_id) == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such warehouse with id: {warehouse_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such warehouse with id: {warehouse_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such warehouse with id: {warehouse_id}" };
             }
 
             var locations = await _context.Locations.Where(location => location.Warehouse_Id == warehouse_id).ToListAsync();
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching locations for warehouse", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching locations for warehouse", api_key);
             return new ServiceResult { Object = locations, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed fetching locations for warehouse - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed fetching locations for warehouse - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -86,7 +84,7 @@ public class WarehouseService : IWarehouseService
         {
             if (_context.Warehouses.Any(x => x.Id == warehouse.Id))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {warehouse.Id} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {warehouse.Id} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {warehouse.Id} already in use" };
             }
 
@@ -97,16 +95,16 @@ public class WarehouseService : IWarehouseService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create warehouse", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create warehouse", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create warehouse, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Warehouse created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Warehouse created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create warehouse with id {warehouse.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create warehouse with id {warehouse.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -118,7 +116,7 @@ public class WarehouseService : IWarehouseService
             var existingWarehouse = await _context.Warehouses.FindAsync(warehouse_id);
             if (existingWarehouse == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Transfer not found with id {warehouse_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Transfer not found with id {warehouse_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Transfer not found with id {warehouse_id}" };
             }
 
@@ -135,16 +133,16 @@ public class WarehouseService : IWarehouseService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update warehouse with id {warehouse_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update warehouse with id {warehouse_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update warehouse, please try again with id {warehouse_id}" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated warehouse succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated warehouse succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update warehouse with id {warehouse.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update warehouse with id {warehouse.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -156,7 +154,7 @@ public class WarehouseService : IWarehouseService
             var warehouse = await _context.Warehouses.FindAsync(warehouse_id);
             if (warehouse == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Warehouse with id {warehouse_id} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Warehouse with id {warehouse_id} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Warehouse with id {warehouse_id} already not in database" };
             }
             _context.Warehouses.Remove(warehouse);
@@ -164,16 +162,16 @@ public class WarehouseService : IWarehouseService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete warehouse with id {warehouse_id}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete warehouse with id {warehouse_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete warehouse with id {warehouse_id}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted warehouse succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted warehouse succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete warehouse with id {warehouse_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete warehouse with id {warehouse_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

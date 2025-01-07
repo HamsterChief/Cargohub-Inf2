@@ -1,16 +1,16 @@
-public class AuditLogService : IAuditLogService
+public static class AuditLogService
 {
-    private readonly string _actionLogFilePath;
-    private readonly string _apikeyLogFilePath;
+    private static readonly string _actionLogFilePath = Path.Combine(Directory.GetCurrentDirectory(), "audit_action_log.txt");
+    private static readonly string _apikeyLogFilePath = Path.Combine(Directory.GetCurrentDirectory(), "audit_apikey_log.txt");
 
-    public AuditLogService()
-    {
-        // Set the path where the log file will be stored
-        _actionLogFilePath = Path.Combine(Directory.GetCurrentDirectory(), "audit_action_log.txt");
-        _apikeyLogFilePath = Path.Combine(Directory.GetCurrentDirectory(), "audit_apikey_log.txt");
-    }
+    // public AuditLogService()
+    // {
+    //     // Set the path where the log file will be stored
+    //     _actionLogFilePath = Path.Combine(Directory.GetCurrentDirectory(), "audit_action_log.txt");
+    //     _apikeyLogFilePath = Path.Combine(Directory.GetCurrentDirectory(), "audit_apikey_log.txt");
+    // }
 
-    public async Task LogActionAsync(string action, string description, string apiKey)
+    public static async Task LogActionAsync(string action, string description, string apiKey)
     {
         // Prepare the log entry
         var actionLogEntry = $"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Action: {action} | Description: {description} | ApiKey: {apiKey}\n";
@@ -26,7 +26,7 @@ public class AuditLogService : IAuditLogService
         await File.AppendAllTextAsync(_actionLogFilePath, actionLogEntry);
     }
 
-    public async Task LogAPIKeyAsync(string action, string description, string apiKey)
+    public static async Task LogAPIKeyAsync(string action, string description, string apiKey)
     {
         // Prepare the log entry
         var apikeyLogEntry = $"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Action: {action} | Description: {description} | ApiKey: {apiKey}\n";
@@ -43,8 +43,8 @@ public class AuditLogService : IAuditLogService
     }
 }
 
-public interface IAuditLogService
-{
-    Task LogActionAsync(string action, string description, string apiKey);
-    Task LogAPIKeyAsync(string action, string description, string apiKey);
-}
+// public interface IAuditLogService
+// {
+//     Task LogActionAsync(string action, string description, string apiKey);
+//     Task LogAPIKeyAsync(string action, string description, string apiKey);
+// }

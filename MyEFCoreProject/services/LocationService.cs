@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore;
 public class LocationService : ILocationService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
 
-    public LocationService(DatabaseContext DbContext, IAuditLogService auditLogService)
+    public LocationService(DatabaseContext DbContext)
     {
         _context = DbContext;
-        _auditLogService = auditLogService;
     }
 
     public async Task<ServiceResult> ReadLocation(int location_id, string api_key)
@@ -20,16 +18,16 @@ public class LocationService : ILocationService
 
             if (location == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such location with id: {location_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such location with id: {location_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such location with id: {location_id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching location", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching location", api_key);
             return new ServiceResult { Object = location, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch location with id {location_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch location with id {location_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -42,16 +40,16 @@ public class LocationService : ILocationService
 
             if (!locations.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No locations found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No locations found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No locations found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple locations", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple locations", api_key);
             return new ServiceResult { Object = locations, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple locations - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple locations - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -62,7 +60,7 @@ public class LocationService : ILocationService
         {
             if (_context.Locations.Any(x => x.Id == location.Id))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {location.Id} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {location.Id} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {location.Id} already in use" };
             }
 
@@ -73,16 +71,16 @@ public class LocationService : ILocationService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create location", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create location", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create location, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Location created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Location created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create location with id {location.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create location with id {location.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -94,7 +92,7 @@ public class LocationService : ILocationService
             var existingLocation = await _context.Locations.FindAsync(location_id);
             if (existingLocation == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Location not found with id {location_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Location not found with id {location_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Location not found with id {location_id}" };
             }
 
@@ -106,16 +104,16 @@ public class LocationService : ILocationService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update location with id {location_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update location with id {location_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update location, please try again with id {location_id}" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated location succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated location succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update location with id {location.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update location with id {location.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -127,7 +125,7 @@ public class LocationService : ILocationService
             var location = await _context.Locations.FindAsync(location_id);
             if (location == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Location with id {location_id} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Location with id {location_id} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Location with id {location_id} already not in database" };
             }
             _context.Locations.Remove(location);
@@ -135,16 +133,16 @@ public class LocationService : ILocationService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete location with id {location_id}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete location with id {location_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete location with id {location_id}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted location succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted location succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete location with id {location_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete location with id {location_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

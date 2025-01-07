@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore;
 public class InventoryService : IInventoryService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
 
-    public InventoryService(DatabaseContext DbContext, IAuditLogService auditLogService)
+    public InventoryService(DatabaseContext DbContext)
     {
         _context = DbContext;
-        _auditLogService = auditLogService;
     }
 
     public async Task<ServiceResult> ReadInventory(int inventory_id, string api_key)
@@ -20,16 +18,16 @@ public class InventoryService : IInventoryService
 
             if (inventory == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such inventory with id: {inventory_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such inventory with id: {inventory_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such inventory with id: {inventory_id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching inventory", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching inventory", api_key);
             return new ServiceResult { Object = inventory, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch inventory with id {inventory_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch inventory with id {inventory_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -42,16 +40,16 @@ public class InventoryService : IInventoryService
 
             if (!inventories.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No inventories found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No inventories found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No inventories found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple inventories", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple inventories", api_key);
             return new ServiceResult { Object = inventories, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple inventories - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple inventories - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -62,7 +60,7 @@ public class InventoryService : IInventoryService
         {
             if (_context.Inventories.Any(x => x.Id == inventory.Id))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {inventory.Id} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {inventory.Id} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {inventory.Id} already in use" };
             }
 
@@ -73,16 +71,16 @@ public class InventoryService : IInventoryService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create inventory", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create inventory", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create inventory, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Inventory created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Inventory created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create inventory with id {inventory.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create inventory with id {inventory.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -94,7 +92,7 @@ public class InventoryService : IInventoryService
             var existingInventory = await _context.Inventories.FindAsync(inventory_id);
             if (existingInventory == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Inventory not found with id {inventory_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Inventory not found with id {inventory_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Inventory not found with id {inventory_id}" };
             }
 
@@ -112,16 +110,16 @@ public class InventoryService : IInventoryService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update inventory with id {inventory_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update inventory with id {inventory_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update inventory, please try again with id {inventory_id}" };
             }
             
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated inventory succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated inventory succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update inventory with id {inventory.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update inventory with id {inventory.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -133,7 +131,7 @@ public class InventoryService : IInventoryService
             var inventory = await _context.Inventories.FindAsync(inventory_id);
             if (inventory == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Inventory with id {inventory_id} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Inventory with id {inventory_id} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Inventory with id {inventory_id} already not in database" };
             }
             _context.Inventories.Remove(inventory);
@@ -141,16 +139,16 @@ public class InventoryService : IInventoryService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete inventory with id {inventory_id}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete inventory with id {inventory_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete inventory with id {inventory_id}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted inventory succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted inventory succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete inventory with id {inventory_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete inventory with id {inventory_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

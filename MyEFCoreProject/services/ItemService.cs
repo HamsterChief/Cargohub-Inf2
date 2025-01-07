@@ -5,12 +5,10 @@ using Microsoft.VisualBasic;
 public class ItemService : IItemService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
 
-    public ItemService(DatabaseContext DbContext, IAuditLogService auditLogService)
+    public ItemService(DatabaseContext DbContext)
     {
         _context = DbContext;
-        _auditLogService = auditLogService;
     }
 
     public async Task<ServiceResult> ReadItem(string item_uid, string api_key)
@@ -21,16 +19,16 @@ public class ItemService : IItemService
 
             if (item == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item with uid: {item_uid}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item with uid: {item_uid}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such item with uid: {item_uid}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching item", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching item", api_key);
             return new ServiceResult { Object = item, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch item with uid {item_uid} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch item with uid {item_uid} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -43,16 +41,16 @@ public class ItemService : IItemService
 
             if (!items.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No items found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No items found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No items found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple items", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple items", api_key);
             return new ServiceResult { Object = items, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple items - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple items - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -65,16 +63,16 @@ public class ItemService : IItemService
 
             if (!inventories.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No inventories for item found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No inventories for item found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No inventories for item found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching inventories for item", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching inventories for item", api_key);
             return new ServiceResult { Object = inventories, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch inventories for item - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch inventories for item - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -85,7 +83,7 @@ public class ItemService : IItemService
         {
             if (await _context.Items.FindAsync(item_uid) == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item with uid: {item_uid}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item with uid: {item_uid}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such item with uid: {item_uid}" };
             }
 
@@ -99,12 +97,12 @@ public class ItemService : IItemService
                     total_available = group.Sum(inventory => inventory.Total_Available)
                 }).FirstOrDefaultAsync() ?? new { total_expected = 0, total_ordered = 0, total_allocated = 0, total_available = 0 };
             
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching inventory totals for item", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching inventory totals for item", api_key);
             return new ServiceResult { Object = inventoryTotals, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch inventory totals for item - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch inventory totals for item - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -115,7 +113,7 @@ public class ItemService : IItemService
         {
             if (_context.Items.Any(x => x.UId == item.UId))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Uid {item.UId} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Uid {item.UId} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Uid {item.UId} already in use" };
             }
 
@@ -126,16 +124,16 @@ public class ItemService : IItemService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create item", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create item", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create item, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Item created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Item created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create item with uid {item.UId} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create item with uid {item.UId} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -147,7 +145,7 @@ public class ItemService : IItemService
             var existingItem = await _context.Items.FindAsync(item_uid);
             if (existingItem == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item not found with uid {item_uid}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item not found with uid {item_uid}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Item not found with uid {item_uid}" };
             }
 
@@ -171,16 +169,16 @@ public class ItemService : IItemService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item with uid {item_uid}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item with uid {item_uid}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update item, please try again with uid {item_uid}" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated item succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated item succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item with uid {item.UId} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item with uid {item.UId} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -192,7 +190,7 @@ public class ItemService : IItemService
             var item = await _context.Items.FindAsync(item_uid);
             if (item == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item with uid {item_uid} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item with uid {item_uid} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Item with uid {item_uid} already not in database" };
             }
             _context.Items.Remove(item);
@@ -200,16 +198,16 @@ public class ItemService : IItemService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item with uid {item_uid}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item with uid {item_uid}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete item with uid {item_uid}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted item succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted item succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item with uid {item_uid} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item with uid {item_uid} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

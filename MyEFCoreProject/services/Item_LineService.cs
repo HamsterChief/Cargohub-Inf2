@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore;
 public class Item_LineService : IItem_LineService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
 
-    public Item_LineService(DatabaseContext DbContext, IAuditLogService auditLogService)
+    public Item_LineService(DatabaseContext DbContext)
     {
         _context = DbContext;
-        _auditLogService = auditLogService;
     }
 
     public async Task<ServiceResult> ReadItem_Line(int item_line_id, string api_key)
@@ -20,16 +18,16 @@ public class Item_LineService : IItem_LineService
 
             if (item_line == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item_line with id: {item_line_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item_line with id: {item_line_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such item_line with id: {item_line_id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching item_line", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching item_line", api_key);
             return new ServiceResult { Object = item_line, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch item_line with id {item_line_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch item_line with id {item_line_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -42,16 +40,16 @@ public class Item_LineService : IItem_LineService
 
             if (!item_lines.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No item_lines found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No item_lines found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No item_lines found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple item_lines", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple item_lines", api_key);
             return new ServiceResult { Object = item_lines, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple item_lines - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple item_lines - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -64,16 +62,16 @@ public class Item_LineService : IItem_LineService
 
             if (!items.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No items for item_line found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No items for item_line found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No items for item_line found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching items for item_line", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching items for item_line", api_key);
             return new ServiceResult { Object = items, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch items for item_line - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch items for item_line - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -84,7 +82,7 @@ public class Item_LineService : IItem_LineService
         {
             if (_context.Item_Lines.Any(x => x.Id == item_line.Id))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {item_line.Id} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {item_line.Id} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {item_line.Id} already in use" };
             }
 
@@ -95,16 +93,16 @@ public class Item_LineService : IItem_LineService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create item_line", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create item_line", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create item_line, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Item_line created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Item_line created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create item_line with id {item_line.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create item_line with id {item_line.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -116,7 +114,7 @@ public class Item_LineService : IItem_LineService
             var existingItem_Line = await _context.Item_Lines.FindAsync(item_line_id);
             if (existingItem_Line == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item_line not found with id {item_line_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item_line not found with id {item_line_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Item_line not found with id {item_line_id}" };
             }
 
@@ -127,16 +125,16 @@ public class Item_LineService : IItem_LineService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item_line with id {item_line_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item_line with id {item_line_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update item_line, please try again with id {item_line_id}" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated item_line succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated item_line succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item_line with id {item_line.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item_line with id {item_line.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -148,7 +146,7 @@ public class Item_LineService : IItem_LineService
             var item_line = await _context.Item_Lines.FindAsync(item_line_id);
             if (item_line == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item_line with id {item_line_id} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item_line with id {item_line_id} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Item_line with id {item_line_id} already not in database" };
             }
             _context.Item_Lines.Remove(item_line);
@@ -156,16 +154,16 @@ public class Item_LineService : IItem_LineService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item_line with id {item_line_id}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item_line with id {item_line_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete item_line with id {item_line_id}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted item_line succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted item_line succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item_line with id {item_line_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item_line with id {item_line_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore;
 public class ShipmentService : IShipmentService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
 
-    public ShipmentService(DatabaseContext DbContext, IAuditLogService auditLogService)
+    public ShipmentService(DatabaseContext DbContext)
     {
         _context = DbContext;
-        _auditLogService = auditLogService;
     }
     public async Task<ServiceResult> ReadShipment(int shipment_id, string api_key)
     {
@@ -19,16 +17,16 @@ public class ShipmentService : IShipmentService
 
             if (shipment == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such shipment with id: {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such shipment with id: {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such shipment with id: {shipment_id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching shipment", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching shipment", api_key);
             return new ServiceResult { Object = shipment, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch shipment with id {shipment_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch shipment with id {shipment_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -46,16 +44,16 @@ public class ShipmentService : IShipmentService
                                 .ToListAsync();
             if (!shipments.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No shipments found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No shipments found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No shipments found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple shipments", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple shipments", api_key);
             return new ServiceResult { Object = shipments, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple shipments - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple shipments - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -66,7 +64,7 @@ public class ShipmentService : IShipmentService
         {
             if (_context.Shipments.Any(x => x.Id == shipment.Id))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {shipment.Id} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {shipment.Id} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {shipment.Id} already in use" };
             }
 
@@ -77,16 +75,16 @@ public class ShipmentService : IShipmentService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create shipment", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create shipment", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create shipment, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Shipment created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Shipment created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create shipment with id {shipment.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create shipment with id {shipment.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -99,7 +97,7 @@ public class ShipmentService : IShipmentService
 
             if (shipment == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
             }
 
@@ -108,16 +106,16 @@ public class ShipmentService : IShipmentService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update items in shipment", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update items in shipment", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update items in shipment, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated items in shipment succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated items in shipment succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update items in shipment - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update items in shipment - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -130,7 +128,7 @@ public class ShipmentService : IShipmentService
 
             if (shipment == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
             }
 
@@ -139,16 +137,16 @@ public class ShipmentService : IShipmentService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update order in shipment", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update order in shipment", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update order in shipment, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated order in shipment succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated order in shipment succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update order in shipment - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update order in shipment - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -159,7 +157,7 @@ public class ShipmentService : IShipmentService
             var existingShipment = await _context.Shipments.FindAsync(shipment_id);
             if (existingShipment == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
             }
 
@@ -182,16 +180,16 @@ public class ShipmentService : IShipmentService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update shipment with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update shipment with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update shipment, please try again with id {shipment_id}" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated shipment succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated shipment succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update shipment with id {shipment.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update shipment with id {shipment.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -203,7 +201,7 @@ public class ShipmentService : IShipmentService
             var shipment = await _context.Shipments.FindAsync(shipment_id);
             if (shipment == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Shipment with id {shipment_id} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Shipment with id {shipment_id} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Shipment with id {shipment_id} already not in database" };
             }
             _context.Shipments.Remove(shipment);
@@ -211,16 +209,16 @@ public class ShipmentService : IShipmentService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete shipment with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete shipment with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete shipment with id {shipment_id}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted shipment succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted shipment succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete shipment with id {shipment_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete shipment with id {shipment_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -231,7 +229,7 @@ public class ShipmentService : IShipmentService
         {
             if (await _context.Shipments.FindAsync(shipment_id) == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
             }
 
@@ -240,12 +238,12 @@ public class ShipmentService : IShipmentService
                 .Select(x => x.Items)
                 .FirstOrDefaultAsync();
             
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching items in shipment", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching items in shipment", api_key);
             return new ServiceResult { Object = items ?? new List<PropertyItem>(), StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch items in shipment - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch items in shipment - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -258,7 +256,7 @@ public class ShipmentService : IShipmentService
 
             if (shipment == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
             }
 
@@ -266,16 +264,16 @@ public class ShipmentService : IShipmentService
 
             if (order == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: Order not found with id {shipment.Order_Id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: Order not found with id {shipment.Order_Id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Order not found with id {shipment.Order_Id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching order in shipment", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching order in shipment", api_key);
             return new ServiceResult { Object = order, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch order in shipment - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch order in shipment - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

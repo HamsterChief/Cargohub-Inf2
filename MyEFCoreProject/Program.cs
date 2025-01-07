@@ -18,7 +18,6 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ITransferService, TransferService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 builder.Services.AddScoped<ApiKeyService>();
-builder.Services.AddScoped<IAuditLogService, AuditLogService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

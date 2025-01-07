@@ -4,14 +4,12 @@ using Microsoft.EntityFrameworkCore;
 public class OrderService : IOrderService
 {
     private readonly DatabaseContext _context;
-    private readonly IAuditLogService _auditLogService;
     private readonly IItemService _itemService;
     private readonly IInventoryService _inventoryService;
 
-    public OrderService(DatabaseContext DbContext, IAuditLogService auditLogService, IItemService itemService, IInventoryService inventoryService)
+    public OrderService(DatabaseContext DbContext, IItemService itemService, IInventoryService inventoryService)
     {
         _context = DbContext;
-        _auditLogService = auditLogService;
         _itemService = itemService;
         _inventoryService = inventoryService;
     }
@@ -24,16 +22,16 @@ public class OrderService : IOrderService
 
             if (order == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such order with id: {order_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such order with id: {order_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such order with id: {order_id}" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching order", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching order", api_key);
             return new ServiceResult { Object = order, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch order with id {order_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to fetch order with id {order_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -46,16 +44,16 @@ public class OrderService : IOrderService
 
             if (!orders.Any())
             {
-                await _auditLogService.LogActionAsync("GET", "404 NOT FOUND: No orders found", api_key);
+                await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No orders found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = "No orders found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching multiple orders", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching multiple orders", api_key);
             return new ServiceResult { Object = orders, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple orders - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch multiple orders - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -68,7 +66,7 @@ public class OrderService : IOrderService
 
             if (order == null)
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such order with id: {order_id}", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such order with id: {order_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such order with id: {order_id}" };
             }
 
@@ -77,16 +75,16 @@ public class OrderService : IOrderService
 
             if (!items.Any())
             {
-                await _auditLogService.LogActionAsync("GET", $"404 NOT FOUND: No items for order found", api_key);
+                await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No items for order found", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No items for order found" };
             }
 
-            await _auditLogService.LogActionAsync("GET", "200 OK: Fetching items for order", api_key);
+            await AuditLogService.LogActionAsync("GET", "200 OK: Fetching items for order", api_key);
             return new ServiceResult { Object = items, StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch items for order - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to Fetch items for order - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -97,7 +95,7 @@ public class OrderService : IOrderService
         {
             if (_context.Orders.Any(x => x.Id == order.Id))
             {
-                await _auditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {order.Id} already in use", api_key);
+                await AuditLogService.LogActionAsync("POST", $"409 ALREADY EXISTS: Id {order.Id} already in use", api_key);
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {order.Id} already in use" };
             }
 
@@ -108,16 +106,16 @@ public class OrderService : IOrderService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create order", api_key);
+                await AuditLogService.LogActionAsync("POST", "500 INTERNAL SERVER ERROR: Failed to create order", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create order, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("POST", "200 OK: Order created succesfully", api_key );
+            await AuditLogService.LogActionAsync("POST", "200 OK: Order created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create order with id {order.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to create order with id {order.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -129,7 +127,7 @@ public class OrderService : IOrderService
             var existingOrder = await _context.Orders.FindAsync(order_id);
             if (existingOrder == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Order not found with id {order_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Order not found with id {order_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Order not found with id {order_id}" };
             }
 
@@ -156,16 +154,16 @@ public class OrderService : IOrderService
 
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update order with id {order_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update order with id {order_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to update order, please try again with id {order_id}" };
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated order succesfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated order succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update order with id {order.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update order with id {order.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -178,7 +176,7 @@ public class OrderService : IOrderService
 
             if (order == null || order.Items == null)
             {
-                await _auditLogService.LogActionAsync("PUT", $"404 NOT FOUND: No such order with id: {order_id}", api_key);
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: No such order with id: {order_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such order with id: {order_id}" };
             }
 
@@ -190,7 +188,7 @@ public class OrderService : IOrderService
                     var result = await _itemService.ReadInventoriesForItem(currentItem.Item_Id, api_key);
                     if (result.Object == null)
                     {
-                        await _auditLogService.LogActionAsync("PUT", $"WARNING: No inventories found for item {currentItem.Item_Id}", api_key);
+                        await AuditLogService.LogActionAsync("PUT", $"WARNING: No inventories found for item {currentItem.Item_Id}", api_key);
                         continue;
                     }
 
@@ -213,7 +211,7 @@ public class OrderService : IOrderService
                     var result = await _itemService.ReadInventoriesForItem(updatedItem.Item_Id, api_key);
                     if (result.Object == null)
                     {
-                        await _auditLogService.LogActionAsync("PUT", $"WARNING: No inventories found for updated item {updatedItem.Item_Id}", api_key);
+                        await AuditLogService.LogActionAsync("PUT", $"WARNING: No inventories found for updated item {updatedItem.Item_Id}", api_key);
                         continue;
                     }
 
@@ -231,7 +229,7 @@ public class OrderService : IOrderService
                     var result = await _itemService.ReadInventoriesForItem(updatedItem.Item_Id, api_key);
                     if (result.Object == null)
                     {
-                        await _auditLogService.LogActionAsync("PUT", $"WARNING: No inventories found for new item {updatedItem.Item_Id}", api_key);
+                        await AuditLogService.LogActionAsync("PUT", $"WARNING: No inventories found for new item {updatedItem.Item_Id}", api_key);
                         continue;
                     }
 
@@ -246,12 +244,12 @@ public class OrderService : IOrderService
                 }
             }
 
-            await _auditLogService.LogActionAsync("PUT", "200 OK: Updated items in order successfully", api_key);
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Updated items in order successfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update items in order - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update items in order - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -263,7 +261,7 @@ public class OrderService : IOrderService
             var order = await _context.Orders.FindAsync(order_id);
             if (order == null)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Order with id {order_id} already not in database", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Order with id {order_id} already not in database", api_key);
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Order with id {order_id} already not in database" };
             }
             _context.Orders.Remove(order);
@@ -271,16 +269,16 @@ public class OrderService : IOrderService
             
             if (n == 0)
             {
-                await _auditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete order with id {order_id}", api_key);
+                await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete order with id {order_id}", api_key);
                 return new ServiceResult { StatusCode = 500, ErrorMessage = $"Failed to delete order with id {order_id}, please try again" };
             }
 
-            await _auditLogService.LogActionAsync("DELETE", "200 OK: Deleted order succesfully", api_key);
+            await AuditLogService.LogActionAsync("DELETE", "200 OK: Deleted order succesfully", api_key);
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
         {
-            await _auditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete order with id {order_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete order with id {order_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
