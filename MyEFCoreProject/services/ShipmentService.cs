@@ -277,6 +277,42 @@ public class ShipmentService : IShipmentService
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
+
+    public async Task<ServiceResult> CommitShipment(int shipment_id, string api_key)
+    {
+        try
+        {
+            var Shipment = await _context.Shipments.FindAsync(shipment_id);
+            if (Shipment == null)
+            {
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
+                return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
+            }
+
+            foreach (var item_set in Shipment.Items)
+            {
+                var inventory = await _context.Inventories
+                                            .FirstOrDefaultAsync(x => x.Item_Id == item_set.Item_Id);
+                if (inventory == null)
+                {
+                    await AuditLogService.LogActionAsync("PUT", "400 BAD REQUEST: Inventory for shipment not found", api_key);
+                    return new ServiceResult { StatusCode = 400, ErrorMessage = "Inventory for shipment not found" };
+                }
+                inventory.Total_On_Hand += item_set.Amount;
+                _context.Inventories.Update(inventory);
+            }
+            Shipment.Shipment_Status = "Delivered";
+            await _context.SaveChangesAsync();
+            
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Inventory for shipment succesfully updated", api_key);
+            return new ServiceResult { StatusCode = 200, ErrorMessage = "Inventory for shipment succesfully updated" };
+        }
+        catch (Exception ex)
+        {
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update inventory for shipment - {ex.Message}", api_key);
+            return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
+        }
+    }
 }
 
 public interface IShipmentService
@@ -293,4 +329,5 @@ public interface IShipmentService
     public Task<ServiceResult> UpdateShipmentOrder(Order order, int shipment_id, string api_key);
 
     public Task<ServiceResult> UpdateShipmentItems(List<PropertyItem> items, int shipment_id, string api_key);
+    public Task<ServiceResult> CommitShipment(int trasnfer_id, string api_key);
 }

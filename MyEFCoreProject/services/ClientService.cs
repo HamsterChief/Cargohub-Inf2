@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore;
 public class ClientService : IClientService
 {
     private readonly DatabaseContext _context;
-    //private readonly IAuditLogService _auditLogService;
 
     public ClientService(DatabaseContext DbContext)
     {
         _context = DbContext;
-        //_auditLogService = auditLogService;
     }
 
     public async Task<ServiceResult> ReadClient(int client_id, string api_key)

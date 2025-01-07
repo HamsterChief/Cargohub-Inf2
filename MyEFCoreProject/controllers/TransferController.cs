@@ -109,4 +109,20 @@ public class TransferController : Controller
         }
         return StatusCode(500, serviceResult.ErrorMessage);
     }
+
+    [HttpPut("transfers/Commit/{transfer_id}")]
+    public async Task<IActionResult> CommitTransfer(int transfer_id)
+    {
+        var serviceResult = await _transferService.CommitTransfer(transfer_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
+        {
+            return Ok("Transfer Commited");
+        }
+        else if (serviceResult.StatusCode == 400 || serviceResult.StatusCode == 404)
+        {
+            return BadRequest(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
+    }
 }

@@ -172,6 +172,42 @@ public class TransferService : ITransferService
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
+
+    public async Task<ServiceResult> CommitTransfer(int transfer_id, string api_key)
+    {
+        try
+        {
+            var transfer = await _context.Transfers.FindAsync(transfer_id);
+            if (transfer == null)
+            {
+                await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Transfer not found with id {transfer_id}", api_key);
+                return new ServiceResult { StatusCode = 404, ErrorMessage = $"Transfer not found with id {transfer_id}" };
+            }
+
+            foreach (var item_set in transfer.Items)
+            {
+                var inventory = await _context.Inventories
+                                            .FirstOrDefaultAsync(x => x.Item_Id == item_set.Item_Id);
+                if (inventory == null)
+                {
+                    await AuditLogService.LogActionAsync("PUT", "400 BAD REQUEST: Inventory for transfer not found", api_key);
+                    return new ServiceResult { StatusCode = 400, ErrorMessage = "Inventory for transfer not found" };
+                }
+                inventory.Total_On_Hand += item_set.Amount;
+                _context.Inventories.Update(inventory);
+            }
+            transfer.Transfer_Status = "Completed";
+            await _context.SaveChangesAsync();
+            
+            await AuditLogService.LogActionAsync("PUT", "200 OK: Inventory for transfer succesfully updated", api_key);
+            return new ServiceResult { StatusCode = 200, ErrorMessage = "Inventory for transfer succesfully updated" };
+        }
+        catch (Exception ex)
+        {
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update inventory for transfer - {ex.Message}", api_key);
+            return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
+        }
+    }
 }
 
 public interface ITransferService
@@ -183,4 +219,5 @@ public interface ITransferService
     Task<ServiceResult> CreateTransfer(Transfer transfer, string api_key);
     Task<ServiceResult> UpdateTransfer(Transfer transfer, int trasnfer_id, string api_key);
     Task<ServiceResult> DeleteTransfer(int trasnfer_id, string api_key);
+    Task<ServiceResult> CommitTransfer(int trasnfer_id, string api_key);
 }
