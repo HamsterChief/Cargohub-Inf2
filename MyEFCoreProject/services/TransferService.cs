@@ -140,7 +140,7 @@ public class TransferService : ITransferService
         catch (Exception ex)
         {
             await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update transfer with id {transfer.Id} - {ex.Message}", api_key);
-            return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
+            return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message }; 
         }
     }
 
@@ -172,6 +172,30 @@ public class TransferService : ITransferService
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
+
+    public async Task<bool> CommitTransfer(int transfer_id)
+    {
+        var transfer = await _context.Transfers.FindAsync(transfer_id);
+        if (transfer == null)
+        {
+            return false;
+        }
+
+        foreach (var item_set in transfer.Items)
+        {
+            var inventory = await _context.Inventories
+                                          .FirstOrDefaultAsync(x => x.Item_Id == item_set.Item_Id);
+            if (inventory == null)
+            {
+                return false;
+            }
+            inventory.Total_On_Hand += item_set.Amount;
+            _context.Inventories.Update(inventory);
+        }
+        transfer.Transfer_Status = "Completed";
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }
 
 public interface ITransferService
@@ -183,4 +207,6 @@ public interface ITransferService
     Task<ServiceResult> CreateTransfer(Transfer transfer, string api_key);
     Task<ServiceResult> UpdateTransfer(Transfer transfer, int trasnfer_id, string api_key);
     Task<ServiceResult> DeleteTransfer(int trasnfer_id, string api_key);
+
+    Task<bool> CommitTransfer(int  trasnfer_id);
 }

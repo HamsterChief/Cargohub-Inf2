@@ -9,6 +9,13 @@ public class Api_Key
     public Dictionary<string, bool> Permissions { get; set; }
 }
 
+public class ServiceResult
+{
+    public object Object { get; set; }
+    public int StatusCode { get; set; }
+    public string ErrorMessage { get; set; }
+}
+
 public class Client
 {
     public int Id { get; set; }

@@ -156,4 +156,15 @@ public class ShipmentController : Controller
         }
         return StatusCode(500, serviceResult.ErrorMessage);
     }
+
+    [HttpPut("shipments/Commit/{shipment_id}")]
+    public async Task<IActionResult> CommitShipment(int shipment_id)
+    {
+        var result = await _shipmentService.CommitShipment(shipment_id);
+        if (result)
+        {
+            return Ok("Shipment Commited");
+        }
+        return BadRequest("Failed to commit");
+    }
 }

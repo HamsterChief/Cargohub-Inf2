@@ -109,4 +109,15 @@ public class TransferController : Controller
         }
         return StatusCode(500, serviceResult.ErrorMessage);
     }
+
+    [HttpPut("transfers/Commit/{transfer_id}")]
+    public async Task<IActionResult> CommitTransfer(int transfer_id)
+    {
+        var result = await _transferService.CommitTransfer(transfer_id);
+        if (result)
+        {
+            return Ok("Transfer Commited");
+        }
+        return BadRequest("Failed to commit");
+    }
 }
