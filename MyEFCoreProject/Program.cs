@@ -55,7 +55,7 @@ app.UseSession();
 app.UseRouting();
 
 // Enable Swagger
-if (app.Environment.IsDevelopment() || true) // Allow Swagger in all environments
+if (app.Environment.IsDevelopment() || true) // Allow Swagger in all environments //
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
