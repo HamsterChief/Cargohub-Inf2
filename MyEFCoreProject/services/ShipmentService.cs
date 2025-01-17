@@ -13,7 +13,10 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var shipment = await _context.Shipments.FindAsync(shipment_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
 
             if (shipment == null)
             {
@@ -35,13 +38,18 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            const int defaultPageSize = 200; 
+            // const int defaultPageSize = 200; 
 
-            var shipments =  await _context.Shipments
-                                .AsNoTracking()
-                                .Skip((page - 1) * defaultPageSize) 
-                                .Take(defaultPageSize) 
-                                .ToListAsync();
+            // var shipments =  await _context.Shipments
+            //                     .AsNoTracking()
+            //                     .Skip((page - 1) * defaultPageSize) 
+            //                     .Take(defaultPageSize) 
+            //                     .ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipments = await _context.Shipments
+                           .Where(shipment => _context.Orders
+                           .Any(order => order.Shipment_Id == shipment.Id && order.Warehouse_Id == warehouse_id)).ToListAsync();
+
             if (!shipments.Any())
             {
                 await AuditLogService.LogActionAsync("GET", "404 NOT FOUND: No shipments found", api_key);
@@ -93,7 +101,10 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var shipment = await _context.Shipments.FindAsync(shipment_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
 
             if (shipment == null)
             {
@@ -115,7 +126,7 @@ public class ShipmentService : IShipmentService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update items in shipment - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update items in shipment - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -124,7 +135,10 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var shipment = await _context.Shipments.FindAsync(shipment_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
 
             if (shipment == null)
             {
@@ -146,7 +160,7 @@ public class ShipmentService : IShipmentService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update order in shipment - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update order in shipment - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -154,7 +168,10 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var existingShipment = await _context.Shipments.FindAsync(shipment_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingShipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
             if (existingShipment == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
@@ -189,7 +206,7 @@ public class ShipmentService : IShipmentService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update shipment with id {shipment.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update shipment with id {shipment.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -198,7 +215,10 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var shipment = await _context.Shipments.FindAsync(shipment_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
             if (shipment == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Shipment with id {shipment_id} already not in database", api_key);
@@ -227,7 +247,11 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            if (await _context.Shipments.FindAsync(shipment_id) == null)
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
+            if (shipment == null)
             {
                 await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
@@ -252,7 +276,10 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var shipment = await _context.Shipments.FindAsync(shipment_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
 
             if (shipment == null)
             {
@@ -282,14 +309,18 @@ public class ShipmentService : IShipmentService
     {
         try
         {
-            var Shipment = await _context.Shipments.FindAsync(shipment_id);
-            if (Shipment == null)
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var shipment = await _context.Shipments
+                           .FirstOrDefaultAsync(shipment => shipment.Id == shipment_id && _context.Orders
+                           .Any(order => order.Shipment_Id == shipment_id && order.Warehouse_Id == warehouse_id));
+
+            if (shipment == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Shipment not found with id {shipment_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Shipment not found with id {shipment_id}" };
             }
 
-            foreach (var item_set in Shipment.Items)
+            foreach (var item_set in shipment.Items)
             {
                 var inventory = await _context.Inventories
                                             .FirstOrDefaultAsync(x => x.Item_Id == item_set.Item_Id);
@@ -301,7 +332,7 @@ public class ShipmentService : IShipmentService
                 inventory.Total_On_Hand += item_set.Amount;
                 _context.Inventories.Update(inventory);
             }
-            Shipment.Shipment_Status = "Delivered";
+            shipment.Shipment_Status = "Delivered";
             await _context.SaveChangesAsync();
             
             await AuditLogService.LogActionAsync("PUT", "200 OK: Inventory for shipment succesfully updated", api_key);

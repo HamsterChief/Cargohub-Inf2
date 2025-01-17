@@ -23,9 +23,10 @@ public class ApiKeyMiddlewareTests
         var hashedApiKey = BCrypt.Net.BCrypt.HashPassword(validApiKey);
         dbContext.Api_Keys.Add(new Api_Key
         {
+            Id = 1,
             ApiKey = hashedApiKey,
-            App = "TestApp",
-            Permissions = "admin"
+            Warehouse_Id = 1,
+            App = "TestApp"
         });
         await dbContext.SaveChangesAsync();
 
@@ -54,9 +55,10 @@ public class ApiKeyMiddlewareTests
         var hashedApiKey = BCrypt.Net.BCrypt.HashPassword(validApiKey);
         dbContext.Api_Keys.Add(new Api_Key
         {
+            Id = 1,
             ApiKey = hashedApiKey,
-            App = "TestApp",
-            Permissions = "admin"
+            Warehouse_Id = 1,
+            App = "TestApp"
         });
         await dbContext.SaveChangesAsync();
 
@@ -83,9 +85,10 @@ public class ApiKeyMiddlewareTests
 
         dbContext.Api_Keys.Add(new Api_Key
         {
+            Id = 1,
             ApiKey = BCrypt.Net.BCrypt.HashPassword("test-api-key"),
-            App = "TestApp",
-            Permissions = "admin"
+            Warehouse_Id = 1,
+            App = "TestApp"
         });
         await dbContext.SaveChangesAsync();
 

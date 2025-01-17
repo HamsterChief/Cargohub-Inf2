@@ -15,7 +15,14 @@ public class ItemService : IItemService
     {
         try
         {
-            var item = await _context.Items.FindAsync(item_uid);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item = await _context.Items
+                            .FirstOrDefaultAsync(i => i.UId == item_uid &&
+                                                      _context.Inventories
+                                                      .Where(inv => inv.Item_Id == item_uid)
+                                                      .Any(inv => _context.Locations
+                                                            .Where(loc => inv.Locations.Contains(loc.Id))
+                                                            .Any(loc => loc.Warehouse_Id == warehouse_id)));
 
             if (item == null)
             {
@@ -37,7 +44,13 @@ public class ItemService : IItemService
     {
         try
         {
-            var items = await _context.Items.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var items = await _context.Items
+                            .Where(item => _context.Inventories
+                                                        .Any(inventory => _context.Locations
+                                                        .Where(location => inventory.Locations.Contains(location.Id))
+                                                        .Any(location => location.Warehouse_Id == warehouse_id)))
+                                                    .ToListAsync();
 
             if (!items.Any())
             {
@@ -81,7 +94,15 @@ public class ItemService : IItemService
     {
         try
         {
-            if (await _context.Items.FindAsync(item_uid) == null)
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item = await _context.Items
+                            .FirstOrDefaultAsync(i => i.UId == item_uid &&
+                                                      _context.Inventories
+                                                      .Where(inv => inv.Item_Id == item_uid)
+                                                      .Any(inv => _context.Locations
+                                                            .Where(loc => inv.Locations.Contains(loc.Id))
+                                                            .Any(loc => loc.Warehouse_Id == warehouse_id)));
+            if (item == null)
             {
                 await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: No such item with uid: {item_uid}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"No such item with uid: {item_uid}" };
@@ -142,7 +163,14 @@ public class ItemService : IItemService
     {
         try
         {
-            var existingItem = await _context.Items.FindAsync(item_uid);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingItem = await _context.Items
+                            .FirstOrDefaultAsync(i => i.UId == item_uid &&
+                                                      _context.Inventories
+                                                      .Where(inv => inv.Item_Id == item_uid)
+                                                      .Any(inv => _context.Locations
+                                                            .Where(loc => inv.Locations.Contains(loc.Id))
+                                                            .Any(loc => loc.Warehouse_Id == warehouse_id)));
             if (existingItem == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item not found with uid {item_uid}", api_key);
@@ -178,7 +206,7 @@ public class ItemService : IItemService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item with uid {item.UId} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item with uid {item.UId} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -187,7 +215,14 @@ public class ItemService : IItemService
     {
         try
         {
-            var item = await _context.Items.FindAsync(item_uid);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item = await _context.Items
+                            .FirstOrDefaultAsync(i => i.UId == item_uid &&
+                                                      _context.Inventories
+                                                      .Where(inv => inv.Item_Id == item_uid)
+                                                      .Any(inv => _context.Locations
+                                                            .Where(loc => inv.Locations.Contains(loc.Id))
+                                                            .Any(loc => loc.Warehouse_Id == warehouse_id)));
             if (item == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item with uid {item_uid} already not in database", api_key);
@@ -207,7 +242,7 @@ public class ItemService : IItemService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item with uid {item_uid} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item with uid {item_uid} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

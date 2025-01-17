@@ -14,7 +14,13 @@ public class Item_TypeService : IItem_TypeService
     {
         try
         {
-            var item_type = await _context.Item_Types.FindAsync(item_type_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item_type = await _context.Item_Types
+                           .FirstOrDefaultAsync(item_type => item_type.Id == item_type_id && _context.Items
+                           .Any(item => item.Item_Type == item_type_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
 
             if (item_type == null)
             {
@@ -36,7 +42,13 @@ public class Item_TypeService : IItem_TypeService
     {
         try
         {
-            var item_types = await _context.Item_Types.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item_types = await _context.Item_Types
+                           .Where(item_type => _context.Items
+                           .Any(item => item.Item_Type == item_type.Id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id)))).ToListAsync();
 
             if (!item_types.Any())
             {
@@ -58,7 +70,12 @@ public class Item_TypeService : IItem_TypeService
     {
         try
         {
-            var items = await _context.Items.Where(item => item.Item_Type == item_type_id).ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var items = await _context.Items
+                        .Where(item => item.Item_Type == item_type_id && _context.Inventories
+                        .Any(inventory => _context.Locations
+                        .Where(location => inventory.Locations.Contains(location.Id))
+                        .Any(location => location.Warehouse_Id == warehouse_id))).ToListAsync();
 
             if (!items.Any())
             {
@@ -111,7 +128,14 @@ public class Item_TypeService : IItem_TypeService
     {
         try
         {
-            var existingItem_Type = await _context.Item_Types.FindAsync(item_type_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingItem_Type = await _context.Item_Types
+                           .FirstOrDefaultAsync(item_type => item_type.Id == item_type_id && _context.Items
+                           .Any(item => item.Item_Type == item_type_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
             if (existingItem_Type == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item_type not found with id {item_type_id}", api_key);
@@ -134,7 +158,7 @@ public class Item_TypeService : IItem_TypeService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item_type with id {item_type.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item_type with id {item_type.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -143,7 +167,14 @@ public class Item_TypeService : IItem_TypeService
     {
         try
         {
-            var item_type = await _context.Item_Types.FindAsync(item_type_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item_type = await _context.Item_Types
+                           .FirstOrDefaultAsync(item_type => item_type.Id == item_type_id && _context.Items
+                           .Any(item => item.Item_Type == item_type_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
             if (item_type == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item_type with id {item_type_id} already not in database", api_key);
@@ -163,7 +194,7 @@ public class Item_TypeService : IItem_TypeService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item_type with id {item_type_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item_type with id {item_type_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

@@ -15,7 +15,13 @@ public class SupplierService : ISupplierService
     {
         try
         {
-            var supplier = await _context.Suppliers.FindAsync(supplier_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var supplier = await _context.Suppliers
+                           .FirstOrDefaultAsync(supplier => supplier.Id == supplier_id && _context.Items
+                           .Any(item => item.Supplier_Id == supplier_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
 
             if (supplier == null)
             {
@@ -37,7 +43,13 @@ public class SupplierService : ISupplierService
     {
         try
         {
-            var suppliers = await _context.Suppliers.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var suppliers = await _context.Suppliers
+                           .Where(supplier => _context.Items
+                           .Any(item => item.Supplier_Id == supplier.Id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id)))).ToListAsync();
 
             if (!suppliers.Any())
             {
@@ -59,7 +71,15 @@ public class SupplierService : ISupplierService
     {
         try
         {
-            if (await _context.Shipments.FindAsync(supplier_id) == null)
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var supplier = await _context.Suppliers
+                           .FirstOrDefaultAsync(supplier => supplier.Id == supplier_id && _context.Items
+                           .Any(item => item.Supplier_Id == supplier_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
+            if (supplier == null)
             {
                 await AuditLogService.LogActionAsync("GET", $"404 NOT FOUND: Supplier not found with id {supplier_id}", api_key);
                 return new ServiceResult { StatusCode = 404, ErrorMessage = $"Supplier not found with id {supplier_id}" };
@@ -112,7 +132,14 @@ public class SupplierService : ISupplierService
     {
         try
         {
-            var existingSupplier = await _context.Suppliers.FindAsync(supplier_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingSupplier = await _context.Suppliers
+                           .FirstOrDefaultAsync(supplier => supplier.Id == supplier_id && _context.Items
+                           .Any(item => item.Supplier_Id == supplier_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
             if (existingSupplier == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Supplier not found with id {supplier_id}", api_key);
@@ -144,7 +171,7 @@ public class SupplierService : ISupplierService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update supplier with id {supplier.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update supplier with id {supplier.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -153,7 +180,14 @@ public class SupplierService : ISupplierService
     {
         try
         {
-            var supplier = await _context.Suppliers.FindAsync(supplier_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var supplier = await _context.Suppliers
+                           .FirstOrDefaultAsync(supplier => supplier.Id == supplier_id && _context.Items
+                           .Any(item => item.Supplier_Id == supplier_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
             if (supplier == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Supplier with id {supplier_id} already not in database", api_key);

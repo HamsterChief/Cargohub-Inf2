@@ -20,13 +20,10 @@ public class ApiKeyMiddleware
             return;
         }
 
-        var apiKeys = await dbContext.Api_Keys.ToListAsync();
-        var apiKeyEntity = apiKeys.FirstOrDefault(key => BCrypt.Net.BCrypt.Verify(extractedApiKey, key.ApiKey));
-
-        if (apiKeyEntity == null)
+        if (!await Authorization.AuthorizeUser(extractedApiKey, context.Request.Method, dbContext))
         {
-            context.Response.StatusCode = 403; 
-            await context.Response.WriteAsync("Invalid API Key");
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync("Access Denied: Invalid API Key");
             await AuditLogService.LogAPIKeyAsync(context.Request.Method, "403 FORBIDDEN: Invalid API Key", extractedApiKey);
             return;
         }

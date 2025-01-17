@@ -16,7 +16,11 @@ public class TransferService : ITransferService
     {
         try
         {
-            var transfer = await _context.Transfers.FindAsync(transfer_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var transfer = await _context.Transfers
+                           .FirstOrDefaultAsync(transfer => transfer.Id == transfer_id && _context.Locations
+                           .Where(location => location.Id == transfer.Transfer_From || location.Id == transfer.Transfer_To)
+                           .Any(location => location.Warehouse_Id == warehouse_id));
 
             if (transfer == null)
             {
@@ -38,7 +42,11 @@ public class TransferService : ITransferService
     {
         try
         {
-            var transfers = await _context.Transfers.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var transfers = await _context.Transfers
+                            .Where(transfer => _context.Locations
+                            .Where(location => location.Id == transfer.Transfer_From || location.Id == transfer.Transfer_To)
+                            .Any(location => location.Warehouse_Id == warehouse_id)).ToListAsync();
 
             if (!transfers.Any())
             {
@@ -60,7 +68,11 @@ public class TransferService : ITransferService
     {
         try
         {
-            var transfer = await _context.Transfers.FindAsync(transfer_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var transfer = await _context.Transfers
+                           .FirstOrDefaultAsync(transfer => transfer.Id == transfer_id && _context.Locations
+                           .Where(location => location.Id == transfer.Transfer_From || location.Id == transfer.Transfer_To)
+                           .Any(location => location.Warehouse_Id == warehouse_id));
 
             if (transfer == null)
             {
@@ -113,7 +125,12 @@ public class TransferService : ITransferService
     {
         try
         {
-            var existingTransfer = await _context.Transfers.FindAsync(transfer_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingTransfer = await _context.Transfers
+                           .FirstOrDefaultAsync(transfer => transfer.Id == transfer_id && _context.Locations
+                           .Where(location => location.Id == transfer.Transfer_From || location.Id == transfer.Transfer_To)
+                           .Any(location => location.Warehouse_Id == warehouse_id));
+
             if (existingTransfer == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Transfer not found with id {transfer_id}", api_key);
@@ -139,7 +156,7 @@ public class TransferService : ITransferService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update transfer with id {transfer.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update transfer with id {transfer.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -148,7 +165,12 @@ public class TransferService : ITransferService
     {
         try
         {
-            var transfer = await _context.Transfers.FindAsync(transfer_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var transfer = await _context.Transfers
+                           .FirstOrDefaultAsync(transfer => transfer.Id == transfer_id && _context.Locations
+                           .Where(location => location.Id == transfer.Transfer_From || location.Id == transfer.Transfer_To)
+                           .Any(location => location.Warehouse_Id == warehouse_id));
+
             if (transfer == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Transfer with id {transfer_id} already not in database", api_key);
@@ -177,7 +199,12 @@ public class TransferService : ITransferService
     {
         try
         {
-            var transfer = await _context.Transfers.FindAsync(transfer_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var transfer = await _context.Transfers
+                           .FirstOrDefaultAsync(transfer => transfer.Id == transfer_id && _context.Locations
+                           .Where(location => location.Id == transfer.Transfer_From || location.Id == transfer.Transfer_To)
+                           .Any(location => location.Warehouse_Id == warehouse_id));
+
             if (transfer == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Transfer not found with id {transfer_id}", api_key);

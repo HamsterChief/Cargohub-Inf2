@@ -14,7 +14,8 @@ public class LocationService : ILocationService
     {
         try
         {
-            var location = await _context.Locations.FindAsync(location_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var location = await _context.Locations.FirstOrDefaultAsync(l => l.Id == location_id && l.Warehouse_Id == warehouse_id);
 
             if (location == null)
             {
@@ -36,7 +37,8 @@ public class LocationService : ILocationService
     {
         try
         {
-            var locations = await _context.Locations.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var locations = await _context.Locations.Where(l => l.Warehouse_Id == warehouse_id).ToListAsync();
 
             if (!locations.Any())
             {
@@ -89,7 +91,8 @@ public class LocationService : ILocationService
     {
         try
         {
-            var existingLocation = await _context.Locations.FindAsync(location_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingLocation = await _context.Locations.FirstOrDefaultAsync(l => l.Id == location_id && l.Warehouse_Id == warehouse_id);
             if (existingLocation == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Location not found with id {location_id}", api_key);
@@ -113,7 +116,7 @@ public class LocationService : ILocationService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update location with id {location.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update location with id {location.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -122,7 +125,8 @@ public class LocationService : ILocationService
     {
         try
         {
-            var location = await _context.Locations.FindAsync(location_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var location = await _context.Locations.FirstOrDefaultAsync(l => l.Id == location_id && l.Warehouse_Id == warehouse_id);
             if (location == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Location with id {location_id} already not in database", api_key);
@@ -142,7 +146,7 @@ public class LocationService : ILocationService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete location with id {location_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete location with id {location_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

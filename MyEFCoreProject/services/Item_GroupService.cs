@@ -14,7 +14,13 @@ public class Item_GroupService : IItem_GroupService
     {
         try
         {
-            var item_group = await _context.Item_Groups.FindAsync(item_group_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item_group = await _context.Item_Groups
+                           .FirstOrDefaultAsync(item_group => item_group.Id == item_group_id && _context.Items
+                           .Any(item => item.Item_Group == item_group_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
 
             if (item_group == null)
             {
@@ -36,7 +42,13 @@ public class Item_GroupService : IItem_GroupService
     {
         try
         {
-            var item_groups = await _context.Item_Groups.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item_groups = await _context.Item_Groups
+                           .Where(item_group => _context.Items
+                           .Any(item => item.Item_Group == item_group.Id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id)))).ToListAsync();
 
             if (!item_groups.Any())
             {
@@ -58,7 +70,12 @@ public class Item_GroupService : IItem_GroupService
     {
         try
         {
-            var items = await _context.Items.Where(item => item.Item_Group == item_group_id).ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var items = await _context.Items
+                        .Where(item => item.Item_Group == item_group_id && _context.Inventories
+                        .Any(inventory => _context.Locations
+                        .Where(location => inventory.Locations.Contains(location.Id))
+                        .Any(location => location.Warehouse_Id == warehouse_id))).ToListAsync();
 
             if (!items.Any())
             {
@@ -111,7 +128,14 @@ public class Item_GroupService : IItem_GroupService
     {
         try
         {
-            var existingItem_Group = await _context.Item_Groups.FindAsync(item_group_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingItem_Group = await _context.Item_Groups
+                           .FirstOrDefaultAsync(item_group => item_group.Id == item_group_id && _context.Items
+                           .Any(item => item.Item_Group == item_group_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
             if (existingItem_Group == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Item_group not found with id {item_group_id}", api_key);
@@ -134,7 +158,7 @@ public class Item_GroupService : IItem_GroupService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update item_group with id {item_group.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update item_group with id {item_group.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -143,7 +167,14 @@ public class Item_GroupService : IItem_GroupService
     {
         try
         {
-            var item_group = await _context.Item_Groups.FindAsync(item_group_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var item_group = await _context.Item_Groups
+                           .FirstOrDefaultAsync(item_group => item_group.Id == item_group_id && _context.Items
+                           .Any(item => item.Item_Group == item_group_id && _context.Inventories
+                           .Any(inventory => _context.Locations
+                           .Where(location => inventory.Locations.Contains(location.Id))
+                           .Any(location => location.Warehouse_Id == warehouse_id))));
+
             if (item_group == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Item_group with id {item_group_id} already not in database", api_key);
@@ -163,7 +194,7 @@ public class Item_GroupService : IItem_GroupService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete item_group with id {item_group_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete item_group with id {item_group_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

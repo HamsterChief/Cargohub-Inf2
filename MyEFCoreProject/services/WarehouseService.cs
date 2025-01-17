@@ -92,6 +92,7 @@ public class WarehouseService : IWarehouseService
             warehouse.Updated_At = DateTime.UtcNow;
             _context.Warehouses.Add(warehouse);
             int n = await _context.SaveChangesAsync();
+            await ApiKeyService.RequestGenerateAsync(warehouse.Id, _context);
 
             if (n == 0)
             {
@@ -142,7 +143,7 @@ public class WarehouseService : IWarehouseService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update warehouse with id {warehouse.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update warehouse with id {warehouse.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

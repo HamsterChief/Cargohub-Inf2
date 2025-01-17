@@ -4,36 +4,32 @@ using Microsoft.AspNetCore.Mvc;
 [Route("cargohub/apikey")]
 public class ApiKeyController : ControllerBase
 {
-    private readonly ApiKeyService _apiKeyService;
+    private readonly DatabaseContext _context;
 
-    public ApiKeyController(ApiKeyService apiKeyService)
+    public ApiKeyController(DatabaseContext context)
     {
-        _apiKeyService = apiKeyService;
+        _context = context;
     }
 
-    // [HttpPost("create")]
-    // public async Task<IActionResult> CreateApiKey([FromBody] ApiKeyRequest request)
-    // {
-    //     var rawApiKey = await _apiKeyService.CreateAndSaveApiKeyAsync(
-    //         request.AppName,
-    //         request.Permissions);
+    [HttpPost("create/warehouses")]
+    public async Task<IActionResult> GenerateWarehouseApiKeys()
+    {
+        var apikeys_raw = await ApiKeyService.GenerateWarehouseApiKeys(Request.Headers["APP_NAME"]!, _context);
+        return Ok(apikeys_raw);
+    }
 
-    //     return Ok(new { ApiKey = rawApiKey });
-    // }
-}
+    [HttpGet("test/apikeymatch")]
+    public IActionResult TestMatchApiKey()
+    {
+        return Ok(ApiKeyService.HashApiKey(Request.Headers["API_KEY"]!));
+    }
 
-public class ApiKeyRequest
-{
-    public string AppName { get; set; }
-    public string Permissions { get; set; }
-}
+    [HttpDelete("delete/{apikey_id}")]
+    public async Task<IActionResult> DeleteApiKey(int apikey_id)
+    {
+        var success = await ApiKeyService.DeleteApiKey(apikey_id, _context);
 
-public class PermissionsDto
-{
-    public bool Read { get; set; }
-    public bool Write { get; set; }
-
-    public bool Update {get; set;}
-
-    public bool Delete {get; set;}
+        if (success) { return Ok("api_key deleted successfully."); }
+        return BadRequest("Nothing to delete or failed");
+    }
 }

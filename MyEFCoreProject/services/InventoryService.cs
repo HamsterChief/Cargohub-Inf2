@@ -14,7 +14,12 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory = await _context.Inventories.FindAsync(inventory_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var inventory = await _context.Inventories
+                            .FirstOrDefaultAsync(i => i.Id == inventory_id &&
+                                                      _context.Locations
+                                                      .Where(loc => i.Locations.Contains(loc.Id))
+                                                      .Any(loc => loc.Warehouse_Id == warehouse_id));
 
             if (inventory == null)
             {
@@ -36,7 +41,12 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventories = await _context.Inventories.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var inventories = await _context.Inventories
+                            .Where(inventory => _context.Locations
+                                .Where(location => inventory.Locations.Contains(location.Id))
+                                .Any(location => location.Warehouse_Id == warehouse_id))
+                            .ToListAsync();
 
             if (!inventories.Any())
             {
@@ -89,7 +99,12 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var existingInventory = await _context.Inventories.FindAsync(inventory_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingInventory = await _context.Inventories
+                            .FirstOrDefaultAsync(i => i.Id == inventory_id &&
+                                                      _context.Locations
+                                                      .Where(loc => i.Locations.Contains(loc.Id))
+                                                      .Any(loc => loc.Warehouse_Id == warehouse_id));
             if (existingInventory == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Inventory not found with id {inventory_id}", api_key);
@@ -119,7 +134,7 @@ public class InventoryService : IInventoryService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update inventory with id {inventory.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update inventory with id {inventory.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -128,7 +143,12 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory = await _context.Inventories.FindAsync(inventory_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var inventory = await _context.Inventories
+                            .FirstOrDefaultAsync(i => i.Id == inventory_id &&
+                                                      _context.Locations
+                                                      .Where(loc => i.Locations.Contains(loc.Id))
+                                                      .Any(loc => loc.Warehouse_Id == warehouse_id));
             if (inventory == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Inventory with id {inventory_id} already not in database", api_key);
@@ -148,7 +168,7 @@ public class InventoryService : IInventoryService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete inventory with id {inventory_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete inventory with id {inventory_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

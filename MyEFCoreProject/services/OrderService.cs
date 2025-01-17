@@ -18,7 +18,8 @@ public class OrderService : IOrderService
     {
         try
         {
-            var order = await _context.Orders.FindAsync(order_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == order_id && o.Warehouse_Id == warehouse_id);
 
             if (order == null)
             {
@@ -40,7 +41,8 @@ public class OrderService : IOrderService
     {
         try
         {
-            var orders = await _context.Orders.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var orders = await _context.Orders.Where(o => o.Warehouse_Id == warehouse_id).ToListAsync();
 
             if (!orders.Any())
             {
@@ -62,7 +64,8 @@ public class OrderService : IOrderService
     {
         try
         {
-            var order = await _context.Orders.FindAsync(order_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == order_id && o.Warehouse_Id == warehouse_id);
 
             if (order == null)
             {
@@ -124,7 +127,8 @@ public class OrderService : IOrderService
     {
         try
         {
-            var existingOrder = await _context.Orders.FindAsync(order_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingOrder = await _context.Orders.FirstOrDefaultAsync(o => o.Id == order_id && o.Warehouse_Id == warehouse_id);
             if (existingOrder == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Order not found with id {order_id}", api_key);
@@ -163,7 +167,7 @@ public class OrderService : IOrderService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update order with id {order.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update order with id {order.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -172,7 +176,8 @@ public class OrderService : IOrderService
     {
         try
         {
-            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == order_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == order_id && o.Warehouse_Id == warehouse_id);
 
             if (order == null || order.Items == null)
             {
@@ -258,7 +263,8 @@ public class OrderService : IOrderService
     {
         try
         {
-            var order = await _context.Orders.FindAsync(order_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == order_id && o.Warehouse_Id == warehouse_id);
             if (order == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Order with id {order_id} already not in database", api_key);
@@ -278,7 +284,7 @@ public class OrderService : IOrderService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete order with id {order_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete order with id {order_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }

@@ -14,7 +14,10 @@ public class ClientService : IClientService
     {
         try
         {
-            var client = await _context.Clients.FindAsync(client_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var client = await _context.Clients
+                         .FirstOrDefaultAsync(client => client.Id == client_id &&
+                         _context.Orders.Any(order => (order.Bill_To == client_id || order.Ship_To == client_id) && order.Warehouse_Id == warehouse_id));
 
             if (client == null)
             {
@@ -36,7 +39,9 @@ public class ClientService : IClientService
     {
         try
         {
-            var clients = await _context.Clients.ToListAsync();
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var clients = await _context.Clients.Where(client => 
+                          _context.Orders.Any(order => (order.Bill_To == client.Id || order.Ship_To == client.Id) && order.Warehouse_Id == warehouse_id)).ToListAsync();
 
             if (!clients.Any())
             {
@@ -64,7 +69,7 @@ public class ClientService : IClientService
                 return new ServiceResult { StatusCode = 409, ErrorMessage = $"Id {client.Id} already in use" };
             }
 
-            client.Created_At = DateTime.UtcNow;
+            client.Updated_At = DateTime.UtcNow;
             client.Updated_At = DateTime.UtcNow;
             _context.Clients.Add(client);
             int n = await _context.SaveChangesAsync();
@@ -89,7 +94,11 @@ public class ClientService : IClientService
     {
         try
         {
-            var existingClient = await _context.Clients.FindAsync(client_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var existingClient = await _context.Clients
+                         .FirstOrDefaultAsync(client => client.Id == client_id &&
+                         _context.Orders.Any(order => (order.Bill_To == client_id || order.Ship_To == client_id) && order.Warehouse_Id == warehouse_id));
+
             if (existingClient == null)
             {
                 await AuditLogService.LogActionAsync("PUT", $"404 NOT FOUND: Client not found with id {client_id}", api_key);
@@ -119,7 +128,7 @@ public class ClientService : IClientService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to update client with id {client.Id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("PUT", $"500 INTERNAL SERVER ERROR: Failed to update client with id {client.Id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -128,7 +137,11 @@ public class ClientService : IClientService
     {
         try
         {
-            var client = await _context.Clients.FindAsync(client_id);
+            var warehouse_id = Authorization.ValidateWarehouse(api_key, _context);
+            var client = await _context.Clients
+                         .FirstOrDefaultAsync(client => client.Id == client_id &&
+                         _context.Orders.Any(order => (order.Bill_To == client_id || order.Ship_To == client_id) && order.Warehouse_Id == warehouse_id));
+
             if (client == null)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"400 BADREQUEST: Client with id {client_id} already not in database", api_key);
@@ -148,7 +161,7 @@ public class ClientService : IClientService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete client with id {client_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete client with id {client_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
@@ -169,7 +182,7 @@ public class ClientService : IClientService
         }
         catch (Exception ex)
         {
-            await AuditLogService.LogActionAsync("POST", $"500 INTERNAL SERVER ERROR: Failed to delete client with id {client_id} - {ex.Message}", api_key);
+            await AuditLogService.LogActionAsync("GET", $"500 INTERNAL SERVER ERROR: Failed to delete client with id {client_id} - {ex.Message}", api_key);
             return new ServiceResult { StatusCode = 500, ErrorMessage = ex.Message };
         }
     }
