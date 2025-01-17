@@ -24,10 +24,10 @@ public class ApiKeyController : ControllerBase
         return Ok(ApiKeyService.HashApiKey(Request.Headers["API_KEY"]!));
     }
 
-    [HttpDelete("delete/{apikey_id}")]
-    public async Task<IActionResult> DeleteApiKey(int apikey_id)
+    [HttpDelete("delete/{warehouse_id}")]
+    public async Task<IActionResult> DeleteApiKey(int warehouse_id)
     {
-        var success = await ApiKeyService.DeleteApiKey(apikey_id, _context);
+        var success = await ApiKeyService.DeleteApiKey(warehouse_id, _context);
 
         if (success) { return Ok("api_key deleted successfully."); }
         return BadRequest("Nothing to delete or failed");

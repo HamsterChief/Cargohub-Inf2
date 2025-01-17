@@ -925,5 +925,5 @@ def test_data_check_delete_warehouse():
     assert response.status_code == 404
 
     # Delete automaticaly created api_keys.
-    requests.delete(f"{BASE_URL}/apikey/delete/6", headers={"API_KEY": API_KEY}, timeout=10)
-    requests.delete(f"{BASE_URL}/apikey/delete/7", headers={"API_KEY": API_KEY}, timeout=10)
+    requests.delete(f"{BASE_URL}/apikey/delete/10", headers={"API_KEY": API_KEY}, timeout=10)
+    requests.delete(f"{BASE_URL}/apikey/delete/10", headers={"API_KEY": API_KEY}, timeout=10)

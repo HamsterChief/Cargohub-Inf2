@@ -47,9 +47,9 @@ public static class ApiKeyService
         return apikeys_raw.ToList();
     }
 
-    public static async Task<bool> DeleteApiKey(int apikey_id, DatabaseContext context)
+    public static async Task<bool> DeleteApiKey(int warehouse_id, DatabaseContext context)
     {
-        var instance = await context.Api_Keys.FindAsync(apikey_id);
+        var instance = await context.Api_Keys.FirstOrDefaultAsync(instance => instance.Warehouse_Id == warehouse_id);
 
         if (instance == null) { return false; }
 
