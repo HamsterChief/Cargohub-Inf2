@@ -39,21 +39,4 @@ public static class ApiKeyService
 
         return $"{rawApiKey}, {warehouse_id}, {appName}";
     }
-
-    public static async Task<List<string>> GenerateWarehouseApiKeys(string appName, DatabaseContext context)
-    {
-        var warehouses = await context.Warehouses.Select(warehouse => warehouse.Id).ToListAsync();
-        var apikeys_raw = await Task.WhenAll(warehouses.Select(async warehouse_id => await CreateAndSaveApiKeyAsync(appName, warehouse_id, context)));
-        return apikeys_raw.ToList();
-    }
-
-    public static async Task<bool> DeleteApiKey(int warehouse_id, DatabaseContext context)
-    {
-        var instance = await context.Api_Keys.FirstOrDefaultAsync(instance => instance.Warehouse_Id == warehouse_id);
-
-        if (instance == null) { return false; }
-
-        context.Api_Keys.Remove(instance);
-        return await context.SaveChangesAsync() != 0;
-    }
 }

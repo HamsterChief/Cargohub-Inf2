@@ -14,7 +14,7 @@ public class ApiKeyMiddlewareTests
         var middleware = new ApiKeyMiddleware(mockRequestDelegate.Object);
 
         var options = new DbContextOptionsBuilder<DatabaseContext>()
-            .UseInMemoryDatabase("TestDatabase")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
         var dbContext = new DatabaseContext(options);
@@ -46,7 +46,7 @@ public class ApiKeyMiddlewareTests
         var middleware = new ApiKeyMiddleware(mockRequestDelegate.Object);
 
         var options = new DbContextOptionsBuilder<DatabaseContext>()
-            .UseInMemoryDatabase("TestDatabase")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
         var dbContext = new DatabaseContext(options);
@@ -78,7 +78,7 @@ public class ApiKeyMiddlewareTests
         var middleware = new ApiKeyMiddleware(mockRequestDelegate.Object);
 
         var options = new DbContextOptionsBuilder<DatabaseContext>()
-            .UseInMemoryDatabase("TestDatabase")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
         var dbContext = new DatabaseContext(options);

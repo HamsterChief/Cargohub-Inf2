@@ -1,19 +1,27 @@
-POST http://localhost:5072/cargohub/apikey/create 
-API_KEY: 104e99b1-64c4-4026-bc71-6cd6cb854de6
-Content-Type: application/json
+GET http://localhost:5072/cargohub/datamigrate
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
 
-{
-  "appName": "CargoHUB Dashboard 1",
-  "permissions": {
-    "read": true,
-    "write": true,
-    "delete": true,
-    "update": true
-  }
-}
+#### CREATE [WAREHOUSE DASHBOARD - API KEYS] IF DON'T EXIST
+POST http://localhost:5072/cargohub/apikey/create/warehouses
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+APP_NAME: dashboard
+
+#### CREATE [WAREHOUSE SCANNER - API KEYS] IF DON'T EXIST
+POST http://localhost:5072/cargohub/apikey/create/warehouses
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+APP_NAME: scanner
+
+#### TEST API KEY MATCH IN DATABASE
+GET http://localhost:5072/cargohub/apikey/test/apikeymatch
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+
+#### delete by warehouse_id
+DELETE http://localhost:5072/cargohub/apikey/delete/10
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
 
 ############clients
 GET http://localhost:5072/cargohub/clients/1
+API_KEY: dab830d6-fa92-4d87-9698-caa028e53de3
 
 ####
 GET http://localhost:5072/cargohub/clients/1/orders
@@ -58,6 +66,7 @@ DELETE http://localhost:5072/cargohub/clients/1
 ############inventories
 
 GET http://localhost:5072/cargohub/inventories/1
+API_KEY: 3a3c8bc3-c621-40dc-96ab-53f6ca2176e5
 
 ####
 POST http://localhost:5072/cargohub/inventories
@@ -125,7 +134,8 @@ DELETE http://localhost:5072/cargohub/item_groups/1
 
 ############item_lines
 
-GET http://localhost:5072/cargohub/item_lines/1
+GET http://localhost:5072/cargohub/item_lines
+API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 POST http://localhost:5072/cargohub/item_lines
@@ -179,7 +189,8 @@ DELETE http://localhost:5072/cargohub/item_lines/1
 
 ############item_types
 
-GET http://localhost:5072/cargohub/item_types/1
+GET http://localhost:5072/cargohub/item_types
+API_KEY: c28469f3-0d63-4567-906f-34d927cbcb1c
 
 ####
 POST http://localhost:5072/cargohub/item_types
@@ -259,7 +270,8 @@ DELETE http://localhost:5072/cargohub/items/P000001
 
 ############locations
 
-GET http://localhost:5072/cargohub/locations/1
+GET http://localhost:5072/cargohub/locations
+API_KEY: c28469f3-0d63-4567-906f-34d927cbcb1c
 
 ####
 POST http://localhost:5072/cargohub/locations
@@ -288,7 +300,8 @@ DELETE http://localhost:5072/cargohub/locations/1
 
 ############orders
 
-GET http://localhost:5072/cargohub/orders/1
+GET http://localhost:5072/cargohub/orders
+API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 POST http://localhost:5072/cargohub/orders
@@ -840,3 +853,7 @@ Content-Type: application/json
 
 ####
 DELETE http://localhost:5072/cargohub/warehouses/1
+
+####
+DELETE http://localhost:5072/cargohub/warehouses/1
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
