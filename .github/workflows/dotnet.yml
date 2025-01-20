@@ -6,10 +6,10 @@ name: .NET and Python Tests
 on:
   push:
     branches: 
-      - "C#-Cargohub"
+      - "Main"
   pull_request:
     branches: 
-      - "C#-Cargohub"
+      - "Main"
   
 
 jobs:
