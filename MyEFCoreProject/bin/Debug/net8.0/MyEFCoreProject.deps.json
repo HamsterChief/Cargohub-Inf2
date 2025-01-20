@@ -13,8 +13,12 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.0",
+<<<<<<< HEAD
           "Newtonsoft.Json": "13.0.3",
           "Swashbuckle.AspNetCore": "7.2.0"
+=======
+          "Newtonsoft.Json": "13.0.3"
+>>>>>>> Melvern7
         },
         "runtime": {
           "MyEFCoreProject.dll": {}
@@ -438,7 +442,10 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.0"
         }
       },
+<<<<<<< HEAD
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
+=======
+>>>>>>> Melvern7
       "Microsoft.Extensions.Caching.Abstractions/9.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.0"
@@ -552,6 +559,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.OpenApi/1.6.22": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -560,6 +568,8 @@
           }
         }
       },
+=======
+>>>>>>> Melvern7
       "Mono.TextTemplating/3.0.0": {
         "dependencies": {
           "System.CodeDom": "6.0.0"
@@ -722,6 +732,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Swashbuckle.AspNetCore/7.2.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -760,6 +771,8 @@
           }
         }
       },
+=======
+>>>>>>> Melvern7
       "System.CodeDom/6.0.0": {
         "runtime": {
           "lib/net6.0/System.CodeDom.dll": {
@@ -1029,6 +1042,7 @@
       "path": "microsoft.entityframeworkcore.tools/9.0.0",
       "hashPath": "microsoft.entityframeworkcore.tools.9.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",
       "serviceable": true,
@@ -1036,6 +1050,8 @@
       "path": "microsoft.extensions.apidescription.server/6.0.5",
       "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
+=======
+>>>>>>> Melvern7
     "Microsoft.Extensions.Caching.Abstractions/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1106,6 +1122,7 @@
       "path": "microsoft.extensions.primitives/9.0.0",
       "hashPath": "microsoft.extensions.primitives.9.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.OpenApi/1.6.22": {
       "type": "package",
       "serviceable": true,
@@ -1113,6 +1130,8 @@
       "path": "microsoft.openapi/1.6.22",
       "hashPath": "microsoft.openapi.1.6.22.nupkg.sha512"
     },
+=======
+>>>>>>> Melvern7
     "Mono.TextTemplating/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1155,6 +1174,7 @@
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.10",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Swashbuckle.AspNetCore/7.2.0": {
       "type": "package",
       "serviceable": true,
@@ -1183,6 +1203,8 @@
       "path": "swashbuckle.aspnetcore.swaggerui/7.2.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.7.2.0.nupkg.sha512"
     },
+=======
+>>>>>>> Melvern7
     "System.CodeDom/6.0.0": {
       "type": "package",
       "serviceable": true,

@@ -771,9 +771,12 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\M
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.genruntimeconfig.cache
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\ref\MyEFCoreProject.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\BCrypt.Net.dll
+<<<<<<< HEAD
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\BCrypt.Net.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.MvcApplicationPartsAssemblyInfo.cs
+=======
+>>>>>>> Melvern7

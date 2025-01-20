@@ -3,7 +3,11 @@ using System.Threading.Tasks;
 
 namespace MyEFCoreProject.Controllers;
 
+<<<<<<< HEAD
 [Route("api/v1")]
+=======
+[Route("cargohub")]
+>>>>>>> Melvern7
 [ApiController]
 public class TransferController : Controller
 {

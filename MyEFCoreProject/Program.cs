@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,13 @@ builder.WebHost.UseUrls("http://0.0.0.0:80");
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
+=======
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
+>>>>>>> Melvern7
 
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
@@ -30,6 +38,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+<<<<<<< HEAD
 // Add Swagger
 builder.Services.AddSwaggerGen(c =>
 {
@@ -70,3 +79,22 @@ if (app.Environment.IsDevelopment() || true) // Allow Swagger in all environment
 app.MapControllers();
 
 app.Run();
+=======
+var app = builder.Build();
+
+app.UseRouting();
+
+app.UseSession();
+
+app.UseMiddleware<ApiKeyMiddleware>();
+
+app.MapControllers();
+
+// Add authorization middleware if required
+// app.UseAuthorization(); 
+// to run on the ssh: 
+// cd Cargohub-inf2 ->
+// cd MyEFCoreProject ->
+// nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
+app.Run();
+>>>>>>> Melvern7

@@ -159,7 +159,10 @@ public class WarehouseService : IWarehouseService
                 return new ServiceResult { StatusCode = 400, ErrorMessage = $"Warehouse with id {warehouse_id} already not in database" };
             }
             _context.Warehouses.Remove(warehouse);
+<<<<<<< HEAD
             _context.Api_Keys.RemoveRange(_context.Api_Keys.Where(instance => instance.Warehouse_Id == warehouse_id));
+=======
+>>>>>>> Melvern7
             int n = await _context.SaveChangesAsync();
             
             if (n == 0)

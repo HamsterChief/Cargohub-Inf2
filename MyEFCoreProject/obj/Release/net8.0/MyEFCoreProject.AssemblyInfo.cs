@@ -16,6 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e556d8a08e3d979a3fa572ca95335643c094a7a7")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ef96c3402382b26233e0db55921a3c95b046481")]
@@ -23,6 +24,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b766c549008814b9aa869af293d617ef40d6c579")]
 >>>>>>> Jimmy
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4552ac2fea352b91050cd6a5c852a04142419faf")]
+>>>>>>> Melvern7
 [assembly: System.Reflection.AssemblyProductAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyEFCoreProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

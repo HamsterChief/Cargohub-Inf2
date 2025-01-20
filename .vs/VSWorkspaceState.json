@@ -1,5 +1,6 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\.github",
     "\\.github\\workflows",
@@ -9,5 +10,10 @@
     "\\MyEFCoreProject\\services"
   ],
   "SelectedNode": "\\MyEFCoreProject\\.rest",
+=======
+    ""
+  ],
+  "SelectedNode": "\\integrationtests",
+>>>>>>> Melvern7
   "PreviewInSolutionExplorer": false
 }
