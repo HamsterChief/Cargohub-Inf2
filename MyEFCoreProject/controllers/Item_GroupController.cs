@@ -16,66 +16,96 @@ public class Item_GroupController : Controller
     [HttpGet("item_groups/{item_group_id}")]
     public async Task<IActionResult> ReadItem_Group(int item_group_id)
     {
-        var result = await _item_GroupService.ReadItem_Group(item_group_id);
-        if (result != null)
+        var serviceResult = await _item_GroupService.ReadItem_Group(item_group_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound($"No such item_group with Id: {item_group_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("item_groups")]
     public async Task<IActionResult> ReadItem_Groups()
     {
-        var result = await _item_GroupService.ReadItem_Groups();
-        if (result != null)
+        var serviceResult = await _item_GroupService.ReadItem_Groups(Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound("No item_groups found");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("item_groups/{item_group_id}/items")]
     public async Task<IActionResult> ReadItemsForItem_Group(int item_group_id)
     {
-        List<Item> result = await _item_GroupService.ReadItemsForItem_Group(item_group_id);
-        if (result.Count > 0)
+        var serviceResult = await _item_GroupService.ReadItemsForItem_Group(item_group_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound($"no items found for item_group with Id: {item_group_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPost("item_groups")]
     public async Task<IActionResult> CreateItem_Group([FromBody] Item_Group item_group)
     {
-        var result = await _item_GroupService.CreateItem_Group(item_group);
-        if (result)
+        var serviceResult = await _item_GroupService.CreateItem_Group(item_group, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Item_group created successfully.");
         }
-        return BadRequest("Failed to create item_group.");
+        else if (serviceResult.StatusCode == 409)
+        {
+            return Conflict(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPut("item_groups/{item_group_id}")]
     public async Task<IActionResult> UpdateItem_Group([FromBody] Item_Group item_group, int item_group_id)
     {
-        var result = await _item_GroupService.UpdateItem_Group(item_group, item_group_id);
-        if (result)
+        var serviceResult = await _item_GroupService.UpdateItem_Group(item_group, item_group_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Item_group updated successfully.");
         }
-        return BadRequest("Failed to update item_group.");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpDelete("item_groups/{item_group_id}")]
     public async Task<IActionResult> DeleteItem_Group(int item_group_id)
     {
-        var result = await _item_GroupService.DeleteItem_Group(item_group_id);
-        if (result)
+        var serviceResult = await _item_GroupService.DeleteItem_Group(item_group_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Item_group deleted succesfully.");
         }
-        return BadRequest("Failed to delete item_group.");
+        else if (serviceResult.StatusCode == 400)
+        {
+            return BadRequest(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 }
