@@ -16,112 +16,76 @@ public class ItemController : Controller
     [HttpGet("items/{item_id}")]
     public async Task<IActionResult> ReadItem(string item_id)
     {
-        var serviceResult = await _itemService.ReadItem(item_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _itemService.ReadItem(item_id);
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such item with Id: {item_id}");
     }
 
     [HttpGet("items")]
     public async Task<IActionResult> ReadItems()
     {
-        var serviceResult = await _itemService.ReadItems(Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _itemService.ReadItems();
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound("No items found");
     }
 
     [HttpGet("items/{item_id}/inventory")]
     public async Task<IActionResult> ReadInventoriesForItem(string item_id)
     {
-        var serviceResult = await _itemService.ReadInventoriesForItem(item_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        List<Inventory> result = await _itemService.ReadInventoriesForItem(item_id);
+        if (result.Count > 0)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No inventories found for item with Id: {item_id}");
     }
 
     [HttpGet("items/{item_id}/inventory/totals")]
     public async Task<IActionResult> ReadInventoryTotalsForItem(string item_id)
     {
-        var serviceResult = await _itemService.ReadInventoryTotalsForItem(item_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        if (await _itemService.ReadItem(item_id) != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(await _itemService.ReadInventoryTotalsForItem(item_id));
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such item with Id: {item_id}");
     }
 
     [HttpPost("items")]
     public async Task<IActionResult> CreateItem([FromBody] Item item)
     {
-        var serviceResult = await _itemService.CreateItem(item, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _itemService.CreateItem(item);
+        if (result)
         {
             return Ok("Item created successfully.");
         }
-        else if (serviceResult.StatusCode == 409)
-        {
-            return Conflict(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to create item.");
     }
 
     [HttpPut("items/{item_id}")]
     public async Task<IActionResult> UpdateItem([FromBody] Item item, string item_id)
     {
-        var serviceResult = await _itemService.UpdateItem(item, item_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _itemService.UpdateItem(item, item_id);
+        if (result)
         {
             return Ok("Item updated successfully.");
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to update item.");
     }
 
     [HttpDelete("items/{item_id}")]
     public async Task<IActionResult> DeleteItem(string item_id)
     {
-        var serviceResult = await _itemService.DeleteItem(item_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _itemService.DeleteItem(item_id);
+        if (result)
         {
             return Ok("Item deleted succesfully.");
         }
-        else if (serviceResult.StatusCode == 400)
-        {
-            return BadRequest(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to delete item.");
     }
 }

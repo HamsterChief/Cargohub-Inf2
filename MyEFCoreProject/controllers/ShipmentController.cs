@@ -16,160 +16,111 @@ public class ShipmentController : Controller
     [HttpGet("shipments/{shipment_id}")]
     public async Task<IActionResult> ReadShipment(int shipment_id)
     {
-        var serviceResult = await _shipmentService.ReadShipment(shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.ReadShipment(shipment_id);
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such shipment with Id: {shipment_id}");
     }
 
     [HttpGet("shipments")]
     public async Task<IActionResult> GetAll([FromQuery] int page = 1)
     {
-        var serviceResult = await _shipmentService.GetAllShipments(page, Request.Headers["API_KEY"]!);
+        if (page < 1)
+        {
+            return BadRequest("Page must be greater than 0.");
+        }
 
-        if (serviceResult.StatusCode == 200)
-        {
-            return Ok(serviceResult.Object);
-        }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        var results = await _shipmentService.GetAllShipments(page);
+        return Ok(results);
     }
 
     [HttpGet("shipments/{shipment_id}/items")]
     public async Task<IActionResult> ReadShipmentItems(int shipment_id)
     {
-        var serviceResult = await _shipmentService.ReadShipmentItems(shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.ReadShipmentItems(shipment_id);
+        if (result.Count() != 0)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such shipment with Id: {shipment_id}");
     }
 
     [HttpPost("shipments")]
     public async Task<IActionResult> CreateShipment([FromBody] Shipment shipment)
     {
-        var serviceResult = await _shipmentService.CreateShipment(shipment, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.CreateShipment(shipment);
+        if (result)
         {
-            return Ok("Shipment created successfully.");
+            return Ok("Shipment created succesfully.");
         }
-        else if (serviceResult.StatusCode == 409)
-        {
-            return Conflict(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to create shipment.");
     }
 
     [HttpGet("shipments/{shipment_id}/orders")]
-    public async Task<IActionResult> ReadShipmentOrder(int shipment_id)
+    public async Task<IActionResult> ReadShipmentOrders(int shipment_id)
     {
-        var serviceResult = await _shipmentService.ReadShipmentOrder(shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.ReadShipmentOrders(shipment_id);
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such shipment with Id: {shipment_id}");
     }
 
     [HttpPut("shipments/{shipment_id}")]
     public async Task<IActionResult> UpdateShipment([FromBody] Shipment shipment, int shipment_id)
     {
-        var serviceResult = await _shipmentService.UpdateShipment(shipment, shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.UpdateShipment(shipment, shipment_id);
+        if (result)
         {
-            return Ok("Shipment updated successfully.");
+            return Ok("Shipment updated succesfully.");
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to update shipment");
     }
 
     [HttpPut("shipments/{shipment_id}/orders")]
     public async Task<IActionResult> UpdateShipmentOrder([FromBody] Order order, int shipment_id)
     {
-        var serviceResult = await _shipmentService.UpdateShipmentOrder(order, shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.UpdateShipmentOrder(order, shipment_id);
+        if (result)
         {
-            return Ok("Order updated successfully.");
+            return Ok("Shipment updated succesfully.");
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to update shipment");
     }
 
     [HttpPut("shipments/{shipment_id}/items")]
     public async Task<IActionResult> UpdateShipmentItems([FromBody] List<PropertyItem> items, int shipment_id)
     {
-        var serviceResult = await _shipmentService.UpdateShipmentItems(items, shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.UpdateShipmentItems(items, shipment_id);
+        if (result)
         {
-            return Ok("Items updated successfully.");
+            return Ok("Shipment updated succesfully.");
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to update shipment");
     }
 
     [HttpDelete("shipments/{shipment_id}")]
     public async Task<IActionResult> DeleteShipment(int shipment_id)
     {
-        var serviceResult = await _shipmentService.DeleteShipment(shipment_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.DeleteShipment(shipment_id);
+        if (result)
         {
             return Ok("Shipment deleted succesfully.");
         }
-        else if (serviceResult.StatusCode == 400)
-        {
-            return BadRequest(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to delete shipment.");
     }
 
     [HttpPut("shipments/Commit/{shipment_id}")]
     public async Task<IActionResult> CommitShipment(int shipment_id)
     {
-        var serviceResult = await _shipmentService.CommitShipment(shipment_id, Request.Headers["API_KEY"]!);
-        
-        if (serviceResult.StatusCode == 200)
+        var result = await _shipmentService.CommitShipment(shipment_id);
+        if (result)
         {
             return Ok("Shipment Commited");
         }
-        else if (serviceResult.StatusCode == 400 || serviceResult.StatusCode == 404)
-        {
-            return BadRequest(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to commit");
     }
 }

@@ -16,80 +16,55 @@ public class InventoryController : Controller
     [HttpGet("inventories/{inventory_id}")]
     public async Task<IActionResult> ReadInventory(int inventory_id)
     {
-        var serviceResult = await _inventoryService.ReadInventory(inventory_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _inventoryService.ReadInventory(inventory_id);
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such inventory with Id: {inventory_id}");
     }
 
     [HttpGet("inventories")]
     public async Task<IActionResult> ReadInventories()
     {
-        var serviceResult = await _inventoryService.ReadInventories(Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _inventoryService.ReadInventories();
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound("No inventories found");
     }
 
     [HttpPost("inventories")]
     public async Task<IActionResult> CreateInventory([FromBody] Inventory inventory)
     {
-        var serviceResult = await _inventoryService.CreateInventory(inventory, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _inventoryService.CreateInventory(inventory);
+        if (result)
         {
             return Ok("Inventory created successfully.");
         }
-        else if (serviceResult.StatusCode == 409)
-        {
-            return Conflict(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to create inventory.");
     }
 
     [HttpPut("inventories/{inventory_id}")]
     public async Task<IActionResult> UpdateInventory([FromBody] Inventory inventory, int inventory_id)
     {
-        var serviceResult = await _inventoryService.UpdateInventory(inventory, inventory_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _inventoryService.UpdateInventory(inventory, inventory_id);
+        if (result)
         {
             return Ok("Inventory updated successfully.");
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to update inventory.");
     }
 
     [HttpDelete("inventories/{inventory_id}")]
     public async Task<IActionResult> DeleteInventory(int inventory_id)
     {
-        var serviceResult = await _inventoryService.DeleteInventory(inventory_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _inventoryService.DeleteInventory(inventory_id);
+        if (result)
         {
             return Ok("Inventory deleted succesfully.");
         }
-        else if (serviceResult.StatusCode == 400)
-        {
-            return BadRequest(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to delete inventory.");
     }
 }

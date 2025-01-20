@@ -22,24 +22,34 @@ public class ApiKeyMiddleware
             await _next(context);  // Bypass middleware for Swagger
             return;
         }
-
         if (!context.Request.Headers.TryGetValue("API_KEY", out var extractedApiKey))
         {
-            context.Response.StatusCode = 401; 
+            context.Response.StatusCode = 401;
             await context.Response.WriteAsync("API Key is missing");
-            await AuditLogService.LogAPIKeyAsync(context.Request.Method, "401 UNAUTHORIZED: Missing API Key", extractedApiKey);
             return;
         }
 
-        if (!await Authorization.AuthorizeUser(extractedApiKey, context.Request.Method, dbContext))
+        var apiKeys = await dbContext.Api_Keys.ToListAsync();
+
+        var apiKeyEntity = null as Api_Key;
+
+        foreach (var key in apiKeys)
+        {
+            if (BCrypt.Net.BCrypt.Verify(extractedApiKey, key.ApiKey))
+            {
+                apiKeyEntity = key;
+                break;
+            }
+        }
+
+        if (apiKeyEntity == null)
         {
             context.Response.StatusCode = 403;
-            await context.Response.WriteAsync("Access Denied: Invalid API Key");
-            await AuditLogService.LogAPIKeyAsync(context.Request.Method, "403 FORBIDDEN: Invalid API Key", extractedApiKey);
+            await context.Response.WriteAsync("Invalid API Key");
             return;
         }
 
-        await AuditLogService.LogAPIKeyAsync(context.Request.Method, "200 OK: Valid API Key used", extractedApiKey);
         await _next(context);
     }
+
 }

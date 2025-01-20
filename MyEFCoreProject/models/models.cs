@@ -5,15 +5,8 @@ public class Api_Key
 {
     public int Id { get; set; }
     public string ApiKey { get; set; }
-    public int Warehouse_Id { get; set; }
     public string App { get; set; }
-}
-
-public class ServiceResult
-{
-    public object Object { get; set; }
-    public int StatusCode { get; set; }
-    public string ErrorMessage { get; set; }
+    public Dictionary<string, bool> Permissions { get; set; }
 }
 
 public class Client
@@ -23,7 +16,7 @@ public class Client
     public string Address { get; set; }
     public string City { get; set; }
     public string Zip_Code { get; set; }
-    public string Province { get; set; }
+    public string? Province { get; set; }
     public string Country { get; set; }
     public string Contact_Name { get; set; }
     public string Contact_Phone { get; set; }
@@ -111,8 +104,8 @@ public class Order
 {
     public int Id { get; set; }
     public int Source_Id { get; set; }
-    public DateTime Order_Date { get; set; }
-    public DateTime Request_Date { get; set; }
+    public string Order_Date { get; set; }
+    public string Request_Date { get; set; }
     public string Reference { get; set; }
     public string Reference_Extra { get; set; }
     public string Order_Status { get; set; }
@@ -177,8 +170,8 @@ public class Transfer
 {
     public int Id { get; set; }
     public string Reference { get; set; }
-    public int? Transfer_From { get; set; }
-    public int? Transfer_To { get; set; }
+    public string? Transfer_From { get; set; }
+    public string Transfer_To { get; set; }
     public string Transfer_Status { get; set; }
     public DateTime Created_At { get; set; }
     public DateTime Updated_At { get; set; }

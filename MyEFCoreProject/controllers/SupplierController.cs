@@ -16,96 +16,66 @@ public class SupplierController : Controller
     [HttpGet("suppliers/{supplier_id}")]
     public async Task<IActionResult> ReadSupplier(int supplier_id)
     {
-        var serviceResult = await _supplierService.ReadSupplier(supplier_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _supplierService.ReadSupplier(supplier_id);
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"No such supplier with Id: {supplier_id}");
     }
 
     [HttpGet("suppliers")]
     public async Task<IActionResult> ReadSuppliers()
     {
-        var serviceResult = await _supplierService.ReadSuppliers(Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _supplierService.ReadSuppliers();
+        if (result != null)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound("No suppliers found");
     }
 
     [HttpGet("suppliers/{supplier_id}/items")]
     public async Task<IActionResult> ReadItemsForSuppliers(int supplier_id)
     {
-        var serviceResult = await _supplierService.ReadItemsForSupplier(supplier_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        List<Item> result = await _supplierService.ReadItemsForSupplier(supplier_id);
+        if (result.Count > 0)
         {
-            return Ok(serviceResult.Object);
+            return Ok(result);
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return NotFound($"no items found for item_type with Id: {supplier_id}");
     }
 
     [HttpPost("suppliers")]
     public async Task<IActionResult> CreateSupplier(Supplier supplier)
     {
-        var serviceResult = await _supplierService.CreateSupplier(supplier, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _supplierService.CreateSupplier(supplier);
+        if (result)
         {
             return Ok("Supplier created successfully.");
         }
-        else if (serviceResult.StatusCode == 409)
-        {
-            return Conflict(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to create supplier.");
     }
 
     [HttpPut("suppliers/{supplier_id}")]
     public async Task<IActionResult> UpdateSupplier(Supplier supplier, int supplier_id)
     {
-        var serviceResult = await _supplierService.UpdateSupplier(supplier, supplier_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _supplierService.UpdateSupplier(supplier, supplier_id);
+        if (result)
         {
             return Ok("Supplier updated successfully.");
         }
-        else if (serviceResult.StatusCode == 404)
-        {
-            return NotFound(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to update supplier.");
     }
 
     [HttpDelete("suppliers/{supplier_id}")]
     public async Task<IActionResult> DeleteSupplier(int supplier_id)
     {
-        var serviceResult = await _supplierService.DeleteSupplier(supplier_id, Request.Headers["API_KEY"]!);
-
-        if (serviceResult.StatusCode == 200)
+        var result = await _supplierService.DeleteSupplier(supplier_id);
+        if (result)
         {
-            return Ok("Supplier deleted succesfully.");
+            return Ok("Supplier deleted successfully.");
         }
-        else if (serviceResult.StatusCode == 400)
-        {
-            return BadRequest(serviceResult.ErrorMessage);
-        }
-        return StatusCode(500, serviceResult.ErrorMessage);
+        return BadRequest("Failed to delete supplier.");
     }
 }

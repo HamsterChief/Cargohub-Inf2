@@ -9,7 +9,7 @@ GET http://localhost:80/swagger
 GET http://localhost:80/api/v1/clients/1/orders
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 ####
-POST http://localhost:80/api/v1/clients
+POST http://localhost:5072/cargohub/clients
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/clients/1
+PUT http://localhost:5072/cargohub/clients/1
 Content-Type: application/json
 
 {
@@ -44,14 +44,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/clients/1
+DELETE http://localhost:5072/cargohub/clients/1
 
 ############inventories
 
-GET http://localhost:80/api/v1/inventories/1
+GET http://localhost:5072/cargohub/inventories/1
 
 ####
-POST http://localhost:80/api/v1/inventories
+POST http://localhost:5072/cargohub/inventories
 Content-Type: application/json
 
 {
@@ -68,7 +68,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/inventories/1
+PUT http://localhost:5072/cargohub/inventories/1
 Content-Type: application/json
 
 {
@@ -85,14 +85,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/inventories/1
+DELETE http://localhost:5072/cargohub/inventories/1
 
 ############item_groups
 
-GET http://localhost:80/api/v1/item_groups/1
+GET http://localhost:5072/cargohub/item_groups/1
 
 ####
-POST http://localhost:80/api/v1/item_groups
+POST http://localhost:5072/cargohub/item_groups
 Content-Type: application/json
 
 {
@@ -102,7 +102,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/item_groups/1
+PUT http://localhost:5072/cargohub/item_groups/1
 Content-Type: application/json
 
 {
@@ -112,14 +112,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/item_groups/1
+DELETE http://localhost:5072/cargohub/item_groups/1
 
 ############item_lines
 
-GET http://localhost:80/api/v1/item_lines/1
+GET http://localhost:5072/cargohub/item_lines/1
 
 ####
-POST http://localhost:80/api/v1/item_lines
+POST http://localhost:5072/cargohub/item_lines
 Content-Type: application/json
 
 {
@@ -129,7 +129,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/item_lines/1
+PUT http://localhost:5072/cargohub/item_lines/1
 Content-Type: application/json
 
 {
@@ -139,14 +139,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/item_lines/1
+DELETE http://localhost:5072/cargohub/item_lines/1
 
 ############item_lines
 
-GET http://localhost:80/api/v1/item_lines/1
+GET http://localhost:5072/cargohub/item_lines/1
 
 ####
-POST http://localhost:80/api/v1/item_lines
+POST http://localhost:5072/cargohub/item_lines
 Content-Type: application/json
 
 {
@@ -156,7 +156,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/item_lines/1
+PUT http://localhost:5072/cargohub/item_lines/1
 Content-Type: application/json
 
 {
@@ -166,14 +166,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/item_lines/1
+DELETE http://localhost:5072/cargohub/item_lines/1
 
 ############item_types
 
-GET http://localhost:80/api/v1/item_types/1
+GET http://localhost:5072/cargohub/item_types/1
 
 ####
-POST http://localhost:80/api/v1/item_types
+POST http://localhost:5072/cargohub/item_types
 Content-Type: application/json
 
 {
@@ -183,7 +183,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/item_types/1
+PUT http://localhost:5072/cargohub/item_types/1
 Content-Type: application/json
 
 {
@@ -193,14 +193,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/item_types/1
+DELETE http://localhost:5072/cargohub/item_types/1
 
 ############items
 
-GET http://localhost:80/api/v1/items/P000001
+GET http://localhost:5072/cargohub/items/P000001
 
 ####
-POST http://localhost:80/api/v1/items
+POST http://localhost:5072/cargohub/items
 Content-Type: application/json
 
 {
@@ -223,7 +223,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/items/P000001
+PUT http://localhost:5072/cargohub/items/P000001
 Content-Type: application/json
 
 {
@@ -246,14 +246,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/items/P000001
+DELETE http://localhost:5072/cargohub/items/P000001
 
 ############locations
 
-GET http://localhost:80/api/v1/locations/1
+GET http://localhost:5072/cargohub/locations/1
 
 ####
-POST http://localhost:80/api/v1/locations
+POST http://localhost:5072/cargohub/locations
 Content-Type: application/json
 
 {
@@ -264,7 +264,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/locations/1
+PUT http://localhost:5072/cargohub/locations/1
 Content-Type: application/json
 
 {
@@ -275,14 +275,14 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/locations/1
+DELETE http://localhost:5072/cargohub/locations/1
 
 ############orders
 
-GET http://localhost:80/api/v1/orders/1
+GET http://localhost:5072/cargohub/orders/1
 
 ####
-POST http://localhost:80/api/v1/orders
+POST http://localhost:5072/cargohub/orders
 Content-Type: application/json
 
 {
@@ -394,7 +394,7 @@ Content-Type: application/json
         ]
 }
 ####
-PUT http://localhost:80/api/v1/orders/1
+PUT http://localhost:5072/cargohub/orders/1
 Content-Type: application/json
 
 {
@@ -507,23 +507,23 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/orders/1
+DELETE http://localhost:5072/cargohub/orders/1
 
 ############shipments
 
-GET http://localhost:80/api/v1/shipments/1
+GET http://localhost:5072/cargohub/shipments/1
 
 ####
-GET http://localhost:80/api/v1/shipments/1/orders
+GET http://localhost:5072/cargohub/shipments/1/orders
 ####
 
-GET http://localhost:80/api/v1/shipments?page=1
+GET http://localhost:5072/cargohub/shipments?page=1
 
 ####
-GET http://localhost:80/api/v1/shipments/1/items
+GET http://localhost:5072/cargohub/shipments/1/items
 
 ####
-POST http://localhost:80/api/v1/shipments
+POST http://localhost:5072/cargohub/shipments
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
@@ -556,7 +556,7 @@ Content-Type: application/json
     ]
 }
 ####
-PUT http://localhost:80/api/v1/shipments/1/items
+PUT http://localhost:5072/cargohub/shipments/1/items
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
@@ -584,7 +584,7 @@ Content-Type: application/json
   {"item_id": "P009686", "amount": 13}
 ]
 ####
-PUT http://localhost:80/api/v1/shipments/1/orders
+PUT http://localhost:5072/cargohub/shipments/1/orders
 Content-Type: application/json
 
 {
@@ -696,7 +696,7 @@ Content-Type: application/json
         ]
 }
 ####
-PUT http://localhost:80/api/v1/shipments/1
+PUT http://localhost:5072/cargohub/shipments/1
 Content-Type: application/json
 
 {
@@ -729,15 +729,15 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/shipments/1
+DELETE http://localhost:5072/cargohub/shipments/1
 
 ############suppliers
 
-GET http://localhost:80/api/v1/suppliers/1
+GET http://localhost:5072/cargohub/suppliers/1
 
 ####
 
-POST http://localhost:80/api/v1/suppliers
+POST http://localhost:5072/cargohub/suppliers
 Content-Type: application/json
 
 {
@@ -757,7 +757,7 @@ Content-Type: application/json
 
 ####
 
-PUT http://localhost:80/api/v1/suppliers/1
+PUT http://localhost:5072/cargohub/suppliers/1
 Content-Type: application/json
 
 {
@@ -777,15 +777,15 @@ Content-Type: application/json
 
 ####
 
-DELETE http://localhost:80/api/v1/suppliers/1
+DELETE http://localhost:5072/cargohub/suppliers/1
 
 ############transfers
 
-GET http://localhost:80/api/v1/transfers/1
+GET http://localhost:5072/cargohub/transfers/1
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ####
-POST http://localhost:80/api/v1/transfers
+POST http://localhost:5072/cargohub/transfers
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
@@ -804,7 +804,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/transfers/1
+PUT http://localhost:5072/cargohub/transfers/1
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
@@ -824,15 +824,15 @@ Content-Type: application/json
 
 ####
 
-DELETE http://localhost:80/api/v1/transfers/1
+DELETE http://localhost:5072/cargohub/transfers/1
 API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ############warehouses
 
-GET http://localhost:80/api/v1/warehouses/1
+GET http://localhost:5072/cargohub/warehouses/1
 
 ####
-POST http://localhost:80/api/v1/warehouses
+POST http://localhost:5072/cargohub/warehouses
 Content-Type: application/json
 
 {
@@ -848,7 +848,7 @@ Content-Type: application/json
 }
 
 ####
-PUT http://localhost:80/api/v1/warehouses/1
+PUT http://localhost:5072/cargohub/warehouses/1
 Content-Type: application/json
 
 {
@@ -864,4 +864,4 @@ Content-Type: application/json
 }
 
 ####
-DELETE http://localhost:80/api/v1/warehouses/1
+DELETE http://localhost:5072/cargohub/warehouses/1

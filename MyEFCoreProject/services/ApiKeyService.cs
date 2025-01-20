@@ -1,42 +1,43 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-public static class ApiKeyService
+
+public class ApiKeyService
 {
-    public static string GenerateApiKey()
+    private readonly DatabaseContext _dbContext;
+
+    public ApiKeyService(DatabaseContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public string GenerateApiKey()
     {
         return Guid.NewGuid().ToString(); 
     }
 
-    public static string HashApiKey(string apiKey)
+    public string HashApiKey(string apiKey)
     {
         return BCrypt.Net.BCrypt.HashPassword(apiKey);
     }
 
-    public static async Task<string> RequestGenerateAsync(int warehouse_id, DatabaseContext context)
-    {
-        await CreateAndSaveApiKeyAsync("dashboard", warehouse_id, context);
-        await CreateAndSaveApiKeyAsync("scanner", warehouse_id, context);
-        return "";
-    }
-
-    public static async Task<string> CreateAndSaveApiKeyAsync(string appName, int warehouse_id, DatabaseContext context)
+    public async Task<string> CreateAndSaveApiKeyAsync(string appName, Dictionary<string, bool> permissions)
     {
         var rawApiKey = GenerateApiKey();
-        var encryptApiKey = HashApiKey(rawApiKey);
+        var hashedApiKey = HashApiKey(rawApiKey);
 
         var newApiKey = new Api_Key
         {
-            ApiKey = encryptApiKey,
-            Warehouse_Id = warehouse_id,
-            App = appName
+            ApiKey = hashedApiKey,
+            App = appName,
+            Permissions = permissions
         };
 
-        context.Api_Keys.Add(newApiKey);
-        await context.SaveChangesAsync();
+        _dbContext.Api_Keys.Add(newApiKey);
+        await _dbContext.SaveChangesAsync();
 
-        Console.WriteLine($"Warehouse '{warehouse_id}' raw api key: {rawApiKey}");
+        Console.WriteLine($"The raw api key is: {rawApiKey}");
 
-        return $"{rawApiKey}, {warehouse_id}, {appName}";
+        return rawApiKey;
     }
 }
