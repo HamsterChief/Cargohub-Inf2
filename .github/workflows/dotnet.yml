@@ -73,7 +73,7 @@ jobs:
     # -v for more detailed output (easier debugging)
       run: |
           sleep 20  # Sleep to ensure the server is ready
-          pytest ~/persistent-dir/Cargohub-Inf2/Integrationtests/endpoints_tests.py -v
+          pytest ~/persistent-dir/Cargohub-Inf2/integrationtests/endpoints_tests.py -v
 
 
     # Always restore the original appsettings.json
