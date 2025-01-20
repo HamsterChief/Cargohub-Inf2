@@ -1,13 +1,33 @@
+GET http://localhost:5072/cargohub/datamigrate
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+
+#### CREATE [WAREHOUSE DASHBOARD - API KEYS] IF DON'T EXIST
+POST http://localhost:5072/cargohub/apikey/create/warehouses
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+APP_NAME: dashboard
+
+#### CREATE [WAREHOUSE SCANNER - API KEYS] IF DON'T EXIST
+POST http://localhost:5072/cargohub/apikey/create/warehouses
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+APP_NAME: scanner
+
+#### TEST API KEY MATCH IN DATABASE
+GET http://localhost:5072/cargohub/apikey/test/apikeymatch
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+
+#### delete by warehouse_id
+DELETE http://localhost:5072/cargohub/apikey/delete/10
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+
 ############clients
-GET http://localhost:5072/cargohub/clients/1
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+GET http://localhost:5072/cargohub/clients/2007
+API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 GET http://localhost:5072/cargohub/clients/1/orders
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+
 ####
 POST http://localhost:5072/cargohub/clients
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
@@ -46,6 +66,7 @@ DELETE http://localhost:5072/cargohub/clients/1
 ############inventories
 
 GET http://localhost:5072/cargohub/inventories/1
+API_KEY: 3a3c8bc3-c621-40dc-96ab-53f6ca2176e5
 
 ####
 POST http://localhost:5072/cargohub/inventories
@@ -113,7 +134,8 @@ DELETE http://localhost:5072/cargohub/item_groups/1
 
 ############item_lines
 
-GET http://localhost:5072/cargohub/item_lines/1
+GET http://localhost:5072/cargohub/item_lines
+API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 POST http://localhost:5072/cargohub/item_lines
@@ -167,7 +189,8 @@ DELETE http://localhost:5072/cargohub/item_lines/1
 
 ############item_types
 
-GET http://localhost:5072/cargohub/item_types/1
+GET http://localhost:5072/cargohub/item_types
+API_KEY: c28469f3-0d63-4567-906f-34d927cbcb1c
 
 ####
 POST http://localhost:5072/cargohub/item_types
@@ -247,7 +270,8 @@ DELETE http://localhost:5072/cargohub/items/P000001
 
 ############locations
 
-GET http://localhost:5072/cargohub/locations/1
+GET http://localhost:5072/cargohub/locations
+API_KEY: c28469f3-0d63-4567-906f-34d927cbcb1c
 
 ####
 POST http://localhost:5072/cargohub/locations
@@ -276,7 +300,8 @@ DELETE http://localhost:5072/cargohub/locations/1
 
 ############orders
 
-GET http://localhost:5072/cargohub/orders/1
+GET http://localhost:5072/cargohub/orders
+API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 POST http://localhost:5072/cargohub/orders
@@ -521,7 +546,6 @@ GET http://localhost:5072/cargohub/shipments/1/items
 
 ####
 POST http://localhost:5072/cargohub/shipments
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
@@ -552,34 +576,6 @@ Content-Type: application/json
         }
     ]
 }
-####
-PUT http://localhost:5072/cargohub/shipments/1/items
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
-Content-Type: application/json
-
-[
-  {"item_id": "P007435", "amount": 22}, 
-  {"item_id": "P009557", "amount": 1}, 
-  {"item_id": "P009553", "amount": 50}, 
-  {"item_id": "P010015", "amount": 16}, 
-  {"item_id": "P002084", "amount": 33}, 
-  {"item_id": "P009663", "amount": 18}, 
-  {"item_id": "P010125", "amount": 18}, 
-  {"item_id": "P005768", "amount": 26}, 
-  {"item_id": "P004051", "amount": 1}, 
-  {"item_id": "P005026", "amount": 29}, 
-  {"item_id": "P000726", "amount": 22}, 
-  {"item_id": "P008107", "amount": 47}, 
-  {"item_id": "P001598", "amount": 32}, 
-  {"item_id": "P002855", "amount": 20}, 
-  {"item_id": "P010404", "amount": 30}, 
-  {"item_id": "P010446", "amount": 6}, 
-  {"item_id": "P001517", "amount": 9}, 
-  {"item_id": "P009265", "amount": 2}, 
-  {"item_id": "P001108", "amount": 20}, 
-  {"item_id": "P009110", "amount": 18}, 
-  {"item_id": "P009686", "amount": 13}
-]
 ####
 PUT http://localhost:5072/cargohub/shipments/1/orders
 Content-Type: application/json
@@ -779,30 +775,27 @@ DELETE http://localhost:5072/cargohub/suppliers/1
 ############transfers
 
 GET http://localhost:5072/cargohub/transfers/1
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ####
 POST http://localhost:5072/cargohub/transfers
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
     "id": 1,
     "reference": "TR00001",
-    "transfer_from": 0,
-    "transfer_to": 9229,
-    "transfer_status": "Scheduled",
+    "transfer_from": null,
+    "transfer_to": "9229",
+    "transfer_status": "Pending",
     "items": [
         {
             "item_id": "P007435",
-                    "amount": 23
+            "amount": 23
         }
     ]
 }
 
 ####
 PUT http://localhost:5072/cargohub/transfers/1
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 Content-Type: application/json
 
 {
@@ -820,9 +813,7 @@ Content-Type: application/json
 }
 
 ####
-
 DELETE http://localhost:5072/cargohub/transfers/1
-API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
 
 ############warehouses
 
@@ -862,3 +853,7 @@ Content-Type: application/json
 
 ####
 DELETE http://localhost:5072/cargohub/warehouses/1
+
+####
+DELETE http://localhost:5072/cargohub/warehouses/1
+API_KEY: f3f0efb1-917d-4457-a279-90280da97439

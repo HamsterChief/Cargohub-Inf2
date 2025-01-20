@@ -16,66 +16,96 @@ public class Item_LineController : Controller
     [HttpGet("item_lines/{item_line_id}")]
     public async Task<IActionResult> ReadItem_Line(int item_line_id)
     {
-        var result = await _item_LineService.ReadItem_Line(item_line_id);
-        if (result != null)
+        var serviceResult = await _item_LineService.ReadItem_Line(item_line_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound($"No such item_line with Id: {item_line_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("item_lines")]
     public async Task<IActionResult> ReadItem_Lines()
     {
-        var result = await _item_LineService.ReadItem_Lines();
-        if (result != null)
+        var serviceResult = await _item_LineService.ReadItem_Lines(Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound("No item_lines found");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpGet("item_lines/{item_line_id}/items")]
     public async Task<IActionResult> ReadItemsForItem_Line(int item_line_id)
     {
-        List<Item> result = await _item_LineService.ReadItemsForItem_Line(item_line_id);
-        if (result.Count > 0)
+        var serviceResult = await _item_LineService.ReadItemsForItem_Line(item_line_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
-            return Ok(result);
+            return Ok(serviceResult.Object);
         }
-        return NotFound($"no items found for item_line with Id: {item_line_id}");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPost("item_lines")]
     public async Task<IActionResult> CreateItem_Line([FromBody] Item_Line item_line)
     {
-        var result = await _item_LineService.CreateItem_Line(item_line);
-        if (result)
+        var serviceResult = await _item_LineService.CreateItem_Line(item_line, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Item_line created successfully.");
         }
-        return BadRequest("Failed to create item_line.");
+        else if (serviceResult.StatusCode == 409)
+        {
+            return Conflict(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpPut("item_lines/{item_line_id}")]
     public async Task<IActionResult> UpdateItem_Line([FromBody] Item_Line item_line, int item_line_id)
     {
-        var result = await _item_LineService.UpdateItem_Line(item_line, item_line_id);
-        if (result)
+        var serviceResult = await _item_LineService.UpdateItem_Line(item_line, item_line_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Item_line updated successfully.");
         }
-        return BadRequest("Failed to update item_line.");
+        else if (serviceResult.StatusCode == 404)
+        {
+            return NotFound(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 
     [HttpDelete("item_lines/{item_line_id}")]
     public async Task<IActionResult> DeleteItem_Line(int item_line_id)
     {
-        var result = await _item_LineService.DeleteItem_Line(item_line_id);
-        if (result)
+        var serviceResult = await _item_LineService.DeleteItem_Line(item_line_id, Request.Headers["API_KEY"]!);
+
+        if (serviceResult.StatusCode == 200)
         {
             return Ok("Item_line deleted succesfully.");
         }
-        return BadRequest("Failed to delete item_line.");
+        else if (serviceResult.StatusCode == 400)
+        {
+            return BadRequest(serviceResult.ErrorMessage);
+        }
+        return StatusCode(500, serviceResult.ErrorMessage);
     }
 }
