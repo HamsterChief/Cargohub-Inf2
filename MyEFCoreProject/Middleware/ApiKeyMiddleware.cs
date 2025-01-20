@@ -12,7 +12,6 @@ public class ApiKeyMiddleware
 
     public async Task InvokeAsync(HttpContext context, DatabaseContext dbContext)
     {
-<<<<<<< HEAD
         if (context.Request.Path.Equals("/api/v1", StringComparison.OrdinalIgnoreCase))
         {
             await _next(context);  // Bypass middleware for api/v1
@@ -24,8 +23,6 @@ public class ApiKeyMiddleware
             return;
         }
 
-=======
->>>>>>> Melvern7
         if (!context.Request.Headers.TryGetValue("API_KEY", out var extractedApiKey))
         {
             context.Response.StatusCode = 401; 

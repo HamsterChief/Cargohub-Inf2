@@ -2,11 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyEFCoreProject.Controllers;
 
-<<<<<<< HEAD
 [Route("api/v1")]
-=======
-[Route("cargohub")]
->>>>>>> Melvern7
 [ApiController]
 public class Item_LineController : Controller
 {

@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\jimmy\\Documents\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {}
   },
   "projects": {
@@ -20,22 +19,6 @@
         "configFilePaths": [
           "C:\\Users\\jimmy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-=======
-    "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
-        "projectName": "MyEFCoreProject",
-        "projectPath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\MyEFCoreProject.csproj",
-        "packagesPath": "C:\\Users\\jimmy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jimmy\\OneDrive\\Documenten\\GitHub\\Cargohub-Inf2\\MyEFCoreProject\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\jimmy\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> Melvern7
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,10 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-<<<<<<< HEAD
           "C:\\Program Files\\dotnet\\library-packs": {},
-=======
->>>>>>> Melvern7
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,7 +50,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-<<<<<<< HEAD
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
@@ -82,21 +61,11 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
-=======
-            "BCrypt.net": {
-              "target": "Package",
-              "version": "[0.1.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.0, )"
->>>>>>> Melvern7
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-<<<<<<< HEAD
               "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
@@ -106,19 +75,11 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.0, )"
-=======
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[9.0.0, )"
->>>>>>> Melvern7
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-<<<<<<< HEAD
               "version": "[8.0.0, )"
             },
             "Microsoft.NET.Test.Sdk": {
@@ -128,14 +89,10 @@
             "Moq": {
               "target": "Package",
               "version": "[4.20.72, )"
-=======
-              "version": "[9.0.0, )"
->>>>>>> Melvern7
             },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
-<<<<<<< HEAD
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -150,8 +107,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.0.0, )"
-=======
->>>>>>> Melvern7
             }
           },
           "imports": [
@@ -173,11 +128,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
->>>>>>> Melvern7
         }
       }
     }
