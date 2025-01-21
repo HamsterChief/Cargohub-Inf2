@@ -1,11 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
-=======
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +8,6 @@ builder.WebHost.UseUrls("http://0.0.0.0:80");
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
->>>>>>> C#-Cargohub
 
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
@@ -38,34 +30,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-<<<<<<< HEAD
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
-app.UseRouting();
-
-app.UseSession();
-
-app.UseMiddleware<ApiKeyMiddleware>();
-
-app.UseHttpsRedirection();
-
-app.MapControllers();
-
-// Add authorization middleware if required
-// app.UseAuthorization(); 
-// to run on the ssh: 
-// cd Cargohub-inf2 ->
-// cd MyEFCoreProject ->
-// nohup dotnet run --urls "http://0.0.0.0:5072" > output.log 2>&1 &
-
-app.Urls.Add("http://localhost:80");
-
-=======
 // Add Swagger
 builder.Services.AddSwaggerGen(c =>
 {
@@ -105,5 +69,4 @@ if (app.Environment.IsDevelopment() || true) // Allow Swagger in all environment
 
 app.MapControllers();
 
->>>>>>> C#-Cargohub
 app.Run();

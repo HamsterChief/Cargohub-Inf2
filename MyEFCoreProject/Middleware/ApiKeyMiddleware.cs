@@ -25,7 +25,7 @@ public class ApiKeyMiddleware
 
         if (!context.Request.Headers.TryGetValue("API_KEY", out var extractedApiKey))
         {
-            context.Response.StatusCode = 401;
+            context.Response.StatusCode = 401; 
             await context.Response.WriteAsync("API Key is missing");
             await AuditLogService.LogAPIKeyAsync(context.Request.Method, "401 UNAUTHORIZED: Missing API Key", extractedApiKey);
             return;

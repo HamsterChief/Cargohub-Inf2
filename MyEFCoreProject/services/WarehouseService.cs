@@ -100,7 +100,7 @@ public class WarehouseService : IWarehouseService
                 return new ServiceResult { StatusCode = 500, ErrorMessage = "Failed to create warehouse, please try again" };
             }
 
-            await AuditLogService.LogActionAsync("POST", "200 OK: Warehouse created succesfully", api_key);
+            await AuditLogService.LogActionAsync("POST", "200 OK: Warehouse created succesfully", api_key );
             return new ServiceResult { StatusCode = 200 };
         }
         catch (Exception ex)
@@ -161,7 +161,7 @@ public class WarehouseService : IWarehouseService
             _context.Warehouses.Remove(warehouse);
             _context.Api_Keys.RemoveRange(_context.Api_Keys.Where(instance => instance.Warehouse_Id == warehouse_id));
             int n = await _context.SaveChangesAsync();
-
+            
             if (n == 0)
             {
                 await AuditLogService.LogActionAsync("DELETE", $"500 INTERNAL SERVER ERROR: Failed to delete warehouse with id {warehouse_id}", api_key);

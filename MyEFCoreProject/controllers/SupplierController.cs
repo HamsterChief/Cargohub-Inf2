@@ -12,7 +12,7 @@ public class SupplierController : Controller
     {
         _supplierService = supplierService;
     }
-
+  
     [HttpGet("suppliers/{supplier_id}")]
     public async Task<IActionResult> ReadSupplier(int supplier_id)
     {

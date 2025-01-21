@@ -624,39 +624,17 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\M
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\MyEFCoreProject.pdb
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Humanizer.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Build.Locator.dll
-=======
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
-=======
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Data.Sqlite.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
-=======
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
@@ -668,13 +646,6 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\S
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.Composition.Hosting.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.Composition.TypedParts.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.IO.Pipelines.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.Text.Encodings.Web.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\System.Text.Json.dll
-=======
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -727,22 +698,6 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\r
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-=======
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-arm\native\libe_sqlite3.so
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-arm64\native\libe_sqlite3.so
@@ -750,10 +705,6 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\r
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-mips64\native\libe_sqlite3.so
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
-=======
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\linux-s390x\native\libe_sqlite3.so
@@ -767,10 +718,6 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\r
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
-=======
->>>>>>> C#-Cargohub
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.csproj.AssemblyReference.cache
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.AssemblyInfoInputs.cache
@@ -793,9 +740,6 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\M
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\MyEFCoreProject.genruntimeconfig.cache
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\obj\Debug\net8.0\ref\MyEFCoreProject.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\BCrypt.Net.dll
-<<<<<<< HEAD
-C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\BCrypt.Net.dll
-=======
 <<<<<<< HEAD
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\jimmy\OneDrive\Documenten\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -893,4 +837,3 @@ C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\z
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\jimmy\Documents\GitHub\Cargohub-Inf2\MyEFCoreProject\bin\Debug\net8.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
->>>>>>> C#-Cargohub
