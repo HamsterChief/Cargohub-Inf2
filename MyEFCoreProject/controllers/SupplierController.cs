@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyEFCoreProject.Controllers;
 
-[Route("cargohub")]
+[Route("api/v1")]
 [ApiController]
 public class SupplierController : Controller
 {
@@ -12,7 +12,7 @@ public class SupplierController : Controller
     {
         _supplierService = supplierService;
     }
-  
+
     [HttpGet("suppliers/{supplier_id}")]
     public async Task<IActionResult> ReadSupplier(int supplier_id)
     {

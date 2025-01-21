@@ -8,7 +8,7 @@ import requests
 # Return back to 'cargohub_database.db' when using the actual database and REST client.
 
 # TODO: replace with test server url
-BASE_URL = "http://localhost:80/cargohub"
+BASE_URL = "http://localhost:80/api/v1"
 
 # DEFAULT TEST API_KEY - cargohub_database.db + cargohub_test_database.db
 API_KEY = "f3f0efb1-917d-4457-a279-90280da97439"
@@ -925,5 +925,5 @@ def test_data_check_delete_warehouse():
     assert response.status_code == 404
 
     # Delete automaticaly created api_keys.
-    requests.delete(f"{BASE_URL}/apikey/delete/10", headers={"API_KEY": API_KEY}, timeout=10)
-    requests.delete(f"{BASE_URL}/apikey/delete/10", headers={"API_KEY": API_KEY}, timeout=10)
+    # requests.delete(f"{BASE_URL}/apikey/delete/10", headers={"API_KEY": API_KEY}, timeout=10)
+    # requests.delete(f"{BASE_URL}/apikey/delete/10", headers={"API_KEY": API_KEY}, timeout=10)

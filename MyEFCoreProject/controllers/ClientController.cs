@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MyEFCoreProject.Controllers;
 
-[Route("cargohub")]
+[Route("api/v1")]
 [ApiController]
 public class ClientController : Controller
 {
@@ -13,7 +13,7 @@ public class ClientController : Controller
     {
         _clientService = clientService;
     }
-    
+
     [HttpGet("clients/{client_id}")]
     public async Task<IActionResult> ReadClient(int client_id)
     {
@@ -98,7 +98,7 @@ public class ClientController : Controller
     public async Task<IActionResult> DeleteClient(int client_id)
     {
         var serviceResult = await _clientService.DeleteClient(client_id, Request.Headers["API_KEY"]!);
-        
+
         if (serviceResult.StatusCode == 200)
         {
             return Ok("Client deleted succesfully.");

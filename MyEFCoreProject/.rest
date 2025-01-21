@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+############clients
+put http://localhost:80/api/v1/shipments/Commit/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+
+#######
+GET http://localhost:80/swagger
+
+####
+GET http://localhost:80/api/v1/clients/1/orders
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+####
+POST http://localhost:80/api/v1/clients
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+=======
 GET http://localhost:5072/cargohub/datamigrate
 API_KEY: f3f0efb1-917d-4457-a279-90280da97439
 
@@ -20,14 +35,15 @@ DELETE http://localhost:5072/cargohub/apikey/delete/10
 API_KEY: f3f0efb1-917d-4457-a279-90280da97439
 
 ############clients
-GET http://localhost:5072/cargohub/clients/2007
-API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
+GET http://localhost:5072/cargohub/clients/1
+API_KEY: dab830d6-fa92-4d87-9698-caa028e53de3
 
 ####
 GET http://localhost:5072/cargohub/clients/1/orders
 
 ####
 POST http://localhost:5072/cargohub/clients
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -44,7 +60,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/clients/1
+=======
 PUT http://localhost:5072/cargohub/clients/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -61,6 +81,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/clients/1
+
+############inventories
+
+GET http://localhost:80/api/v1/inventories/1
+
+####
+POST http://localhost:80/api/v1/inventories
+=======
 DELETE http://localhost:5072/cargohub/clients/1
 
 ############inventories
@@ -70,6 +100,7 @@ API_KEY: 3a3c8bc3-c621-40dc-96ab-53f6ca2176e5
 
 ####
 POST http://localhost:5072/cargohub/inventories
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -86,7 +117,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/inventories/1
+=======
 PUT http://localhost:5072/cargohub/inventories/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -103,6 +138,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/inventories/1
+
+############item_groups
+
+GET http://localhost:80/api/v1/item_groups/1
+
+####
+POST http://localhost:80/api/v1/item_groups
+=======
 DELETE http://localhost:5072/cargohub/inventories/1
 
 ############item_groups
@@ -111,6 +156,7 @@ GET http://localhost:5072/cargohub/item_groups/1
 
 ####
 POST http://localhost:5072/cargohub/item_groups
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -120,7 +166,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/item_groups/1
+=======
 PUT http://localhost:5072/cargohub/item_groups/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -130,6 +180,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/item_groups/1
+
+############item_lines
+
+GET http://localhost:80/api/v1/item_lines/1
+
+####
+POST http://localhost:80/api/v1/item_lines
+=======
 DELETE http://localhost:5072/cargohub/item_groups/1
 
 ############item_lines
@@ -139,6 +199,7 @@ API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 POST http://localhost:5072/cargohub/item_lines
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -148,7 +209,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/item_lines/1
+=======
 PUT http://localhost:5072/cargohub/item_lines/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -158,6 +223,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/item_lines/1
+
+############item_lines
+
+GET http://localhost:80/api/v1/item_lines/1
+
+####
+POST http://localhost:80/api/v1/item_lines
+=======
 DELETE http://localhost:5072/cargohub/item_lines/1
 
 ############item_lines
@@ -166,6 +241,7 @@ GET http://localhost:5072/cargohub/item_lines/1
 
 ####
 POST http://localhost:5072/cargohub/item_lines
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -175,7 +251,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/item_lines/1
+=======
 PUT http://localhost:5072/cargohub/item_lines/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -185,6 +265,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/item_lines/1
+
+############item_types
+
+GET http://localhost:80/api/v1/item_types/1
+
+####
+POST http://localhost:80/api/v1/item_types
+=======
 DELETE http://localhost:5072/cargohub/item_lines/1
 
 ############item_types
@@ -194,6 +284,7 @@ API_KEY: c28469f3-0d63-4567-906f-34d927cbcb1c
 
 ####
 POST http://localhost:5072/cargohub/item_types
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -203,7 +294,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/item_types/1
+=======
 PUT http://localhost:5072/cargohub/item_types/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -213,6 +308,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/item_types/1
+
+############items
+
+GET http://localhost:80/api/v1/items/P000001
+
+####
+POST http://localhost:80/api/v1/items
+=======
 DELETE http://localhost:5072/cargohub/item_types/1
 
 ############items
@@ -221,6 +326,7 @@ GET http://localhost:5072/cargohub/items/P000001
 
 ####
 POST http://localhost:5072/cargohub/items
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -243,7 +349,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/items/P000001
+=======
 PUT http://localhost:5072/cargohub/items/P000001
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -266,6 +376,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/items/P000001
+
+############locations
+
+GET http://localhost:80/api/v1/locations/1
+
+####
+POST http://localhost:80/api/v1/locations
+=======
 DELETE http://localhost:5072/cargohub/items/P000001
 
 ############locations
@@ -275,6 +395,7 @@ API_KEY: c28469f3-0d63-4567-906f-34d927cbcb1c
 
 ####
 POST http://localhost:5072/cargohub/locations
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -285,7 +406,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/locations/1
+=======
 PUT http://localhost:5072/cargohub/locations/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -296,6 +421,16 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/locations/1
+
+############orders
+
+GET http://localhost:80/api/v1/orders/1
+
+####
+POST http://localhost:80/api/v1/orders
+=======
 DELETE http://localhost:5072/cargohub/locations/1
 
 ############orders
@@ -305,6 +440,7 @@ API_KEY: cb602fc3-40b1-4561-a83d-6dd0bfe3bb96
 
 ####
 POST http://localhost:5072/cargohub/orders
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -416,7 +552,11 @@ Content-Type: application/json
         ]
 }
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/orders/1
+=======
 PUT http://localhost:5072/cargohub/orders/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -529,6 +669,26 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/orders/1
+
+############shipments
+
+GET http://localhost:80/api/v1/shipments/1
+
+####
+GET http://localhost:80/api/v1/shipments/1/orders
+####
+
+GET http://localhost:80/api/v1/shipments?page=1
+
+####
+GET http://localhost:80/api/v1/shipments/1/items
+
+####
+POST http://localhost:80/api/v1/shipments
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+=======
 DELETE http://localhost:5072/cargohub/orders/1
 
 ############shipments
@@ -546,6 +706,7 @@ GET http://localhost:5072/cargohub/shipments/1/items
 
 ####
 POST http://localhost:5072/cargohub/shipments
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -577,7 +738,39 @@ Content-Type: application/json
     ]
 }
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/shipments/1/items
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+Content-Type: application/json
+
+[
+  {"item_id": "P007435", "amount": 22}, 
+  {"item_id": "P009557", "amount": 1}, 
+  {"item_id": "P009553", "amount": 50}, 
+  {"item_id": "P010015", "amount": 16}, 
+  {"item_id": "P002084", "amount": 33}, 
+  {"item_id": "P009663", "amount": 18}, 
+  {"item_id": "P010125", "amount": 18}, 
+  {"item_id": "P005768", "amount": 26}, 
+  {"item_id": "P004051", "amount": 1}, 
+  {"item_id": "P005026", "amount": 29}, 
+  {"item_id": "P000726", "amount": 22}, 
+  {"item_id": "P008107", "amount": 47}, 
+  {"item_id": "P001598", "amount": 32}, 
+  {"item_id": "P002855", "amount": 20}, 
+  {"item_id": "P010404", "amount": 30}, 
+  {"item_id": "P010446", "amount": 6}, 
+  {"item_id": "P001517", "amount": 9}, 
+  {"item_id": "P009265", "amount": 2}, 
+  {"item_id": "P001108", "amount": 20}, 
+  {"item_id": "P009110", "amount": 18}, 
+  {"item_id": "P009686", "amount": 13}
+]
+####
+PUT http://localhost:80/api/v1/shipments/1/orders
+=======
 PUT http://localhost:5072/cargohub/shipments/1/orders
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -689,7 +882,11 @@ Content-Type: application/json
         ]
 }
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/shipments/1
+=======
 PUT http://localhost:5072/cargohub/shipments/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -722,6 +919,17 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/shipments/1
+
+############suppliers
+
+GET http://localhost:80/api/v1/suppliers/1
+
+####
+
+POST http://localhost:80/api/v1/suppliers
+=======
 DELETE http://localhost:5072/cargohub/shipments/1
 
 ############suppliers
@@ -731,6 +939,7 @@ GET http://localhost:5072/cargohub/suppliers/1
 ####
 
 POST http://localhost:5072/cargohub/suppliers
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -750,7 +959,11 @@ Content-Type: application/json
 
 ####
 
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/suppliers/1
+=======
 PUT http://localhost:5072/cargohub/suppliers/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -770,6 +983,18 @@ Content-Type: application/json
 
 ####
 
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/suppliers/1
+
+############transfers
+
+GET http://localhost:80/api/v1/transfers/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+
+####
+POST http://localhost:80/api/v1/transfers
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+=======
 DELETE http://localhost:5072/cargohub/suppliers/1
 
 ############transfers
@@ -778,11 +1003,21 @@ GET http://localhost:5072/cargohub/transfers/1
 
 ####
 POST http://localhost:5072/cargohub/transfers
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
     "id": 1,
     "reference": "TR00001",
+<<<<<<< HEAD
+    "transfer_from": 0,
+    "transfer_to": 9229,
+    "transfer_status": "Scheduled",
+    "items": [
+        {
+            "item_id": "P007435",
+                    "amount": 23
+=======
     "transfer_from": null,
     "transfer_to": "9229",
     "transfer_status": "Pending",
@@ -790,12 +1025,18 @@ Content-Type: application/json
         {
             "item_id": "P007435",
             "amount": 23
+>>>>>>> Melvern7
         }
     ]
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/transfers/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+=======
 PUT http://localhost:5072/cargohub/transfers/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -813,6 +1054,18 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+
+DELETE http://localhost:80/api/v1/transfers/1
+API_KEY: 5b3b8e0f-4a19-4e06-b458-19b33bc0ae6b
+
+############warehouses
+
+GET http://localhost:80/api/v1/warehouses/1
+
+####
+POST http://localhost:80/api/v1/warehouses
+=======
 DELETE http://localhost:5072/cargohub/transfers/1
 
 ############warehouses
@@ -821,6 +1074,7 @@ GET http://localhost:5072/cargohub/warehouses/1
 
 ####
 POST http://localhost:5072/cargohub/warehouses
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -836,7 +1090,11 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+PUT http://localhost:80/api/v1/warehouses/1
+=======
 PUT http://localhost:5072/cargohub/warehouses/1
+>>>>>>> Melvern7
 Content-Type: application/json
 
 {
@@ -852,8 +1110,12 @@ Content-Type: application/json
 }
 
 ####
+<<<<<<< HEAD
+DELETE http://localhost:80/api/v1/warehouses/1
+=======
 DELETE http://localhost:5072/cargohub/warehouses/1
 
 ####
 DELETE http://localhost:5072/cargohub/warehouses/1
 API_KEY: f3f0efb1-917d-4457-a279-90280da97439
+>>>>>>> Melvern7

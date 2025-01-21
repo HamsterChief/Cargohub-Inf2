@@ -6,10 +6,10 @@ name: .NET and Python Tests
 on:
   push:
     branches: 
-      - "Main"
+      - "main"
   pull_request:
     branches: 
-      - "Main"
+      - "main"
   
 
 jobs:
@@ -40,8 +40,8 @@ jobs:
     - name: Pull Latest Changes from Git
       run: |
         cd ~/persistent-dir/Cargohub-Inf2
-        git fetch origin C#-Cargohub
-        git reset --hard origin/C#-Cargohub
+        git fetch origin main
+        git reset --hard origin/main
 
     - name: Backup appsettings.json
       run: |
@@ -56,7 +56,6 @@ jobs:
       run: |
         echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
         sudo systemctl status myefcoreproject  # Verify it's running
-        sleep 5  # Sleep for 5 seconds to ensure the server is ready
 
 
     - name: Set up Python
@@ -72,15 +71,20 @@ jobs:
     
     - name: Run pytest tests
     # -v for more detailed output (easier debugging)
-      run: pytest ~/persistent-dir/Cargohub-Inf2/Integrationtests/endpoints_tests.py -v
+      run: |
+          sleep 20  # Sleep to ensure the server is ready
+          pytest ~/persistent-dir/Cargohub-Inf2/Integrationtests/endpoints_tests.py -v
 
 
+    # Always restore the original appsettings.json
     - name: Restore Original appsettings.json
+      if: always()
       run: |
         mv ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json.bak ~/persistent-dir/Cargohub-Inf2/MyEFCoreProject/appsettings.json
 
-    # Restart the service to restore original appsettings.
+    # Restart the service with the original configuration
     - name: Restart EF Core Project Service with Original Configuration
+      if: always()
       run: |
         echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S systemctl restart myefcoreproject
         sudo systemctl status myefcoreproject  # Verify it's running
